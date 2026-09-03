@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -8,7 +8,7 @@
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
 <style>
 :root{--bg:#f4f6fb;--panel:#fff;--soft:#f7f9fd;--text:#172033;--muted:#71809a;--line:#e4e9f2;--accent:#465ed4;--accent2:#7185f0;--nav:#11182a;--good:#19875d;--bad:#c7435c;--warn:#b87816;--shadow:0 10px 30px rgba(32,45,80,.07);--r:18px}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,Segoe UI,Arial,sans-serif;font-size:13px}.app{min-height:100vh;display:flex}.side{width:248px;position:fixed;inset:0 auto 0 0;background:linear-gradient(180deg,#101729,#121a2d);color:#dce5ff;padding:24px 15px;z-index:20}.logo{font-size:20px;font-weight:900;letter-spacing:-.4px;padding:6px 11px 30px}.logo span{color:#7d98ff}.nav{display:flex;flex-direction:column;gap:4px}.nav a{color:#aeb9d5;text-decoration:none;font-weight:800;font-size:13px;padding:13px 12px;border-radius:12px;transition:.18s}.nav a:hover{background:#1d2944;color:#fff}.nav a.active{background:linear-gradient(135deg,#465ed4,#536de2);color:#fff;box-shadow:0 8px 18px rgba(64,91,213,.25)}.divider{height:1px;background:#2a3550;margin:14px 8px}.sideNote{position:absolute;bottom:20px;left:25px;right:25px;color:#71809e;font-size:11px;line-height:1.55}.main{margin-left:248px;width:calc(100% - 248px);padding:25px 30px 45px}.page{display:none}.page.active{display:block}.top,.pageHeader{display:flex;justify-content:space-between;gap:24px;align-items:flex-start;margin-bottom:20px}.pageHeader{align-items:flex-end}.eyebrow{color:var(--accent);font-size:11px;font-weight:900;letter-spacing:1.6px;text-transform:uppercase}.title{font-size:30px;line-height:1.12;font-weight:900;letter-spacing:-.8px;margin:5px 0 7px}.subtitle,.pageHeader p{color:var(--muted);font-size:13px}.pageHeader h2{margin:0;font-size:25px;letter-spacing:-.5px}.pageHeader p{margin:5px 0 0;font-size:12px}.actions{display:flex;gap:9px;flex-wrap:wrap}.btn{border:1px solid var(--line);background:#fff;color:var(--text);border-radius:11px;padding:10px 14px;font-weight:800;font-size:12px;cursor:pointer;box-shadow:0 2px 8px rgba(30,45,80,.03)}.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}.btn:hover{transform:translateY(-1px)}.file{display:none}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,Segoe UI,Arial,sans-serif;font-size:13px}.app{min-height:100vh;display:flex}.side{width:248px;position:fixed;inset:0 auto 0 0;background:linear-gradient(180deg,#101729,#121a2d);color:#dce5ff;padding:24px 15px;z-index:20}.logo{font-size:19px;font-weight:800;letter-spacing:-.2px;line-height:1.28;padding:6px 11px 30px}.logo span{color:#7d98ff}.nav{display:flex;flex-direction:column;gap:3px}.nav a{color:#aeb9d5;text-decoration:none;font-weight:700;font-size:12.5px;letter-spacing:.1px;line-height:1.35;padding:12px 12px;border-radius:10px;transition:.18s}.nav a:hover{background:#1d2944;color:#fff}.nav a.active{background:linear-gradient(135deg,#465ed4,#536de2);color:#fff;box-shadow:0 8px 18px rgba(64,91,213,.25)}.divider{height:1px;background:#2a3550;margin:14px 8px}.sideNote{position:absolute;bottom:20px;left:25px;right:25px;color:#71809e;font-size:11px;line-height:1.55}.main{margin-left:248px;width:calc(100% - 248px);padding:25px 30px 45px}.page{display:none}.page.active{display:block}.top,.pageHeader{display:flex;justify-content:space-between;gap:24px;align-items:flex-start;margin-bottom:20px}.pageHeader{align-items:flex-end}.eyebrow{color:var(--accent);font-size:11px;font-weight:900;letter-spacing:1.6px;text-transform:uppercase}.title{font-size:30px;line-height:1.12;font-weight:900;letter-spacing:-.8px;margin:5px 0 7px}.subtitle,.pageHeader p{color:var(--muted);font-size:13px}.pageHeader h2{margin:0;font-size:25px;letter-spacing:-.5px}.pageHeader p{margin:5px 0 0;font-size:12px}.actions{display:flex;gap:9px;flex-wrap:wrap}.btn{border:1px solid var(--line);background:#fff;color:var(--text);border-radius:11px;padding:10px 14px;font-weight:800;font-size:12px;cursor:pointer;box-shadow:0 2px 8px rgba(30,45,80,.03)}.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}.btn:hover{transform:translateY(-1px)}.file{display:none}
 .filterBar,.subFilters{background:#fff;border:1px solid var(--line);border-radius:18px;padding:15px 16px;box-shadow:var(--shadow);margin-bottom:17px}.filterGrid{display:grid;grid-template-columns:1.15fr 1.15fr 1.15fr 1fr 1fr;gap:12px;align-items:end}.subFilters{display:grid;grid-template-columns:repeat(4,1fr) auto;gap:12px;align-items:end}.field label{display:block;text-transform:uppercase;color:var(--muted);font-size:10px;font-weight:900;letter-spacing:.3px;margin-bottom:6px}.field select{width:100%;border:1px solid var(--line);background:#f9faff;border-radius:10px;padding:10px 11px;outline:none;color:var(--text);font-size:12px}.filterMeta{display:flex;align-items:center;justify-content:space-between;margin-top:11px;padding-top:11px;border-top:1px solid #edf0f5}.source{color:var(--muted);font-size:11px}.source b{color:var(--text)}.live{color:var(--good);font-weight:900}.unitControl{display:flex;align-items:center;gap:9px;color:var(--muted);font-size:11px;font-weight:800;white-space:nowrap}.switch{position:relative;width:42px;height:23px;display:inline-block}.switch input{display:none}.slider{position:absolute;inset:0;background:#dce2ef;border-radius:20px;cursor:pointer}.slider:after{content:"";position:absolute;width:17px;height:17px;left:3px;top:3px;background:#fff;border-radius:50%;box-shadow:0 2px 5px rgba(0,0,0,.18);transition:.2s}.switch input:checked+.slider{background:var(--accent)}.switch input:checked+.slider:after{transform:translateX(19px)}
 .kpis{display:grid;grid-template-columns:repeat(7,1fr);gap:12px;margin-bottom:16px}.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}.kpi{padding:14px 14px;min-height:128px;position:relative;overflow:hidden}.kpi:after{content:"";position:absolute;width:72px;height:72px;border-radius:50%;right:-32px;top:-30px;background:rgba(64,91,213,.06)}.label{color:var(--muted);font-size:8.5px;font-weight:900;letter-spacing:.15px;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.value{font-size:22px;font-weight:900;letter-spacing:-.4px;margin:10px 0 6px}.delta{font-size:9.5px;font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}.up{color:var(--good)}.down{color:var(--bad)}.neutral{color:var(--muted)}.deltaRow{display:flex;gap:10px;margin-top:1px}.deltaItem{display:flex;flex-direction:column;gap:1px;min-width:0}.deltaItem small{font-size:7.5px;color:var(--muted);font-weight:800;text-transform:uppercase;letter-spacing:.1px;white-space:nowrap}.deltaItem .delta{font-size:9px}
 .grid2{display:grid;grid-template-columns:1.42fr 1fr;gap:16px;margin-bottom:16px}.grid2.equal{grid-template-columns:1fr 1fr}.section{padding:17px}.head,.tableTop{display:flex;justify-content:space-between;align-items:center;margin-bottom:13px}.head h3,.tableTop h3{margin:0;font-size:15px;font-weight:900}.head span,.tableTop span{font-size:10px;color:var(--muted)}.chartbox{height:285px;position:relative}.chartbox.small{height:250px}.chartbox.chartScroll{overflow:auto}.chartScrollInner{position:relative;min-height:100%;min-width:100%}.insightRow{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:11px}.mini{background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:10px}.mini span{display:block;color:var(--muted);font-size:9px;font-weight:800}.mini b{display:block;font-size:14px;margin-top:4px}.statusPill{display:inline-flex;align-items:center;gap:5px;background:#eef9f3;color:var(--good);padding:6px 9px;border-radius:999px;font-size:10px;font-weight:900}.dot{width:6px;height:6px;border-radius:50%;background:currentColor}
@@ -28,7 +28,7 @@
 @media(max-width:1250px){.page4Filters{grid-template-columns:repeat(2,1fr)}.cm2VehicleFilters{grid-template-columns:repeat(2,1fr)}.shOnlyTables .scenario .tablewrap{max-height:420px}}
 
 /* Sidebar minimize / maximize */
-.side{transition:width .22s ease;padding-top:18px}.sideToggle{position:absolute;top:16px;right:-12px;width:26px;height:26px;border:1px solid #d8deec;border-radius:50%;background:#fff;color:#465ed4;display:grid;place-items:center;cursor:pointer;font-weight:900;box-shadow:0 4px 12px rgba(20,30,60,.18);z-index:30}.side.collapsed{width:72px;padding-left:8px;padding-right:8px}.side.collapsed .logo{font-size:0;text-align:center;padding:8px 0 30px}.side.collapsed .logo:after{content:'FS';font-size:18px;font-weight:900;color:#fff}.navIcon{width:18px;height:18px;display:grid;place-items:center;flex:0 0 18px}.navIcon svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}.nav a{display:flex;align-items:center;gap:11px}.navText{min-width:0}.side.collapsed .nav a{justify-content:center;padding:13px 7px;white-space:nowrap}.side.collapsed .navText{display:none}.side.collapsed .navIcon,.side.collapsed .navIcon svg{width:21px;height:21px}.side.collapsed .navIcon{color:#9aa8ca}.side.collapsed .nav a.active .navIcon{color:#fff}.side.collapsed .divider{margin:14px 4px}.side.collapsed .nav a{position:relative}.side.collapsed .nav a:hover::after{content:attr(data-label);position:absolute;left:58px;top:50%;transform:translateY(-50%);background:#17213a;color:#fff;padding:8px 10px;border-radius:8px;font-size:11px;font-weight:800;white-space:nowrap;box-shadow:0 8px 20px rgba(0,0,0,.22);z-index:100}.side.collapsed .nav a:hover{background:#1d2944}.side.collapsed .sideNote{display:none}.side.collapsed .sideToggle{right:-12px;transform:rotate(180deg)}.main{transition:margin-left .22s ease,width .22s ease}.side.collapsed~.main{margin-left:72px;width:calc(100% - 72px)}
+.side{transition:width .22s ease;padding-top:18px}.sideToggle{position:absolute;top:16px;right:-12px;width:26px;height:26px;border:1px solid #d8deec;border-radius:50%;background:#fff;color:#465ed4;display:grid;place-items:center;cursor:pointer;font-weight:900;box-shadow:0 4px 12px rgba(20,30,60,.18);z-index:30}.side.collapsed{width:72px;padding-left:8px;padding-right:8px}.side.collapsed .logo{font-size:0;text-align:center;padding:8px 0 30px}.side.collapsed .logo:after{content:'FS';font-size:18px;font-weight:900;color:#fff}.navIcon{width:18px;height:18px;display:grid;place-items:center;flex:0 0 18px;margin-top:2px}.navIcon svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}.nav a{display:flex;align-items:flex-start;gap:11px}.navText{min-width:0}.side.collapsed .nav a{justify-content:center;padding:13px 7px;white-space:nowrap}.side.collapsed .navText{display:none}.side.collapsed .navIcon,.side.collapsed .navIcon svg{width:21px;height:21px}.side.collapsed .navIcon{color:#9aa8ca}.side.collapsed .nav a.active .navIcon{color:#fff}.side.collapsed .divider{margin:14px 4px}.side.collapsed .nav a{position:relative}.side.collapsed .nav a:hover::after{content:attr(data-label);position:absolute;left:58px;top:50%;transform:translateY(-50%);background:#17213a;color:#fff;padding:8px 10px;border-radius:8px;font-size:11px;font-weight:800;white-space:nowrap;box-shadow:0 8px 20px rgba(0,0,0,.22);z-index:100}.side.collapsed .nav a:hover{background:#1d2944}.side.collapsed .sideNote{display:none}.side.collapsed .sideToggle{right:-12px;transform:rotate(180deg)}.main{transition:margin-left .22s ease,width .22s ease}.side.collapsed~.main{margin-left:72px;width:calc(100% - 72px)}
 /* Fixed management views: no page-level filters */
 .pageContextBar{display:flex;justify-content:space-between;align-items:center;gap:14px;margin:14px 0 18px;padding:12px 15px;border:1px solid var(--line);border-radius:12px;background:#f7f9fd;color:var(--muted);font-size:10px;font-weight:800;letter-spacing:.1px}.pageContextBar span:last-child{text-align:right}@media(max-width:800px){.pageContextBar{flex-direction:column;align-items:flex-start}.pageContextBar span:last-child{text-align:left}}
 /* Page 4: vertically stacked, full-width comparison tables */
@@ -66,8 +66,20 @@ body[data-theme="grey"] .cm2Matrix thead tr.group th{background:#dce1e8;color:#2
 @media(max-width:1250px){.page4Filters,.page5Filters,.lpFilters{grid-template-columns:repeat(3,1fr)}.themeSwitcher{right:12px;top:10px}}
 .lpTableWrap{max-height:280px;overflow:auto;border:1px solid var(--line);border-radius:13px}.lpTable{width:100%;border-collapse:separate;border-spacing:0;font-size:11px}.lpTable th{position:sticky;top:0;background:#f6f8fc;z-index:4;color:#5a6881;font-size:9px;text-transform:uppercase;letter-spacing:.25px;text-align:right;padding:8px 9px;border-bottom:1px solid var(--line)}.lpTable td{text-align:right;padding:7px 9px;border-bottom:1px solid #eef1f5}.lpTable th:first-child,.lpTable td:first-child{text-align:left}.lpTable tr:hover td{background:#fafbff}.lpTable .empty{padding:30px!important;text-align:center!important;color:var(--muted)!important}
 #lenderPortfolioPage .chartbox{height:220px}
+#lpStateChartBox{height:270px}
 #lpSummary{grid-template-columns:repeat(4,1fr)}
 #lenderGmPage .chartbox{height:240px}
+#gmLenderChartBox{height:280px}
+.hiringFilters{grid-template-columns:repeat(6,minmax(0,1fr)) auto;gap:8px}
+.hiringFilters .resetBtn{justify-self:start;padding:0 16px}
+.hiringSummary{grid-template-columns:repeat(6,minmax(0,1fr))}
+.hiringSummary .summaryBox{border-left:4px solid var(--accent);padding:10px 12px}
+.hiringSummary .summaryBox.kind-hired{border-left-color:var(--good)}
+.hiringSummary .summaryBox.kind-exited{border-left-color:var(--bad)}
+.hiringGroupHead{font-size:12px;font-weight:900;letter-spacing:.3px;text-transform:uppercase;color:var(--muted);margin:4px 2px 10px}
+#hiringPage .chartbox{height:230px}
+@media(max-width:1250px){.hiringFilters{grid-template-columns:repeat(3,1fr)}.hiringSummary{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:800px){.hiringFilters{grid-template-columns:repeat(2,1fr)}}
 .gmTable{min-width:1000px}
 body[data-theme="dark"] .lpTable th{background:#1c1c1f;color:#b7c3da}body[data-theme="dark"] .lpTable td{border-color:#2b2b2e}body[data-theme="dark"] .lpTable tr:hover td{background:#1c1c1f}
 @media(max-width:800px){.themeSwitcher{position:sticky;top:8px;margin-left:auto;width:max-content}.page4Filters,.page5Filters{grid-template-columns:1fr}}
@@ -89,8 +101,9 @@ body[data-theme="grey"] .scenario{background:#f7f8fa}
 <a href="#vehicle" class="pageTab" data-page="vehiclePnlPage" data-label="P&amp;L by Vehicle Category"><span class="navIcon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 15h14l-1.2-6H6.2L5 15Zm2 0v2m10-2v2M7 9l1.2-3h7.6L17 9M7.5 18h1m7 0h1"/></svg></span><span class="navText">P&amp;L by Vehicle Category</span></a>
 <a href="#sh" class="pageTab" data-page="shPnlPage" data-label="1 SH vs 2 SH vs Company P&L"><span class="navIcon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm8 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7ZM2.5 21a5.5 5.5 0 0 1 11 0M14 21a5 5 0 0 1 8 0"/></svg></span><span class="navText">1 SH vs 2 SH vs Company P&amp;L</span></a>
 <a href="#cm2Vehicle" class="pageTab" data-page="cm2VehiclePage" data-label="CM-2 Summary by Vehicle Type"><span class="navIcon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4zM4 9h16M9 9v10M14 9v10M19 9v10"/></svg></span><span class="navText">CM-2 Summary by Vehicle Type</span></a>
-<a href="#lenderPortfolio" class="pageTab" data-page="lenderPortfolioPage" data-label="Lender Portfolio Summary"><span class="navIcon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6"/></svg></span><span class="navText">Lender Portfolio Summary</span></a>
-<a href="#lenderGm" class="pageTab" data-page="lenderGmPage" data-label="Lender's GM Analysis"><span class="navIcon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 19h16M6 19V9m6 10V5m6 14v-7"/></svg></span><span class="navText">Lender's GM Analysis</span></a></nav>
+<a href="#lenderPortfolio" class="pageTab" data-page="lenderPortfolioPage" data-label="Lender Portfolio Summary (External)"><span class="navIcon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6"/></svg></span><span class="navText">Lender Portfolio Summary (External)</span></a>
+<a href="#lenderGm" class="pageTab" data-page="lenderGmPage" data-label="Lender GM Analysis (Internal)"><span class="navIcon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 19h16M6 19V9m6 10V5m6 14v-7"/></svg></span><span class="navText">Lender GM Analysis (Internal)</span></a>
+<a href="#hiring" class="pageTab" data-page="hiringPage" data-label="Hiring &amp; Attrition"><span class="navIcon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm-7 10a7 7 0 0 1 14 0M17 8h5m-2.5-2.5v5"/></svg></span><span class="navText">Hiring &amp; Attrition</span></a></nav>
 <div class="sideNote">Finj SH Performance Matrix<br>Excel / Google Sheets ready<br>Single-file HTML dashboard</div></aside><div class="themeSwitcher" id="themeSwitcher"><span class="themeTitle">THEME</span><button type="button" data-theme="light" onclick="setDashboardTheme('light')">☀ Light</button><button type="button" data-theme="dark" onclick="setDashboardTheme('dark')">◐ Dark</button><button type="button" data-theme="grey" onclick="setDashboardTheme('grey')">◒ Grey</button></div>
 <main class="main">
 <section id="overallPage" class="page active">
@@ -148,7 +161,7 @@ body[data-theme="grey"] .scenario{background:#f7f8fa}
 <section class="card tableCard"><div class="tableTop"><h3>P&amp;L by Category</h3><span id="cm2VehicleHint">₹ Lac unless % • multiple selection</span></div><div class="tablewrap cm2MatrixWrap"><table class="pnl cm2Matrix"><thead></thead><tbody id="cm2VehicleBody"></tbody></table></div><div class="tableFooter">Power BI-style vehicle matrix. Rows represent State Heads; columns show Case, CM-2 and CM-2% for each selected vehicle type.</div></section>
 </section>
 
-<section id="lenderPortfolioPage" class="page"><div class="pageHeader"><div><h2>Lender Portfolio Summary</h2><p>Lender mix, vehicle mix and state-wise contribution across the selected lenders, financial years and months.</p></div></div>
+<section id="lenderPortfolioPage" class="page"><div class="pageHeader"><div><h2>Lender Portfolio Summary (External)</h2><p>Lender mix, vehicle mix and state-wise contribution across the selected lenders, financial years and months.</p></div></div>
 <div class="subFilters lpFilters">
  <div class="field multiField"><label>Lender <span class="filterHint">Multiple selection</span></label><div class="multiSelect" id="p6LenderMulti"><button type="button" class="multiSelectBtn" onclick="toggleP6Menu('p6LenderMulti',event)"><span id="p6LenderLabel">All Lenders</span><span class="chev">⌄</span></button><div class="multiMenu"><label class="checkRow allRow"><input type="checkbox" id="p6LenderAll" checked onchange="toggleAllP6('lender',this)"><span>All Lenders</span></label><div class="menuDivider"></div><div id="p6LenderOptions"></div><div class="multiFooter"><span id="p6LenderCount">All lenders selected</span><button type="button" onclick="applyP6Menu('p6LenderMulti')">Apply</button></div></div></div></div>
  <div class="field multiField"><label>Financial Year <span class="filterHint">Multiple selection</span></label><div class="multiSelect" id="p6FyMulti"><button type="button" class="multiSelectBtn" onclick="toggleP6Menu('p6FyMulti',event)"><span id="p6FyLabel">All Financial Years</span><span class="chev">⌄</span></button><div class="multiMenu"><label class="checkRow allRow"><input type="checkbox" id="p6FyAll" checked onchange="toggleAllP6('fy',this)"><span>All Financial Years</span></label><div class="menuDivider"></div><div id="p6FyOptions"></div><div class="multiFooter"><span id="p6FyCount">All years selected</span><button type="button" onclick="applyP6Menu('p6FyMulti')">Apply</button></div></div></div></div>
@@ -167,7 +180,7 @@ body[data-theme="grey"] .scenario{background:#f7f8fa}
 <section class="card section"><div class="head"><h3>Contribution of States</h3><span>Case count &amp; share by state</span></div><div class="chartbox chartScroll" id="lpStateChartBox"><div class="chartScrollInner" id="lpStateChartInner"><canvas id="lpStateChart"></canvas></div></div></section>
 </section>
 
-<section id="lenderGmPage" class="page"><div class="pageHeader"><div><h2>Lender's GM Analysis</h2><p>Gross margin performance by lender across the selected lenders, financial years, months and vehicle categories.</p></div></div>
+<section id="lenderGmPage" class="page"><div class="pageHeader"><div><h2>Lender GM Analysis (Internal)</h2><p>Gross margin performance by lender across the selected lenders, financial years, months and vehicle categories.</p></div></div>
 <div class="subFilters lpFilters">
  <div class="field multiField"><label>Lender <span class="filterHint">Multiple selection</span></label><div class="multiSelect" id="gmLenderMulti"><button type="button" class="multiSelectBtn" onclick="toggleP7Menu('gmLenderMulti',event)"><span id="gmLenderLabel">All Lenders</span><span class="chev">⌄</span></button><div class="multiMenu"><label class="checkRow allRow"><input type="checkbox" id="gmLenderAll" checked onchange="toggleAllP7('lender',this)"><span>All Lenders</span></label><div class="menuDivider"></div><div id="gmLenderOptions"></div><div class="multiFooter"><span id="gmLenderCount">All lenders selected</span><button type="button" onclick="applyP7Menu('gmLenderMulti')">Apply</button></div></div></div></div>
  <div class="field multiField"><label>Financial Year <span class="filterHint">Multiple selection</span></label><div class="multiSelect" id="gmFyMulti"><button type="button" class="multiSelectBtn" onclick="toggleP7Menu('gmFyMulti',event)"><span id="gmFyLabel">All Financial Years</span><span class="chev">⌄</span></button><div class="multiMenu"><label class="checkRow allRow"><input type="checkbox" id="gmFyAll" checked onchange="toggleAllP7('fy',this)"><span>All Financial Years</span></label><div class="menuDivider"></div><div id="gmFyOptions"></div><div class="multiFooter"><span id="gmFyCount">All years selected</span><button type="button" onclick="applyP7Menu('gmFyMulti')">Apply</button></div></div></div></div>
@@ -181,6 +194,24 @@ body[data-theme="grey"] .scenario{background:#f7f8fa}
 <section class="card section"><div class="head"><h3>Cases Count vs Inflow % Trend</h3><span>Monthly</span></div><div id="gmTrendLegend" class="overallCompareLegend"></div><div class="chartbox"><canvas id="gmTrendChart"></canvas></div></section>
 <section class="card section"><div class="head"><h3>Case Count Contribution</h3><span>By lender</span></div><div class="chartbox chartScroll" id="gmLenderChartBox"><div class="chartScrollInner" id="gmLenderChartInner"><canvas id="gmLenderChart"></canvas></div></div></section>
 <section class="card tableCard"><div class="tableTop"><h3>Lender-wise Gross Margin</h3><span>Cases, loan and margin performance by lender</span></div><div class="tablewrap lpTableWrap"><table class="lpTable gmTable"><thead><tr><th>Lender Name</th><th>Cases</th><th>Cases %</th><th>Loan (Cr.)</th><th>Loan %</th><th>Inflow (Cr.)</th><th>Inflow %</th><th>Outflow (Cr.)</th><th>Outflow %</th><th>Gross Margin (Cr.)</th><th>Gross Margin %</th></tr></thead><tbody id="gmLenderBody"></tbody></table></div></section>
+</section>
+
+<section id="hiringPage" class="page"><div class="pageHeader"><div><h2>Hiring &amp; Attrition</h2><p>FO and CH headcount movement — hiring, attrition and month-end headcount across State Heads, team types and levels.</p></div></div>
+<div class="subFilters hiringFilters">
+ <div class="field multiField"><label>State Head <span class="filterHint">Multiple selection</span></label><div class="multiSelect" id="hrShMulti"><button type="button" class="multiSelectBtn" onclick="toggleP8Menu('hrShMulti',event)"><span id="hrShLabel">All State Heads</span><span class="chev">⌄</span></button><div class="multiMenu"><label class="checkRow allRow"><input type="checkbox" id="hrShAll" checked onchange="toggleAllP8('sh',this)"><span>All State Heads</span></label><div class="menuDivider"></div><div id="hrShOptions"></div><div class="multiFooter"><span id="hrShCount">All State Heads selected</span><button type="button" onclick="applyP8Menu('hrShMulti')">Apply</button></div></div></div></div>
+ <div class="field multiField"><label>Financial Year <span class="filterHint">Multiple selection</span></label><div class="multiSelect" id="hrFyMulti"><button type="button" class="multiSelectBtn" onclick="toggleP8Menu('hrFyMulti',event)"><span id="hrFyLabel">All Financial Years</span><span class="chev">⌄</span></button><div class="multiMenu"><label class="checkRow allRow"><input type="checkbox" id="hrFyAll" checked onchange="toggleAllP8('fy',this)"><span>All Financial Years</span></label><div class="menuDivider"></div><div id="hrFyOptions"></div><div class="multiFooter"><span id="hrFyCount">All Financial Years selected</span><button type="button" onclick="applyP8Menu('hrFyMulti')">Apply</button></div></div></div></div>
+ <div class="field multiField"><label>Month <span class="filterHint">Multiple selection</span></label><div class="multiSelect" id="hrMonthMulti"><button type="button" class="multiSelectBtn" onclick="toggleP8Menu('hrMonthMulti',event)"><span id="hrMonthLabel">All Months</span><span class="chev">⌄</span></button><div class="multiMenu"><label class="checkRow allRow"><input type="checkbox" id="hrMonthAll" checked onchange="toggleAllP8('month',this)"><span>All Months</span></label><div class="menuDivider"></div><div id="hrMonthOptions"></div><div class="multiFooter"><span id="hrMonthCount">All Months selected</span><button type="button" onclick="applyP8Menu('hrMonthMulti')">Apply</button></div></div></div></div>
+ <div class="field multiField"><label>Team Type <span class="filterHint">Multiple selection</span></label><div class="multiSelect" id="hrTeamMulti"><button type="button" class="multiSelectBtn" onclick="toggleP8Menu('hrTeamMulti',event)"><span id="hrTeamLabel">All Team Types</span><span class="chev">⌄</span></button><div class="multiMenu"><label class="checkRow allRow"><input type="checkbox" id="hrTeamAll" checked onchange="toggleAllP8('team',this)"><span>All Team Types</span></label><div class="menuDivider"></div><div id="hrTeamOptions"></div><div class="multiFooter"><span id="hrTeamCount">All Team Types selected</span><button type="button" onclick="applyP8Menu('hrTeamMulti')">Apply</button></div></div></div></div>
+ <div class="field multiField"><label>FO Level <span class="filterHint">Multiple selection</span></label><div class="multiSelect" id="hrFoLevelMulti"><button type="button" class="multiSelectBtn" onclick="toggleP8Menu('hrFoLevelMulti',event)"><span id="hrFoLevelLabel">All FO Levels</span><span class="chev">⌄</span></button><div class="multiMenu"><label class="checkRow allRow"><input type="checkbox" id="hrFoLevelAll" checked onchange="toggleAllP8('foLevel',this)"><span>All FO Levels</span></label><div class="menuDivider"></div><div id="hrFoLevelOptions"></div><div class="multiFooter"><span id="hrFoLevelCount">All FO Levels selected</span><button type="button" onclick="applyP8Menu('hrFoLevelMulti')">Apply</button></div></div></div></div>
+ <div class="field multiField"><label>CH Type <span class="filterHint">Multiple selection</span></label><div class="multiSelect" id="hrChLevelMulti"><button type="button" class="multiSelectBtn" onclick="toggleP8Menu('hrChLevelMulti',event)"><span id="hrChLevelLabel">All CH Types</span><span class="chev">⌄</span></button><div class="multiMenu"><label class="checkRow allRow"><input type="checkbox" id="hrChLevelAll" checked onchange="toggleAllP8('chLevel',this)"><span>All CH Types</span></label><div class="menuDivider"></div><div id="hrChLevelOptions"></div><div class="multiFooter"><span id="hrChLevelCount">All CH Types selected</span><button type="button" onclick="applyP8Menu('hrChLevelMulti')">Apply</button></div></div></div></div>
+ <button class="btn primary resetBtn" type="button" onclick="resetPage8Filters()">↻ Reset Filters</button>
+</div>
+<div class="hiringGroupHead">FO — Field Officers</div>
+<div class="matrixSummary hiringSummary" id="foSummary"></div>
+<section class="card section"><div class="head"><h3>FO Headcount Movement</h3><span>Hired vs exited, month on month</span></div><div id="foMovementLegend" class="overallCompareLegend"></div><div class="chartbox"><canvas id="foMovementChart"></canvas></div></section>
+<div class="hiringGroupHead">CH — Cluster Heads</div>
+<div class="matrixSummary hiringSummary" id="chSummary"></div>
+<section class="card section"><div class="head"><h3>CH Headcount Movement</h3><span>Hired vs exited, month on month</span></div><div id="chMovementLegend" class="overallCompareLegend"></div><div class="chartbox"><canvas id="chMovementChart"></canvas></div></section>
 </section>
 
 </main>
@@ -207,7 +238,8 @@ body[data-theme="grey"] .scenario{background:#f7f8fa}
 <script>
 if(typeof Chart!=='undefined'&&typeof ChartDataLabels!=='undefined')Chart.register(ChartDataLabels);
 let importedWorkbook=null, importedSheets={}, importedActiveSheet='';
-let VEHICLES=[],LENDERS=[],SHS=[],MONTHS=[],GEOSTATES=[];const FYMAP=m=>['Apr-25','May-25','Jun-25','Jul-25','Aug-25','Sep-25','Oct-25','Nov-25','Dec-25','Jan-26','Feb-26','Mar-26'].includes(m)?'FY 2025-26':'FY 2026-27';let data=[],charts={},sourceLabel='No data imported yet'; const sum=(a,k)=>a.reduce((s,r)=>s+(+r[k]||0),0),uniq=a=>[...new Set(a)];
+let VEHICLES=[],LENDERS=[],SHS=[],MONTHS=[],GEOSTATES=[];
+let FO_HIRING=[],CH_HIRING=[],TEAM_TYPES=[],FO_LEVELS=[],CH_LEVELS=[],HIRING_SHS=[];const FYMAP=m=>['Apr-25','May-25','Jun-25','Jul-25','Aug-25','Sep-25','Oct-25','Nov-25','Dec-25','Jan-26','Feb-26','Mar-26'].includes(m)?'FY 2025-26':'FY 2026-27';let data=[],charts={},sourceLabel='No data imported yet'; const sum=(a,k)=>a.reduce((s,r)=>s+(+r[k]||0),0),uniq=a=>[...new Set(a)];
 /* Real-data ETL: turns the imported workbook's sheets into the row shape the rest of the dashboard consumes. */
 const VEHICLE_CANON=(()=>{const map=new Map();const add=(variants,canon)=>variants.forEach(v=>map.set(v.toLowerCase().trim(),canon));add(['tractor'],'Tractor');add(['new tractor'],'New Tractor');add(['car'],'Car');add(['new car'],'New Car');add(['truck'],'Truck');add(['new truck'],'New Truck');add(['backhoe loader'],'Backhoe Loader');add(['new backhoe loader'],'New Backhoe Loader');add(['harvester'],'Harvester');add(['new harvester'],'New Harvester');return map;})();
 function normalizeVehicle(v){const key=String(v||'').toLowerCase().trim();return VEHICLE_CANON.get(key)||'Other';}
@@ -260,6 +292,38 @@ function buildRealData(sheets){
   return {rows:result,months:monthsOut,shs:shsOut,lenders:lendersOut,vehicles:vehiclesOut,geoStates:geoStatesOut};
 }
 
+/* Hiring & attrition ETL: one row per employee, with joining/exit dates stored as Excel date
+   serials. Converted here to the dashboard's "Mon-YY" month keys so headcount can be bucketed. */
+const MONTH_ABBR=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+function excelSerialToMonthStr(serial){
+  if(serial===''||serial===null||serial===undefined)return null;
+  if(serial instanceof Date)return MONTH_ABBR[serial.getMonth()]+'-'+String(serial.getFullYear()).slice(-2);
+  const n=Number(serial);
+  if(!isFinite(n)||n<=0)return null;
+  const d=new Date(Math.round((n-25569)*86400*1000));
+  if(isNaN(d.getTime()))return null;
+  return MONTH_ABBR[d.getUTCMonth()]+'-'+String(d.getUTCFullYear()).slice(-2);
+}
+function buildHiringData(sheets){
+  const foRows=sheetObjects(sheets,'FO Hiring & Attrition'),chRows=sheetObjects(sheets,'CH Hiring & Attrition');
+  const fo=foRows.map(r=>({
+    id:String(r['FO ID']||'').trim(),name:String(r['FO - Name']||'').trim(),
+    chName:String(r['CH - Name']||'').trim(),sh:String(r['SH - Name']||'').trim(),
+    state:String(r['State']||'').trim(),doj:excelSerialToMonthStr(r['DOJ']),doe:excelSerialToMonthStr(r['DOE']),
+    team:String(r['Team Type']||'').trim(),level:String(r['FO level']||'').trim()
+  })).filter(x=>x.id&&x.doj);
+  const ch=chRows.map(r=>({
+    id:String(r['Employee ID']||'').trim(),name:String(r['Name']||'').trim(),
+    sh:String(r['SH - Name']||'').trim(),doj:excelSerialToMonthStr(r['DOJ']),doe:excelSerialToMonthStr(r['DOE']),
+    team:String(r['TEAM']||'').trim(),level:String(r['CH_Level']||'').trim()
+  })).filter(x=>x.id&&x.doj);
+  const teams=uniq([...fo.map(x=>x.team),...ch.map(x=>x.team)]).filter(Boolean).sort();
+  const foLevels=uniq(fo.map(x=>x.level)).filter(Boolean).sort();
+  const chLevels=uniq(ch.map(x=>x.level)).filter(Boolean).sort();
+  const shs=uniq([...fo.map(x=>x.sh),...ch.map(x=>x.sh)]).filter(Boolean).sort();
+  return {fo,ch,teams,foLevels,chLevels,shs};
+}
+
 function fill(id,arr,val){const e=document.getElementById(id);e.innerHTML=arr.map(x=>`<option>${x}</option>`).join('');if(val!==undefined)e.value=val}
 let pnlSelectedMonths=[];
 function initPnlMonthMulti(selected){const wrap=document.getElementById('pnlMonthOptions');if(!wrap)return;pnlSelectedMonths=selected&&selected.length?selected.slice():[];wrap.innerHTML=MONTHS.map((m,i)=>`<label class="checkRow"><input type="checkbox" class="pnlMonthCheck" value="${m}" ${pnlSelectedMonths.includes(m)?'checked':''} onchange="onPnlMonthCheck()"><span>${m}</span></label>`).join('');syncPnlMonthMenu(false)}
@@ -268,7 +332,7 @@ function onPnlMonthCheck(){const checks=[...document.querySelectorAll('.pnlMonth
 function toggleAllPnlMonths(cb){pnlSelectedMonths=cb.checked?MONTHS.slice():[];document.querySelectorAll('.pnlMonthCheck').forEach(x=>x.checked=cb.checked);syncPnlMonthMenu(false)}
 function syncPnlMonthMenu(render=true){const all=pnlSelectedMonths.length===0||pnlSelectedMonths.length===MONTHS.length;document.getElementById('pnlMonthAll').checked=all;const label=document.getElementById('pnlMonthLabel');const count=document.getElementById('pnlMonthCount');if(all){label.textContent='All Months';count.textContent='All months selected'}else if(pnlSelectedMonths.length===1){label.textContent=pnlSelectedMonths[0];count.textContent='1 month selected'}else{label.textContent=`${pnlSelectedMonths.length} Months selected`;count.textContent=`${pnlSelectedMonths.length} months selected`}if(render)renderPnlPage()}
 function applyPnlMonths(){document.getElementById('pnlMonthMulti').classList.remove('open');renderPnlPage()}
-document.addEventListener('click',e=>{['pnlMonthMulti','overallMonthMulti','vehicleMonthMulti','vehicleCategoryMulti','p4FyMulti','p4MonthMulti','p4VehicleMulti','p5ShMulti','p5FyMulti','p5MonthMulti','p5VehicleMulti','p6LenderMulti','p6FyMulti','p6MonthMulti','p6VehicleMulti','p6StateMulti','gmLenderMulti','gmFyMulti','gmMonthMulti','gmVehicleMulti','gmStateMulti'].forEach(id=>{const w=document.getElementById(id);if(w&&!w.contains(e.target))w.classList.remove('open')})});
+document.addEventListener('click',e=>{['pnlMonthMulti','overallMonthMulti','vehicleMonthMulti','vehicleCategoryMulti','p4FyMulti','p4MonthMulti','p4VehicleMulti','p5ShMulti','p5FyMulti','p5MonthMulti','p5VehicleMulti','p6LenderMulti','p6FyMulti','p6MonthMulti','p6VehicleMulti','p6StateMulti','gmLenderMulti','gmFyMulti','gmMonthMulti','gmVehicleMulti','gmStateMulti','hrShMulti','hrFyMulti','hrMonthMulti','hrTeamMulti','hrFoLevelMulti','hrChLevelMulti'].forEach(id=>{const w=document.getElementById(id);if(w&&!w.contains(e.target))w.classList.remove('open')})});
 let overallSelectedMonths=[MONTHS.at(-1)];
 function initOverallMonthMulti(selected){const wrap=document.getElementById('overallMonthOptions');if(!wrap)return;overallSelectedMonths=selected&&selected.length?selected.slice():[MONTHS.at(-1)];wrap.innerHTML=MONTHS.map(m=>`<label class="checkRow"><input type="checkbox" class="overallMonthCheck" value="${m}" ${overallSelectedMonths.includes(m)?'checked':''} onchange="onOverallMonthCheck()"><span>${m}</span></label>`).join('');syncOverallMonthMenu(false)}
 function toggleOverallMonthMenu(e){e.stopPropagation();document.getElementById('overallMonthMulti').classList.toggle('open')}
@@ -316,6 +380,7 @@ function chart(id,type,labels,datasets,options={}){
       responsive:true,
       maintainAspectRatio:false,
       layout:options.layout||{},
+      interaction:options.interaction||{mode:'nearest',intersect:true},
       plugins:Object.assign({legend:{display:false},datalabels:{display:false}},options.plugins||{}),
       scales:options.scales||defaultScales
     }
@@ -405,6 +470,23 @@ function initPage6Filters(){p6={lender:[],fy:[],month:[],vehicle:[],state:[]};['
 function resetPage6Filters(){initPage6Filters();renderLenderPortfolio()}
 function lpBreakdownRows(src,groupKey,totalCases,totalLoan){return uniq(src.map(x=>x[groupKey])).map(name=>{const rows=src.filter(x=>x[groupKey]===name);const cases=sum(rows,'cases'),loan=sum(rows,'loan');return {name,cases,loan,casesPct:totalCases?cases/totalCases*100:0,loanPct:totalLoan?loan/totalLoan*100:0};}).sort((a,b)=>b.cases-a.cases)}
 function lpTableRows(rows){return rows.map(r=>`<tr><td>${r.name}</td><td>${fmt(r.cases,0)}</td><td>${pct(r.casesPct)}</td><td>${fmt(r.loan/100,1)}</td><td>${pct(r.loanPct)}</td></tr>`).join('')||`<tr><td colspan="5" class="empty">No data for the selected filters.</td></tr>`}
+const VEHICLE_PALETTE=['#465ed4','#19875d','#c9770a','#8b5cf6','#0ea5a4','#c7435c','#f59e0b','#3b82f6','#84a98c','#9d4edd'];
+function vehicleColor(name){const idx=VEHICLES.indexOf(name);return VEHICLE_PALETTE[(idx>=0?idx:0)%VEHICLE_PALETTE.length]}
+function stackedVehicleDatasets(src,groupField,groupNames){
+  return VEHICLES.map(v=>({
+    label:v,
+    data:groupNames.map(name=>sum(src.filter(x=>x[groupField]===name&&x.vehicle===v),'cases')),
+    backgroundColor:vehicleColor(v),
+    borderRadius:3,
+    stack:'s1'
+  })).filter(ds=>ds.data.some(val=>val>0));
+}
+function stackedVehicleTooltip(){
+  return {mode:'index',intersect:false,filter:item=>item.parsed.y>0,callbacks:{
+    label:item=>`${item.dataset.label}: ${fmt(item.parsed.y,0)}`,
+    footer:items=>`Total: ${fmt(items.reduce((a,b)=>a+b.parsed.y,0),0)}`
+  }};
+}
 function renderLenderPortfolio(){
   const src=p6Filtered(),ms=p6Months();
   const totalCases=sum(src,'cases'),totalLoan=sum(src,'loan'),totalInflow=sum(src,'inflow');
@@ -428,10 +510,18 @@ function renderLenderPortfolio(){
   const vehicleRows=lpBreakdownRows(src,'vehicle',totalCases,totalLoan);
   const vehicleBody=document.getElementById('lpVehicleBody');if(vehicleBody)vehicleBody.innerHTML=lpTableRows(vehicleRows);
   const stateRows=lpBreakdownRows(src,'geoState',totalCases,totalLoan).sort((a,b)=>b.cases-a.cases);
-  const stateInner=document.getElementById('lpStateChartInner');if(stateInner)stateInner.style.width=Math.max(500,stateRows.length*70)+'px';
-  chart('lpStateChart','bar',stateRows.map(x=>x.name),[{label:'Cases',data:stateRows.map(x=>x.cases),backgroundColor:accentColor,borderRadius:6}],{
-    layout:{padding:{top:26}},
-    plugins:{datalabels:{display:true,anchor:'end',align:'end',clamp:true,color:mutedColor,font:{size:9,weight:'700'},formatter:(value,ctx)=>{const total=stateRows.reduce((a,b)=>a+b.cases,0);const p=total?value/total*100:0;return value?`${fmt(value,0)} (${fmt(p,0)}%)`:''}}}
+  const stateNames=stateRows.map(x=>x.name);
+  const stateInner=document.getElementById('lpStateChartInner');if(stateInner)stateInner.style.width=Math.max(500,stateNames.length*70)+'px';
+  chart('lpStateChart','bar',stateNames,stackedVehicleDatasets(src,'geoState',stateNames),{
+    layout:{padding:{top:20}},
+    scales:{
+      x:{stacked:true,grid:{display:false},ticks:{font:{size:9},color:mutedColor}},
+      y:{stacked:true,grid:{color:gridColor},ticks:{font:{size:9},color:mutedColor,callback:v=>fmt(v,0)}}
+    },
+    plugins:{
+      legend:{display:true,position:'top',labels:{color:mutedColor,font:{size:9,weight:'700'},boxWidth:10,boxHeight:10}},
+      tooltip:stackedVehicleTooltip()
+    }
   });
   const ctxRight=document.getElementById('lpContextRight');if(ctxRight)ctxRight.textContent=`${p6.lender.length?p6.lender.join(' • '):'All Lenders'} • ${p6.fy.length?p6.fy.join(' • '):'All Financial Years'} • ${p6.month.length?p6.month.join(' • '):'All Months'} • ${p6.vehicle.length?p6.vehicle.join(' • '):'All Vehicle Categories'} • ${p6.state.length?p6.state.join(' • '):'All States'}`;
 }
@@ -494,17 +584,106 @@ function renderLenderGm(){
       gmPct:inflow?gm/inflow*100:0};
   }).sort((a,b)=>b.cases-a.cases);
 
-  const chartInner=document.getElementById('gmLenderChartInner');if(chartInner)chartInner.style.height=Math.max(240,lenderStats.length*28)+'px';
-  chart('gmLenderChart','bar',lenderStats.map(x=>x.name),[{label:'Cases',data:lenderStats.map(x=>x.cases),backgroundColor:accentColor,borderRadius:6}],{
-    indexAxis:'y',
-    layout:{padding:{right:58}},
-    plugins:{datalabels:{display:true,anchor:'end',align:'end',clamp:true,color:mutedColor,font:{size:9,weight:'700'},formatter:(value,ctx)=>{const total=lenderStats.reduce((a,b)=>a+b.cases,0);const p=total?value/total*100:0;return value?`${fmt(value,0)} (${fmt(p,0)}%)`:''}}}
+  const lenderNamesSorted=lenderStats.map(x=>x.name);
+  const chartInner=document.getElementById('gmLenderChartInner');if(chartInner){chartInner.style.height='';chartInner.style.width=Math.max(100,lenderNamesSorted.length*70)+'px';}
+  chart('gmLenderChart','bar',lenderNamesSorted,stackedVehicleDatasets(src,'lender',lenderNamesSorted),{
+    layout:{padding:{top:20}},
+    scales:{
+      x:{stacked:true,grid:{display:false},ticks:{font:{size:9},color:mutedColor}},
+      y:{stacked:true,grid:{color:gridColor},ticks:{font:{size:9},color:mutedColor,callback:v=>fmt(v,0)}}
+    },
+    plugins:{
+      legend:{display:true,position:'top',labels:{color:mutedColor,font:{size:9,weight:'700'},boxWidth:10,boxHeight:10}},
+      tooltip:stackedVehicleTooltip()
+    }
   });
 
   const gmBody=document.getElementById('gmLenderBody');
   if(gmBody)gmBody.innerHTML=lenderStats.map(r=>`<tr><td>${r.name}</td><td>${fmt(r.cases,0)}</td><td>${pct(r.casesPct)}</td><td>${fmt(r.loan/100,1)}</td><td>${pct(r.loanPct)}</td><td>${fmt(r.inflow/100,1)}</td><td>${pct(r.inflowPct)}</td><td>${fmt(r.outflow/100,1)}</td><td>${pct(r.outflowPct)}</td><td class="${r.gm<0?'negative':'positive'}">${fmt(r.gm/100,1)}</td><td>${pct(r.gmPct)}</td></tr>`).join('')||`<tr><td colspan="11" class="empty">No data for the selected filters.</td></tr>`;
 
   const ctxRight=document.getElementById('gmContextRight');if(ctxRight)ctxRight.textContent=`${p7.lender.length?p7.lender.join(' • '):'All Lenders'} • ${p7.fy.length?p7.fy.join(' • '):'All Financial Years'} • ${p7.month.length?p7.month.join(' • '):'All Months'} • ${p7.vehicle.length?p7.vehicle.join(' • '):'All Vehicle Categories'} • ${p7.state.length?p7.state.join(' • '):'All States'}`;
+}
+
+/* Hiring & Attrition page. Opening headcount is a fixed 1-Apr-25 baseline (unaffected by the
+   month filter); hired/exited FTM reflect the selected months; cumulative + month-end run from
+   that baseline through the latest selected month. */
+const HIRING_BASELINE='Apr-25';
+let p8={sh:[],fy:[],month:[],team:[],foLevel:[],chLevel:[]};
+function p8Options(type){return {sh:HIRING_SHS,fy:FY_OPTIONS,month:MONTHS,team:TEAM_TYPES,foLevel:FO_LEVELS,chLevel:CH_LEVELS}[type]||[]}
+function p8Cap(type){return {sh:'Sh',fy:'Fy',month:'Month',team:'Team',foLevel:'FoLevel',chLevel:'ChLevel'}[type]}
+function p8AllLabel(type){return {sh:'All State Heads',fy:'All Financial Years',month:'All Months',team:'All Team Types',foLevel:'All FO Levels',chLevel:'All CH Types'}[type]}
+function buildP8(type){const el=document.getElementById('hr'+p8Cap(type)+'Options');if(!el)return;el.innerHTML=p8Options(type).map(x=>`<label class="checkRow"><input type="checkbox" class="p8Check-${type}" value="${x}" ${p8[type].includes(x)?'checked':''} onchange="onP8Check('${type}')"><span>${x}</span></label>`).join('');syncP8(type,false)}
+function toggleP8Menu(id,e){e.stopPropagation();document.getElementById(id).classList.toggle('open')}
+function onP8Check(type){p8[type]=[...document.querySelectorAll('.p8Check-'+type)].filter(x=>x.checked).map(x=>x.value);syncP8(type);renderHiring()}
+function toggleAllP8(type,cb){p8[type]=cb.checked?p8Options(type).slice():[];document.querySelectorAll('.p8Check-'+type).forEach(x=>x.checked=cb.checked);syncP8(type);renderHiring()}
+function syncP8(type,render=true){const cap=p8Cap(type),a=p8[type],all=!a.length||a.length===p8Options(type).length;const label=document.getElementById('hr'+cap+'Label'),count=document.getElementById('hr'+cap+'Count'),allEl=document.getElementById('hr'+cap+'All');if(!label)return;if(all){label.textContent=p8AllLabel(type);count.textContent=p8AllLabel(type)+' selected'}else{label.textContent=a.length===1?a[0]:`${a.length} selected`;count.textContent=`${a.length} selected`};if(allEl)allEl.checked=all;if(render)renderHiring()}
+function applyP8Menu(id){document.getElementById(id).classList.remove('open');renderHiring()}
+function p8Months(){return MONTHS.filter(m=>(!p8.month.length||p8.month.includes(m))&&(!p8.fy.length||p8.fy.includes(FYDISPLAY(FYMAP(m)))))}
+function p8FilteredFO(){return FO_HIRING.filter(x=>(!p8.sh.length||p8.sh.includes(x.sh))&&(!p8.team.length||p8.team.includes(x.team))&&(!p8.foLevel.length||p8.foLevel.includes(x.level)))}
+function p8FilteredCH(){return CH_HIRING.filter(x=>(!p8.sh.length||p8.sh.includes(x.sh))&&(!p8.team.length||p8.team.includes(x.team))&&(!p8.chLevel.length||p8.chLevel.includes(x.level)))}
+function initPage8Filters(){p8={sh:[],fy:[],month:[],team:[],foLevel:[],chLevel:[]};['sh','fy','month','team','foLevel','chLevel'].forEach(buildP8)}
+function resetPage8Filters(){initPage8Filters();renderHiring()}
+function hiringMetrics(records,ms){
+  const base=monthSortKey(HIRING_BASELINE);
+  const startKey=ms.length?monthSortKey(ms[0]):base;
+  const endKey=ms.length?monthSortKey(ms[ms.length-1]):base;
+  const openingHC=records.filter(r=>monthSortKey(r.doj)<startKey&&(!r.doe||monthSortKey(r.doe)>=startKey)).length;
+  const hiredFtm=records.filter(r=>ms.includes(r.doj)).length;
+  const exitedFtm=records.filter(r=>r.doe&&ms.includes(r.doe)).length;
+  const cumulativeHired=records.filter(r=>{const k=monthSortKey(r.doj);return k>=base&&k<=endKey}).length;
+  const cumulativeExited=records.filter(r=>{if(!r.doe)return false;const k=monthSortKey(r.doe);return k>=base&&k<=endKey}).length;
+  return {openingHC,hiredFtm,exitedFtm,monthEndHC:openingHC+hiredFtm-exitedFtm,cumulativeHired,cumulativeExited};
+}
+function hiringSummaryHtml(m){
+  return [['Opening HC',m.openingHC,'neutral'],['Hired FTM',m.hiredFtm,'hired'],['Exited FTM',m.exitedFtm,'exited'],['Month End HC',m.monthEndHC,'neutral'],['Cumulative Hired',m.cumulativeHired,'hired'],['Cumulative Exited',m.cumulativeExited,'exited']]
+    .map(([n,v,kind])=>`<div class="summaryBox kind-${kind}"><small>${n}</small><strong>${fmt(v,0)}</strong></div>`).join('');
+}
+function renderHiring(){
+  const ms=p8Months(),foRecs=p8FilteredFO(),chRecs=p8FilteredCH();
+  const foM=hiringMetrics(foRecs,ms),chM=hiringMetrics(chRecs,ms);
+  const foBox=document.getElementById('foSummary');if(foBox)foBox.innerHTML=hiringSummaryHtml(foM);
+  const chBox=document.getElementById('chSummary');if(chBox)chBox.innerHTML=hiringSummaryHtml(chM);
+  const cs=getComputedStyle(document.body);
+  const gridColor=cs.getPropertyValue('--line').trim()||'#edf0f5',mutedColor=cs.getPropertyValue('--muted').trim()||'#71809a',goodColor=cs.getPropertyValue('--good').trim()||'#19875d',badColor=cs.getPropertyValue('--bad').trim()||'#c7435c';
+  const byShCounts=(records,field,m)=>{
+    const bySh=new Map();
+    records.filter(r=>r[field]===m).forEach(r=>{const key=r.sh||'Unknown';bySh.set(key,(bySh.get(key)||0)+1)});
+    return [...bySh.entries()].sort((a,b)=>b[1]-a[1]);
+  };
+  const buildMovement=(canvasId,records)=>{
+    const hired=ms.map(m=>records.filter(r=>r.doj===m).length);
+    const exited=ms.map(m=>records.filter(r=>r.doe===m).length);
+    const hiredBySh=ms.map(m=>byShCounts(records,'doj',m));
+    const exitedBySh=ms.map(m=>byShCounts(records,'doe',m));
+    chart(canvasId,'line',ms,[
+      {label:'Hired',data:hired,borderColor:goodColor,backgroundColor:'transparent',tension:.3,borderWidth:2.5,pointRadius:2.5},
+      {label:'Exited',data:exited,borderColor:badColor,backgroundColor:'transparent',tension:.3,borderWidth:2,pointRadius:2}
+    ],{
+      interaction:{mode:'index',intersect:false},
+      scales:{
+        x:{grid:{display:false},ticks:{font:{size:9},color:mutedColor}},
+        y:{grid:{color:gridColor},ticks:{font:{size:9},color:mutedColor,callback:v=>fmt(v,0)}}
+      },
+      plugins:{
+        datalabels:{display:'auto',align:'top',anchor:'end',offset:4,color:ctx=>ctx.dataset.borderColor,font:{size:8,weight:'700'},formatter:v=>v?fmt(v,0):''},
+        tooltip:{callbacks:{
+          afterBody:items=>{
+            if(!items.length)return [];
+            const idx=items[0].dataIndex,lines=[];
+            const hiredList=hiredBySh[idx].slice(0,4),exitedList=exitedBySh[idx].slice(0,4);
+            if(hiredList.length){lines.push('Hired by State Head:');hiredList.forEach(([sh,c])=>lines.push(`  ${sh}: ${c}`))}else{lines.push('Hired by State Head: —')}
+            if(exitedList.length){lines.push('','Exited by State Head:');exitedList.forEach(([sh,c])=>lines.push(`  ${sh}: ${c}`))}else{lines.push('','Exited by State Head: —')}
+            return lines;
+          }
+        }}
+      }
+    });
+  };
+  buildMovement('foMovementChart',foRecs);
+  buildMovement('chMovementChart',chRecs);
+  const legendHtml=`<span><i style="background:${goodColor}"></i>Hired</span><span><i style="background:${badColor}"></i>Exited</span>`;
+  const foLeg=document.getElementById('foMovementLegend');if(foLeg)foLeg.innerHTML=legendHtml;
+  const chLeg=document.getElementById('chMovementLegend');if(chLeg)chLeg.innerHTML=legendHtml;
 }
 
 function encodeDrillPayload(payload){
@@ -575,11 +754,13 @@ async function loadGoogleSheet(silent){
     if (!built.rows.length) throw new Error('The Case Data tab has no usable rows.');
     importedWorkbook = wb; importedSheets = sheets; importedActiveSheet = wb.SheetNames[0] || '';
     data = built.rows; MONTHS = built.months; SHS = built.shs; LENDERS = built.lenders; VEHICLES = built.vehicles; GEOSTATES = built.geoStates;
+    const hiring = buildHiringData(sheets);
+    FO_HIRING = hiring.fo; CH_HIRING = hiring.ch; TEAM_TYPES = hiring.teams; FO_LEVELS = hiring.foLevels; CH_LEVELS = hiring.chLevels; HIRING_SHS = uniq([...SHS, ...hiring.shs]).filter(Boolean).sort();
     sourceLabel = 'Google Sheet (Live)';
     googleSheetConnected = true;
     const syncedAt = new Date().toLocaleString('en-IN', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' });
     updateSourceLabel(`Google Sheet — synced ${syncedAt}`);
-    initFilters(); initPage4Filters(); initPage5Filters(); initPage6Filters(); initPage7Filters(); renderAll();
+    initFilters(); initPage4Filters(); initPage5Filters(); initPage6Filters(); initPage7Filters(); initPage8Filters(); renderAll();
     if (!silent) addChatMessage('Google Sheet connected successfully. I can answer questions from the live sheet data now.', 'bot');
     if (!googleAutoRefreshTimer) googleAutoRefreshTimer = setInterval(() => loadGoogleSheet(true), 5 * 60 * 1000);
   } catch (error) {
@@ -777,6 +958,7 @@ function renderAll(){
   renderCm2Vehicle();
   renderLenderPortfolio();
   renderLenderGm();
+  renderHiring();
 }
 
 /* Dashboard themes */
@@ -820,12 +1002,12 @@ function toggleSidebar(){
 })();
 
 /* Override navigation so page filters initialize correctly */
-document.querySelectorAll('.pageTab').forEach(tab=>tab.addEventListener('click',e=>{e.preventDefault();document.querySelectorAll('.pageTab').forEach(t=>t.classList.remove('active'));tab.classList.add('active');document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(tab.dataset.page).classList.add('active');if(tab.dataset.page==='pnlPage')renderPnlPage();if(tab.dataset.page==='vehiclePnlPage')renderVehiclePnl();if(tab.dataset.page==='shPnlPage'){initPage4Filters();renderShPnl()}if(tab.dataset.page==='cm2VehiclePage'){initPage5Filters();renderCm2Vehicle()}if(tab.dataset.page==='lenderPortfolioPage'){initPage6Filters();renderLenderPortfolio()}if(tab.dataset.page==='lenderGmPage'){initPage7Filters();renderLenderGm()}window.scrollTo({top:0,behavior:'smooth'})}));
-initFilters();initPage4Filters();initPage5Filters();initPage6Filters();initPage7Filters();initDashboardTheme();renderPnlPage();renderVehiclePnl();renderAll();renderShPnl();renderCm2Vehicle();
+document.querySelectorAll('.pageTab').forEach(tab=>tab.addEventListener('click',e=>{e.preventDefault();document.querySelectorAll('.pageTab').forEach(t=>t.classList.remove('active'));tab.classList.add('active');document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(tab.dataset.page).classList.add('active');if(tab.dataset.page==='pnlPage')renderPnlPage();if(tab.dataset.page==='vehiclePnlPage')renderVehiclePnl();if(tab.dataset.page==='shPnlPage'){initPage4Filters();renderShPnl()}if(tab.dataset.page==='cm2VehiclePage'){initPage5Filters();renderCm2Vehicle()}if(tab.dataset.page==='lenderPortfolioPage'){initPage6Filters();renderLenderPortfolio()}if(tab.dataset.page==='lenderGmPage'){initPage7Filters();renderLenderGm()}if(tab.dataset.page==='hiringPage'){initPage8Filters();renderHiring()}window.scrollTo({top:0,behavior:'smooth'})}));
+initFilters();initPage4Filters();initPage5Filters();initPage6Filters();initPage7Filters();initPage8Filters();initDashboardTheme();renderPnlPage();renderVehiclePnl();renderAll();renderShPnl();renderCm2Vehicle();
 loadGoogleSheet(true);
 
 /* V18 Excel import / preview feature. Does not alter existing dashboard page markup or calculations. */
-function handleExcelImport(event){const file=event?.target?.files?.[0];if(!file)return;const reader=new FileReader();reader.onload=function(e){try{const wb=XLSX.read(new Uint8Array(e.target.result),{type:'array',cellDates:true});importedWorkbook=wb;importedSheets={};wb.SheetNames.forEach(name=>{importedSheets[name]=XLSX.utils.sheet_to_json(wb.Sheets[name],{header:1,defval:''});});importedActiveSheet=wb.SheetNames[0]||'';sourceLabel=file.name;const built=buildRealData(importedSheets);data=built.rows;MONTHS=built.months;SHS=built.shs;LENDERS=built.lenders;VEHICLES=built.vehicles;GEOSTATES=built.geoStates;const source=document.getElementById('sourceName');if(source)source.textContent=file.name;buildImportedDataPage(file.name);initFilters();initPage4Filters();initPage5Filters();initPage6Filters();initPage7Filters();renderAll();}catch(err){alert('Unable to read this Excel file. Please use a valid .xlsx, .xls or .csv file.\n\n'+err.message);}};reader.readAsArrayBuffer(file);}
+function handleExcelImport(event){const file=event?.target?.files?.[0];if(!file)return;const reader=new FileReader();reader.onload=function(e){try{const wb=XLSX.read(new Uint8Array(e.target.result),{type:'array',cellDates:true});importedWorkbook=wb;importedSheets={};wb.SheetNames.forEach(name=>{importedSheets[name]=XLSX.utils.sheet_to_json(wb.Sheets[name],{header:1,defval:''});});importedActiveSheet=wb.SheetNames[0]||'';sourceLabel=file.name;const built=buildRealData(importedSheets);data=built.rows;MONTHS=built.months;SHS=built.shs;LENDERS=built.lenders;VEHICLES=built.vehicles;GEOSTATES=built.geoStates;const hiring=buildHiringData(importedSheets);FO_HIRING=hiring.fo;CH_HIRING=hiring.ch;TEAM_TYPES=hiring.teams;FO_LEVELS=hiring.foLevels;CH_LEVELS=hiring.chLevels;HIRING_SHS=uniq([...SHS,...hiring.shs]).filter(Boolean).sort();const source=document.getElementById('sourceName');if(source)source.textContent=file.name;buildImportedDataPage(file.name);initFilters();initPage4Filters();initPage5Filters();initPage6Filters();initPage7Filters();initPage8Filters();renderAll();}catch(err){alert('Unable to read this Excel file. Please use a valid .xlsx, .xls or .csv file.\n\n'+err.message);}};reader.readAsArrayBuffer(file);}
 function buildImportedDataPage(fileName){const names=Object.keys(importedSheets),tabs=document.getElementById('importSheetTabs');if(!tabs)return;tabs.innerHTML=names.map(n=>`<button type="button" class="sheetTab ${n===importedActiveSheet?'active':''}" onclick="selectImportedSheet(${JSON.stringify(n)})">${escapeImportedHtml(n)}</button>`).join('');const rows=importedSheets[importedActiveSheet]||[],headers=rows[0]||[],body=rows.slice(1);document.getElementById('importFileName').textContent=fileName||'Imported workbook';document.getElementById('importRowCount').textContent=body.length.toLocaleString('en-IN');document.getElementById('importColCount').textContent=headers.length.toLocaleString('en-IN');document.getElementById('importSheetCount').textContent=names.length.toLocaleString('en-IN');renderImportedSheet();document.getElementById('importNotice').innerHTML=`<strong>Imported successfully:</strong> ${escapeImportedHtml(fileName||'Workbook')} • Showing sheet <strong>${escapeImportedHtml(importedActiveSheet)}</strong>. Read-only preview.`;}
 function selectImportedSheet(name){importedActiveSheet=name;buildImportedDataPage(document.getElementById('importFileName').textContent||'Imported workbook');}
 const IMPORT_PREVIEW_ROW_CAP=500;function renderImportedSheet(){const rows=importedSheets[importedActiveSheet]||[],head=document.getElementById('importTableHead'),body=document.getElementById('importTableBody');if(!head||!body)return;const headers=rows[0]||[],dataRows=rows.slice(1),previewRows=dataRows.slice(0,IMPORT_PREVIEW_ROW_CAP);head.innerHTML=headers.map((h,i)=>`<th>${escapeImportedHtml(String(h||'Column '+(i+1)))}</th>`).join('');body.innerHTML=previewRows.length?previewRows.map(r=>`<tr>${headers.map((_,i)=>`<td>${escapeImportedHtml(formatImportedValue(r[i]))}</td>`).join('')}</tr>`).join(''):`<tr><td colspan="${Math.max(headers.length,1)}" class="importEmpty">No rows found in this sheet.</td></tr>`;if(dataRows.length>IMPORT_PREVIEW_ROW_CAP){body.innerHTML+=`<tr><td colspan="${Math.max(headers.length,1)}" class="importEmpty">Showing first ${IMPORT_PREVIEW_ROW_CAP.toLocaleString('en-IN')} of ${dataRows.length.toLocaleString('en-IN')} rows. All rows are still used in the dashboard calculations — this preview is capped for performance.</td></tr>`}filterImportedTable();}
