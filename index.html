@@ -10,7 +10,7 @@
 :root{--bg:#f4f6fb;--panel:#fff;--soft:#f7f9fd;--text:#172033;--muted:#71809a;--line:#e4e9f2;--accent:#465ed4;--accent2:#7185f0;--nav:#11182a;--good:#19875d;--bad:#c7435c;--warn:#b87816;--shadow:0 10px 30px rgba(32,45,80,.07);--r:18px}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,Segoe UI,Arial,sans-serif;font-size:13px}.app{min-height:100vh;display:flex}.side{width:248px;position:fixed;inset:0 auto 0 0;background:linear-gradient(180deg,#101729,#121a2d);color:#dce5ff;padding:24px 15px;z-index:20}.logo{font-size:19px;font-weight:800;letter-spacing:-.2px;line-height:1.28;padding:6px 11px 30px}.logo span{color:#7d98ff}.nav{display:flex;flex-direction:column;gap:3px}.nav a{color:#aeb9d5;text-decoration:none;font-weight:700;font-size:12.5px;letter-spacing:.1px;line-height:1.35;padding:12px 12px;border-radius:10px;transition:.18s}.nav a:hover{background:#1d2944;color:#fff}.nav a.active{background:linear-gradient(135deg,#465ed4,#536de2);color:#fff;box-shadow:0 8px 18px rgba(64,91,213,.25)}.divider{height:1px;background:#2a3550;margin:14px 8px}.sideNote{position:absolute;bottom:20px;left:25px;right:25px;color:#71809e;font-size:11px;line-height:1.55}.main{margin-left:248px;width:calc(100% - 248px);padding:25px 30px 45px}.page{display:none}.page.active{display:block}.top,.pageHeader{display:flex;justify-content:space-between;gap:24px;align-items:flex-start;margin-bottom:20px}.pageHeader{align-items:flex-end}.eyebrow{color:var(--accent);font-size:11px;font-weight:900;letter-spacing:1.6px;text-transform:uppercase}.title{font-size:30px;line-height:1.12;font-weight:900;letter-spacing:-.8px;margin:5px 0 7px}.subtitle,.pageHeader p{color:var(--muted);font-size:13px}.pageHeader h2{margin:0;font-size:25px;letter-spacing:-.5px}.pageHeader p{margin:5px 0 0;font-size:12px}.actions{display:flex;gap:9px;flex-wrap:wrap}.btn{border:1px solid var(--line);background:#fff;color:var(--text);border-radius:11px;padding:10px 14px;font-weight:800;font-size:12px;cursor:pointer;box-shadow:0 2px 8px rgba(30,45,80,.03)}.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}.btn:hover{transform:translateY(-1px)}.file{display:none}
 .filterBar,.subFilters{background:#fff;border:1px solid var(--line);border-radius:18px;padding:15px 16px;box-shadow:var(--shadow);margin-bottom:17px}.filterGrid{display:grid;grid-template-columns:1.15fr 1.15fr 1.15fr 1fr 1fr;gap:12px;align-items:end}.subFilters{display:grid;grid-template-columns:repeat(4,1fr) auto;gap:12px;align-items:end}.field label{display:block;text-transform:uppercase;color:var(--muted);font-size:10px;font-weight:900;letter-spacing:.3px;margin-bottom:6px}.field select{width:100%;border:1px solid var(--line);background:#f9faff;border-radius:10px;padding:10px 11px;outline:none;color:var(--text);font-size:12px}.filterMeta{display:flex;align-items:center;justify-content:space-between;margin-top:11px;padding-top:11px;border-top:1px solid #edf0f5}.source{color:var(--muted);font-size:11px}.source b{color:var(--text)}.live{color:var(--good);font-weight:900}.unitControl{display:flex;align-items:center;gap:9px;color:var(--muted);font-size:11px;font-weight:800;white-space:nowrap}.switch{position:relative;width:42px;height:23px;display:inline-block}.switch input{display:none}.slider{position:absolute;inset:0;background:#dce2ef;border-radius:20px;cursor:pointer}.slider:after{content:"";position:absolute;width:17px;height:17px;left:3px;top:3px;background:#fff;border-radius:50%;box-shadow:0 2px 5px rgba(0,0,0,.18);transition:.2s}.switch input:checked+.slider{background:var(--accent)}.switch input:checked+.slider:after{transform:translateX(19px)}
-.kpis{display:grid;grid-template-columns:repeat(7,1fr);gap:12px;margin-bottom:16px}.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}.kpi{padding:14px 14px;min-height:128px;position:relative;overflow:hidden}.kpi:after{content:"";position:absolute;width:72px;height:72px;border-radius:50%;right:-32px;top:-30px;background:rgba(64,91,213,.06)}.label{color:var(--muted);font-size:8.5px;font-weight:900;letter-spacing:.15px;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.value{font-size:22px;font-weight:900;letter-spacing:-.4px;margin:10px 0 6px}.delta{font-size:9.5px;font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}.up{color:var(--good)}.down{color:var(--bad)}.neutral{color:var(--muted)}.deltaRow{display:flex;gap:10px;margin-top:1px}.deltaItem{display:flex;flex-direction:column;gap:1px;min-width:0}.deltaItem small{font-size:7.5px;color:var(--muted);font-weight:800;text-transform:uppercase;letter-spacing:.1px;white-space:nowrap}.deltaItem .delta{font-size:9px}
+.kpis{display:grid;grid-template-columns:repeat(7,1fr);gap:12px;margin-bottom:16px}.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}.kpi{padding:14px 14px;min-height:128px;position:relative;overflow:hidden;transition:transform .18s ease,box-shadow .18s ease}.kpi:after{content:"";position:absolute;width:72px;height:72px;border-radius:50%;right:-32px;top:-30px;background:rgba(64,91,213,.06)}.kpi:before{content:"";position:absolute;left:0;top:0;right:0;height:3px;background:var(--accent)}.kpi:hover{transform:translateY(-3px);box-shadow:0 16px 34px rgba(32,45,80,.13)}.kpi.tone-good:before{background:var(--good)}.kpi.tone-accent2:before{background:var(--accent2)}.kpiIcon{position:relative;z-index:1;display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:9px;background:rgba(70,94,212,.10);color:var(--accent);margin-bottom:8px}.kpiIcon svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}.kpi.tone-good .kpiIcon{background:rgba(25,135,93,.12);color:var(--good)}.kpi.tone-accent2 .kpiIcon{background:rgba(113,133,240,.14);color:var(--accent2)}body[data-theme="dark"] .kpiIcon{background:rgba(113,133,240,.18)}body[data-theme="dark"] .kpi.tone-good .kpiIcon{background:rgba(85,199,149,.18)}body[data-theme="dark"] .kpi.tone-accent2 .kpiIcon{background:rgba(141,160,255,.20)}body[data-theme="dark"] .kpi:hover{box-shadow:0 18px 40px rgba(0,0,0,.45)}.label{color:var(--muted);font-size:8.5px;font-weight:900;letter-spacing:.15px;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.value{font-size:22px;font-weight:900;letter-spacing:-.4px;margin:10px 0 6px}.delta{font-size:9.5px;font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}.up{color:var(--good)}.down{color:var(--bad)}.neutral{color:var(--muted)}.deltaRow{display:flex;gap:10px;margin-top:1px}.deltaItem{display:flex;flex-direction:column;gap:1px;min-width:0}.deltaItem small{font-size:7.5px;color:var(--muted);font-weight:800;text-transform:uppercase;letter-spacing:.1px;white-space:nowrap}.deltaItem .delta{font-size:9px}
 .grid2{display:grid;grid-template-columns:1.42fr 1fr;gap:16px;margin-bottom:16px}.grid2.equal{grid-template-columns:1fr 1fr}.section{padding:17px}.head,.tableTop{display:flex;justify-content:space-between;align-items:center;margin-bottom:13px}.head h3,.tableTop h3{margin:0;font-size:15px;font-weight:900}.head span,.tableTop span{font-size:10px;color:var(--muted)}.chartbox{height:285px;position:relative}.chartbox.small{height:250px}.chartbox.chartScroll{overflow:auto}.chartScrollInner{position:relative;min-height:100%;min-width:100%}.insightRow{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:11px}.mini{background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:10px}.mini span{display:block;color:var(--muted);font-size:9px;font-weight:800}.mini b{display:block;font-size:14px;margin-top:4px}.statusPill{display:inline-flex;align-items:center;gap:5px;background:#eef9f3;color:var(--good);padding:6px 9px;border-radius:999px;font-size:10px;font-weight:900}.dot{width:6px;height:6px;border-radius:50%;background:currentColor}
 .matrixSummary{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:13px}.summaryBox{background:#f8faff;border:1px solid var(--line);border-radius:13px;padding:12px}.summaryBox small{display:block;color:var(--muted);font-weight:900;font-size:10px;letter-spacing:.3px;text-transform:uppercase}.summaryBox strong{display:block;font-size:17px;margin-top:5px}.tableCard{padding:16px}.tablewrap{overflow:auto;max-height:600px;border:1px solid var(--line);border-radius:13px}.pnl{width:100%;border-collapse:separate;border-spacing:0;white-space:nowrap;font-size:11px}.pnl th{position:sticky;top:0;background:#f6f8fc;z-index:4;color:#5a6881;font-size:9px;text-transform:uppercase;letter-spacing:.25px;text-align:right;padding:11px 9px;border-bottom:1px solid var(--line)}.pnl:not(.cm2Matrix) th{white-space:normal;overflow-wrap:break-word;max-width:112px;line-height:1.35;vertical-align:bottom}.pnl td{text-align:right;padding:11px 9px;border-bottom:1px solid #eef1f5}.pnl th:first-child,.pnl td:first-child{position:sticky;left:0;text-align:left;z-index:5;background:#fff;min-width:88px}.pnl th:first-child{background:#f6f8fc}.pnl:not(.cm2Matrix) th:first-child,.pnl:not(.cm2Matrix) td:first-child{width:96px;max-width:96px;min-width:96px;overflow:hidden;text-overflow:ellipsis}.pnl:not(.cm2Matrix) th:nth-child(2),.pnl:not(.cm2Matrix) td:nth-child(2){position:sticky;left:96px;text-align:left;z-index:5;background:#fff;width:96px;max-width:96px;min-width:96px;overflow:hidden;text-overflow:ellipsis;box-shadow:2px 0 4px -2px rgba(20,30,60,.10)}.pnl:not(.cm2Matrix) th:nth-child(2){background:#f6f8fc}.pnl tr:hover td{background:#fafbff}.pnl tr:hover td:first-child,.pnl tr:hover td:nth-child(2){background:#fafbff}.positive{color:var(--good);font-weight:900}.negative{color:var(--bad);font-weight:900}.categoryCell{font-weight:900!important;color:var(--accent)!important}.tableFooter{padding:10px 2px 0;color:var(--muted);font-size:10px}.empty{padding:40px!important;text-align:center!important;color:var(--muted)!important}
 .scenarioGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.shCompareFilters{grid-template-columns:repeat(6,1fr)}.shTablesHeader{display:flex;justify-content:space-between;align-items:center;margin:18px 0 10px;padding:0 2px}.shTablesHeader h3{margin:0;font-size:16px}.shTablesHeader span{font-size:10px;color:var(--muted)}.shOnlyTables{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;align-items:start}.shOnlyTables .scenario{min-width:0}.shOnlyTables .scenario .tablewrap{max-height:620px;overflow:auto}.shOnlyTables .scenario .pnl td{white-space:nowrap}.shOnlyTables .scenarioHead{position:sticky;top:0;z-index:3}.shOnlyTables .scenarioHead strong{font-size:13px}.shOnlyTables .scenarioHead span{font-size:10px}@media(max-width:1250px){.shCompareFilters{grid-template-columns:repeat(2,1fr)}.shOnlyTables{display:flex;flex-direction:column}.shOnlyTables .scenario .tablewrap{max-height:420px}}.scenario{overflow:hidden}.scenarioHead{padding:14px 15px;background:#f7f9fd;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}.scenarioHead strong{font-size:13px}.scenarioHead span{font-size:10px;color:var(--muted)}.scenario .tablewrap{border:0;border-radius:0;max-height:390px}.scenario .pnl th,.scenario .pnl td{font-size:9px;padding:9px 7px}.compareGrid{display:grid;grid-template-columns:1.35fr 1fr;gap:16px;margin-bottom:16px}.metricList{display:grid;grid-template-columns:1fr 1fr;gap:10px}.metric{background:#f8faff;border:1px solid var(--line);border-radius:13px;padding:12px}.metric small{display:block;color:var(--muted);font-size:9px;font-weight:800}.metric strong{font-size:18px;display:block;margin-top:5px}.legend{display:flex;gap:12px;flex-wrap:wrap;font-size:10px;color:var(--muted)}
@@ -33,11 +33,11 @@
 .pageContextBar{display:flex;justify-content:space-between;align-items:center;gap:14px;margin:14px 0 18px;padding:12px 15px;border:1px solid var(--line);border-radius:12px;background:#f7f9fd;color:var(--muted);font-size:10px;font-weight:800;letter-spacing:.1px}.pageContextBar span:last-child{text-align:right}@media(max-width:800px){.pageContextBar{flex-direction:column;align-items:flex-start}.pageContextBar span:last-child{text-align:left}}
 /* Page 4: vertically stacked, full-width comparison tables */
 .shOnlyTables{display:flex!important;flex-direction:column!important;gap:14px!important;align-items:stretch!important}.shOnlyTables .scenario{width:100%!important}.shOnlyTables .scenario .tablewrap{max-height:430px;overflow:auto}/* Page 5: Power BI-style grouped vehicle matrix */
-.cm2MatrixWrap{max-height:680px;overflow:auto}.cm2Matrix{min-width:1450px;border-collapse:separate;border-spacing:0}.cm2Matrix th,.cm2Matrix td{white-space:nowrap;text-align:center}.cm2Matrix th:first-child,.cm2Matrix td:first-child{text-align:left;position:sticky;left:0;z-index:5;background:#fff}.cm2Matrix thead tr.group th{background:#e9edff;color:#172033;font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.25px;border-right:1px solid #d5dbef}.cm2Matrix thead tr.sub th{background:#f4f6fc;color:#46556f;font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.25px}.cm2Matrix tbody tr.total td{background:#d5f5df;font-weight:900}.cm2Matrix tbody tr.company td{background:#f5f7fb;font-weight:800}.cm2Matrix .metricCase{color:#2d5368;font-weight:800}.cm2Matrix .metricCm2{font-weight:900}.cm2Matrix .negative{color:#ea665b}.cm2Matrix .positive{color:#4a8c68}.cm2Matrix .pctNegative{color:#ea665b;font-weight:900}.cm2Matrix .pctPositive{color:#58a56f;font-weight:900}
+.cm2MatrixWrap{max-height:680px;overflow:auto;border:1px solid var(--line);border-radius:13px}.cm2Matrix{min-width:1450px;border-collapse:separate;border-spacing:0}.cm2Matrix th,.cm2Matrix td{white-space:nowrap;text-align:center}.cm2Matrix th:first-child,.cm2Matrix td:first-child{text-align:left;position:sticky;left:0;z-index:5;background:#fff}.cm2Matrix thead tr.group th{background:#e9edff;color:#172033;font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.25px;border-right:1px solid #d5dbef}.cm2Matrix thead tr.sub th{background:#f4f6fc;color:#46556f;font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.25px}.cm2Matrix tbody tr.total td{background:#d5f5df;font-weight:900}.cm2Matrix tbody tr.company td{background:#f5f7fb;font-weight:800}.cm2Matrix .metricCase{color:#2d5368;font-weight:800}.cm2Matrix .metricCm2{font-weight:900}.cm2Matrix .negative{color:#ea665b}.cm2Matrix .positive{color:#4a8c68}.cm2Matrix .pctNegative{color:#ea665b;font-weight:900}.cm2Matrix .pctPositive{color:#58a56f;font-weight:900}.cm2RowBadge{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.3px;background:var(--accent);color:#fff}.cm2Matrix tbody tr.total .cm2RowBadge{background:var(--good)}.cm2Matrix tbody tr.company .cm2RowBadge{background:var(--accent)}
+#cm2VehiclePage .tableCard{box-shadow:0 10px 26px rgba(32,45,80,.07)}
 .multiSelect.open{z-index:80}.subFilters .multiSelectBtn:focus-visible,.subFilters .multiSelectBtn:hover{background:#f4f6ff}.cm2Matrix thead th{position:sticky;top:0}.cm2Matrix thead tr.sub th{top:37px;z-index:6}.cm2Matrix th:first-child{z-index:8}.cm2Matrix thead tr.group th:first-child{z-index:9}
 /* Theme engine */
 body[data-theme="dark"]{--bg:#0a0a0c;--panel:#131315;--soft:#1a1a1c;--text:#edf1f5;--muted:#9a9ca3;--line:#2b2b2e;--accent:#7185f0;--accent2:#8da0ff;--nav:#08080a;--good:#55c795;--bad:#ff7188;--warn:#e0ad55;--shadow:0 12px 32px rgba(0,0,0,.4)}
-body[data-theme="grey"]{--bg:#e7e9ed;--panel:#f7f8fa;--soft:#eceef2;--text:#252b35;--muted:#687282;--line:#cfd4dc;--accent:#596574;--accent2:#7b8796;--nav:#343a43;--good:#3f8063;--bad:#b34d5f;--warn:#9b6f28;--shadow:0 8px 24px rgba(35,40,48,.10)}
 body[data-theme="dark"] .btn,body[data-theme="dark"] .multiSelectBtn{background:#1a1a1c;color:var(--text)}
 body[data-theme="dark"] .filterBar,body[data-theme="dark"] .subFilters,body[data-theme="dark"] .multiMenu,body[data-theme="dark"] .multiFooter,body[data-theme="dark"] .scenarioHead,body[data-theme="dark"] .pageContextBar{background:#131315;color:var(--text)}
 body[data-theme="dark"] .field select,body[data-theme="dark"] .multiSelectBtn{background:#1a1a1c;color:var(--text)}
@@ -61,25 +61,88 @@ body[data-theme="dark"] ::-webkit-scrollbar{width:10px;height:10px}
 body[data-theme="dark"] ::-webkit-scrollbar-track{background:#0a0a0c}
 body[data-theme="dark"] ::-webkit-scrollbar-thumb{background:#2b2b2e;border-radius:8px}
 body[data-theme="dark"] ::-webkit-scrollbar-thumb:hover{background:#3a3a3d}
-body[data-theme="grey"] .cm2Matrix thead tr.group th{background:#dce1e8;color:#29313b}body[data-theme="grey"] .cm2Matrix thead tr.sub th{background:#eef0f3;color:#4f5b69}
-.themeSwitcher{position:fixed;right:24px;top:14px;z-index:120;display:flex;align-items:center;gap:4px;padding:5px 6px;border:1px solid var(--line);background:var(--panel);border-radius:14px;box-shadow:0 10px 28px rgba(20,30,60,.12)}.themeTitle{font-size:9px;font-weight:900;color:var(--muted);padding:0 6px}.themeSwitcher button{border:0;background:transparent;color:var(--muted);font-size:10px;font-weight:850;border-radius:9px;padding:7px 9px;cursor:pointer;transition:.18s}.themeSwitcher button:hover{background:var(--soft);color:var(--text)}.themeSwitcher button.active{background:var(--accent);color:#fff;box-shadow:0 4px 10px rgba(70,94,212,.22)}.resetBtn{height:42px;white-space:nowrap}.page4Filters{grid-template-columns:repeat(5,minmax(0,1fr)) auto}.page5Filters{grid-template-columns:repeat(4,1fr) auto}.lpFilters{grid-template-columns:repeat(5,minmax(0,1fr)) auto}.main{padding-top:78px}
+.themeSwitcher{position:fixed;right:24px;top:14px;z-index:120}.themeToggle{position:relative;width:60px;height:30px;border-radius:20px;border:1px solid var(--line);background:var(--soft);box-shadow:0 10px 24px rgba(20,30,60,.12);cursor:pointer;padding:0;display:block;transition:background .2s ease}.themeToggle .trackIcon{position:absolute;top:50%;transform:translateY(-50%);font-size:12px;line-height:1;color:var(--muted);pointer-events:none}.themeToggle .trackIcon.sun{left:8px}.themeToggle .trackIcon.moon{right:7px}.themeToggle .knob{position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#465ed4,#5d72e3);box-shadow:0 4px 10px rgba(70,94,212,.35);display:flex;align-items:center;justify-content:center;font-size:12px;color:#fff;transition:transform .22s ease,background .22s ease}body[data-theme="dark"] .themeToggle .knob{transform:translateX(30px);background:linear-gradient(135deg,#1c1c2e,#2c2c46)}.resetBtn{height:42px;white-space:nowrap}.page4Filters{grid-template-columns:repeat(5,minmax(0,1fr)) auto}.page5Filters{grid-template-columns:repeat(4,1fr) auto}.lpFilters{grid-template-columns:repeat(5,minmax(0,1fr)) auto}.main{padding-top:64px}
 @media(max-width:1250px){.page4Filters,.page5Filters,.lpFilters{grid-template-columns:repeat(3,1fr)}.themeSwitcher{right:12px;top:10px}}
 .lpTableWrap{max-height:280px;overflow:auto;border:1px solid var(--line);border-radius:13px}.lpTable{width:100%;border-collapse:separate;border-spacing:0;font-size:11px}.lpTable th{position:sticky;top:0;background:#f6f8fc;z-index:4;color:#5a6881;font-size:9px;text-transform:uppercase;letter-spacing:.25px;text-align:right;padding:8px 9px;border-bottom:1px solid var(--line)}.lpTable td{text-align:right;padding:7px 9px;border-bottom:1px solid #eef1f5}.lpTable th:first-child,.lpTable td:first-child{text-align:left}.lpTable tr:hover td{background:#fafbff}.lpTable .empty{padding:30px!important;text-align:center!important;color:var(--muted)!important}
 #lenderPortfolioPage .chartbox{height:220px}
 #lpStateChartBox{height:270px}
 #lpSummary{grid-template-columns:repeat(4,1fr)}
+#lenderPortfolioPage .card.section{box-shadow:0 10px 26px rgba(32,45,80,.07)}
 #lenderGmPage .chartbox{height:240px}
 #gmLenderChartBox{height:280px}
 .hiringFilters{grid-template-columns:repeat(6,minmax(0,1fr)) auto;gap:8px}
+.analysisFilters{grid-template-columns:repeat(6,minmax(0,1fr)) auto;gap:8px}
+.analysisFilters .resetBtn{justify-self:start;padding:0 16px}
+.analysisKpis{grid-template-columns:repeat(5,1fr)}
+#analysisPage .card.section{position:relative;overflow:hidden;box-shadow:0 12px 32px rgba(70,94,212,.12)}
+#analysisPage .card.section:before{content:"";position:absolute;left:0;top:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+#analysisPage .kpi{box-shadow:0 10px 26px rgba(70,94,212,.10)}
+#analysisPage .chartbox{height:270px}
+.kpi.tone-bad:before{background:var(--bad)}
+.kpi.tone-bad .kpiIcon{background:rgba(199,67,92,.12);color:var(--bad)}
+body[data-theme="dark"] .kpi.tone-bad .kpiIcon{background:rgba(255,113,136,.18)}
+.anInsight{margin-top:14px;padding:14px 16px;border-radius:14px;background:linear-gradient(135deg,rgba(70,94,212,.07),rgba(113,133,240,.02));border:1px solid var(--line);border-left:3px solid var(--accent)}
+.anInsightHead{display:flex;align-items:center;gap:6px;font-size:9.5px;font-weight:900;letter-spacing:.6px;text-transform:uppercase;color:var(--accent);margin-bottom:7px}
+.anInsightHead svg{width:12px;height:12px;fill:var(--accent);stroke:none}
+.anInsight p{margin:0;font-size:11.5px;line-height:1.7;color:var(--text)}
+.anInsightList{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}
+.anInsightList li{font-size:11.5px;line-height:1.6;color:var(--text);padding-left:2px}
+.anInsightTag{display:inline-block;background:var(--accent);color:#fff;font-size:8.5px;font-weight:900;text-transform:uppercase;letter-spacing:.3px;padding:2px 7px;border-radius:6px;margin-right:7px;vertical-align:1px;white-space:nowrap}
+body[data-theme="dark"] .anInsight{background:linear-gradient(135deg,rgba(113,133,240,.12),rgba(113,133,240,.03))}
+@media(max-width:1250px){.analysisFilters{grid-template-columns:repeat(3,1fr)}.analysisKpis{grid-template-columns:repeat(5,1fr)}}
+@media(max-width:800px){.analysisFilters{grid-template-columns:repeat(2,1fr)}.analysisKpis{grid-template-columns:repeat(2,1fr)}}
 .hiringFilters .resetBtn{justify-self:start;padding:0 16px}
-.hiringSummary{grid-template-columns:repeat(6,minmax(0,1fr))}
-.hiringSummary .summaryBox{border-left:4px solid var(--accent);padding:10px 12px}
-.hiringSummary .summaryBox.kind-hired{border-left-color:var(--good)}
-.hiringSummary .summaryBox.kind-exited{border-left-color:var(--bad)}
-.hiringGroupHead{font-size:12px;font-weight:900;letter-spacing:.3px;text-transform:uppercase;color:var(--muted);margin:4px 2px 10px}
+.hiringSummary{grid-template-columns:repeat(6,minmax(0,1fr));gap:12px}
+.hiringSummary .summaryBox,.premiumSummary .summaryBox{display:flex;align-items:center;gap:10px;border-left:4px solid var(--accent);border-radius:14px;padding:12px 14px;box-shadow:0 6px 16px rgba(32,45,80,.05);transition:transform .18s ease,box-shadow .18s ease}
+.hiringSummary .summaryBox:hover,.premiumSummary .summaryBox:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(32,45,80,.11)}
+.hiringSummary .summaryBox.kind-hired,.premiumSummary .summaryBox.kind-good{border-left-color:var(--good)}
+.hiringSummary .summaryBox.kind-exited,.premiumSummary .summaryBox.kind-bad{border-left-color:var(--bad)}
+.hiringSummary .summaryIcon,.premiumSummary .summaryIcon{flex:0 0 34px;width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:rgba(70,94,212,.10);color:var(--accent)}
+.hiringSummary .summaryIcon svg,.premiumSummary .summaryIcon svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.hiringSummary .kind-hired .summaryIcon,.premiumSummary .kind-good .summaryIcon{background:rgba(25,135,93,.12);color:var(--good)}
+.hiringSummary .kind-exited .summaryIcon,.premiumSummary .kind-bad .summaryIcon{background:rgba(199,67,92,.12);color:var(--bad)}
+.hiringSummary .summaryText,.premiumSummary .summaryText{min-width:0}
+.hiringSummary .summaryText small,.premiumSummary .summaryText small{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hiringSummary .summaryText strong,.premiumSummary .summaryText strong{font-size:18px}
+body[data-theme="dark"] .hiringSummary .summaryBox,body[data-theme="dark"] .premiumSummary .summaryBox{border-left-color:var(--accent)}
+body[data-theme="dark"] .hiringSummary .summaryBox.kind-hired,body[data-theme="dark"] .premiumSummary .summaryBox.kind-good{border-left-color:var(--good)}
+body[data-theme="dark"] .hiringSummary .summaryBox.kind-exited,body[data-theme="dark"] .premiumSummary .summaryBox.kind-bad{border-left-color:var(--bad)}
+body[data-theme="dark"] .hiringSummary .summaryIcon,body[data-theme="dark"] .premiumSummary .summaryIcon{background:rgba(113,133,240,.18)}
+body[data-theme="dark"] .hiringSummary .kind-hired .summaryIcon,body[data-theme="dark"] .premiumSummary .kind-good .summaryIcon{background:rgba(85,199,149,.18)}
+body[data-theme="dark"] .hiringSummary .kind-exited .summaryIcon,body[data-theme="dark"] .premiumSummary .kind-bad .summaryIcon{background:rgba(255,113,136,.18)}
+#gmSummary{grid-template-columns:repeat(3,minmax(0,1fr))}
+#lenderGmPage .card.section{box-shadow:0 10px 26px rgba(32,45,80,.07)}
+.hiringGroupHead{display:flex;align-items:center;gap:9px;font-size:12.5px;font-weight:900;letter-spacing:.3px;text-transform:uppercase;color:var(--text);margin:18px 2px 12px;padding-bottom:9px;border-bottom:2px solid var(--line)}
+.hiringGroupHead:first-of-type{margin-top:4px}
+.hiringGroupIcon{flex:0 0 26px;width:26px;height:26px;border-radius:8px;display:grid;place-items:center;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;box-shadow:0 4px 10px rgba(70,94,212,.28)}
+.hiringGroupIcon svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+#hiringPage .card.section{box-shadow:0 10px 26px rgba(32,45,80,.07)}
+#overallPage .card.section{box-shadow:0 10px 26px rgba(32,45,80,.07)}
+#pnlPage .tableCard{box-shadow:0 10px 26px rgba(32,45,80,.07)}
+#vehiclePnlPage .tableCard{box-shadow:0 10px 26px rgba(32,45,80,.07)}
+.head .netChip,.tableTop .netChip,.shTablesHeader .netChip{display:inline-flex;align-items:center;gap:5px;padding:6px 11px;border-radius:999px;font-size:10.5px;font-weight:900;background:var(--soft);color:var(--muted);white-space:nowrap}
+.head .netChip.netUp,.tableTop .netChip.netUp,.shTablesHeader .netChip.netUp{background:rgba(25,135,93,.12);color:var(--good)}
+.head .netChip.netDown,.tableTop .netChip.netDown,.shTablesHeader .netChip.netDown{background:rgba(199,67,92,.12);color:var(--bad)}
+.shTablesHeadTitle{display:flex;align-items:center;gap:9px}
+.shTablesHeadMeta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+.tableTopActions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+.exportBtn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:9px;padding:7px 12px;font-weight:800;font-size:11px;cursor:pointer;white-space:nowrap;transition:.15s}
+.exportBtn:hover{background:var(--soft);border-color:var(--accent);color:var(--accent)}
+.exportBtn svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+body[data-theme="dark"] .exportBtn{background:#1a1a1c}
+.scenario{border-top:3px solid var(--accent)}
+.scenario.tone-sh1{border-top-color:var(--good)}
+.scenario.tone-sh2{border-top-color:var(--accent2)}
+.scenario,.shCompareMatrix{box-shadow:0 10px 26px rgba(32,45,80,.07)}
+body[data-theme="dark"] .scenario.card{border-top-color:var(--accent)}
+body[data-theme="dark"] .scenario.card.tone-sh1{border-top-color:var(--good)}
+body[data-theme="dark"] .scenario.card.tone-sh2{border-top-color:var(--accent2)}
+body[data-theme="dark"] .netChip.netUp{background:rgba(85,199,149,.16)}
+body[data-theme="dark"] .netChip.netDown{background:rgba(255,113,136,.16)}
 #hiringPage .chartbox{height:230px}
 @media(max-width:1250px){.hiringFilters{grid-template-columns:repeat(3,1fr)}.hiringSummary{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:800px){.hiringFilters{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:760px){#gmSummary{grid-template-columns:1fr}}
 .gmTable{min-width:1000px}
 body[data-theme="dark"] .lpTable th{background:#1c1c1f;color:#b7c3da}body[data-theme="dark"] .lpTable td{border-color:#2b2b2e}body[data-theme="dark"] .lpTable tr:hover td{background:#1c1c1f}
 @media(max-width:800px){.themeSwitcher{position:sticky;top:8px;margin-left:auto;width:max-content}.page4Filters,.page5Filters{grid-template-columns:1fr}}
@@ -88,11 +151,10 @@ body[data-theme="dark"] .lpTable th{background:#1c1c1f;color:#b7c3da}body[data-t
 .side{transition:width .22s ease;position:fixed;left:0;top:0;bottom:0;z-index:100}.main{transition:margin-left .22s ease,width .22s ease}.side.collapsed{width:74px}.side.collapsed .logo{font-size:0;text-align:center}.side.collapsed .logo::after{content:'FS';font-size:18px;font-weight:950;color:#fff}.side.collapsed .navText,.side.collapsed .sideNote,.side.collapsed .divider{display:none}.side.collapsed .nav a{justify-content:center;padding:14px 8px}.side.collapsed .navIcon{margin:0}.side.collapsed + .themeSwitcher + .main{margin-left:74px;width:calc(100% - 74px)}.sideToggle{cursor:pointer;z-index:120}
 
 body[data-theme="dark"] .scenario{background:#131315;border-color:#2a2a2d}body[data-theme="dark"] .scenarioHead{background:#131315;border-color:#2a2a2d}body[data-theme="dark"] .shTablesHeader{color:#edf1f5}
-body[data-theme="grey"] .scenario{background:#f7f8fa}
 
 /* V18 additive Excel import preview */
 .importPageCard{padding:16px}.importToolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px}.importMeta{display:flex;gap:8px;flex-wrap:wrap}.importBadge{background:var(--soft);border:1px solid var(--line);border-radius:999px;padding:7px 10px;color:var(--muted);font-size:10px;font-weight:800}.importBadge b{color:var(--text)}.sheetTabs{display:flex;gap:6px;overflow:auto;padding-bottom:8px;margin-bottom:8px}.sheetTab{border:1px solid var(--line);background:var(--soft);color:var(--muted);border-radius:9px;padding:8px 12px;font-size:11px;font-weight:800;cursor:pointer;white-space:nowrap}.sheetTab.active{background:var(--accent);border-color:var(--accent);color:#fff}.importTableWrap{max-height:620px;overflow:auto;border:1px solid var(--line);border-radius:13px}.importTable{border-collapse:separate;border-spacing:0;min-width:100%;white-space:nowrap;font-size:11px}.importTable th{position:sticky;top:0;background:#f6f8fc;color:#5a6881;font-size:9px;text-transform:uppercase;letter-spacing:.25px;text-align:left;padding:10px 9px;border-bottom:1px solid var(--line);z-index:3}.importTable td{padding:9px;border-bottom:1px solid #eef1f5;text-align:left}.importTable tr:hover td{background:#fafbff}.importEmpty{padding:50px!important;text-align:center!important;color:var(--muted)!important}.importSearch{border:1px solid var(--line);background:#f9faff;border-radius:10px;padding:10px 12px;min-width:240px;color:var(--text);outline:none}.importNotice{margin-top:10px;color:var(--muted);font-size:10px}.importNotice strong{color:var(--text)}body[data-theme="dark"] .importTable th{background:#1c1c1f;color:#b7c3da}body[data-theme="dark"] .importTable td{border-color:#2b2b2e}body[data-theme="dark"] .importTable tr:hover td{background:#1c1c1f}body[data-theme="dark"] .importSearch{background:#1a1a1c;color:var(--text);border-color:#2e2e31}.chatFab{position:fixed;right:22px;bottom:22px;z-index:129;width:54px;height:54px;border-radius:50%;border:0;background:linear-gradient(135deg,#465ed4,#5d72e3);color:#fff;font-size:22px;line-height:1;cursor:pointer;box-shadow:0 12px 28px rgba(70,94,212,.38);display:flex;align-items:center;justify-content:center;transition:transform .15s ease}.chatFab:hover{transform:scale(1.07)}.chatFab.hidden{display:none}
-.chatWidget{position:fixed;right:22px;bottom:22px;width:340px;max-width:calc(100vw - 24px);background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 18px 42px rgba(20,30,60,.18);z-index:130;overflow:hidden;display:none}.chatWidget.open{display:block}.chatHeader{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;background:linear-gradient(135deg,#465ed4,#5d72e3);color:#fff;font-weight:900}.chatHeader .btn{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff}.chatBody{padding:12px;background:var(--panel);max-height:380px;overflow:auto}.chatMessages{display:flex;flex-direction:column;gap:9px}.chatMessage{max-width:88%;padding:9px 10px;border-radius:12px;font-size:11px;line-height:1.5;border:1px solid var(--line)}.chatMessage.user{margin-left:auto;background:#eaf1ff;border-color:#dbe4ff}.chatMessage.bot{margin-right:auto;background:#f5f7fb}.chatComposer{display:flex;gap:8px;padding:12px;border-top:1px solid var(--line);background:#fff}.chatComposer input{flex:1;border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:12px}.chatComposer button{border:0;border-radius:10px;background:var(--accent);color:#fff;padding:9px 12px;font-weight:800;cursor:pointer}.chatStatus{padding:0 12px 12px;color:var(--muted);font-size:10px}.chatKeyPanel{padding:12px 14px;background:var(--soft);border-bottom:1px solid var(--line)}.chatKeyPanel p{margin:0 0 9px;font-size:10.5px;line-height:1.5;color:var(--muted)}.chatKeyPanel input{width:100%;border:1px solid var(--line);border-radius:10px;padding:9px 11px;font-size:12px;background:var(--panel);color:var(--text);box-sizing:border-box}.chatKeyPanelActions{display:flex;gap:8px;margin:9px 0}.chatKeyPanelActions .btn{padding:8px 12px;font-size:11px}.chatKeyPanel small{color:var(--muted);font-size:9.5px}.drillModal{position:fixed;inset:0;background:rgba(17,24,42,.35);display:none;align-items:center;justify-content:center;z-index:180;padding:24px}.drillModal.open{display:flex}.drillPanel{width:min(620px,100%);max-height:80vh;overflow:auto;background:var(--panel);border:1px solid var(--line);border-radius:18px;box-shadow:0 24px 60px rgba(17,24,42,.22)}.drillHeader{display:flex;justify-content:space-between;align-items:center;padding:16px 18px;border-bottom:1px solid var(--line);font-weight:900}.drillBody{padding:16px}.drillBody table{width:100%;border-collapse:collapse;font-size:11px}.drillBody th,.drillBody td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left}.drillBody th{color:var(--muted);font-size:10px;text-transform:uppercase}.drillBody td{color:var(--text)}.drillClose{border:0;background:transparent;color:var(--muted);font-size:18px;cursor:pointer}.drillRow{cursor:pointer}.drillRow:hover td{background:#f5f7ff}body[data-theme="dark"] .chatWidget{background:#131315;border-color:#2e2e31}body[data-theme="dark"] .chatBody,body[data-theme="dark"] .chatComposer,body[data-theme="dark"] .drillPanel{background:#131315}body[data-theme="dark"] .chatMessage.bot{background:#1a1a1c}body[data-theme="dark"] .chatMessage.user{background:#203057;border-color:#324a7b}body[data-theme="dark"] .drillRow:hover td{background:#1c1c1f}
+.chatWidget{position:fixed;right:22px;bottom:22px;width:340px;max-width:calc(100vw - 24px);background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 18px 42px rgba(20,30,60,.18);z-index:130;overflow:hidden;display:none}.chatWidget.open{display:block}.chatHeader{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;background:linear-gradient(135deg,#465ed4,#5d72e3);color:#fff;font-weight:900}.chatHeader .btn{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff}.chatBody{padding:12px;background:var(--panel);max-height:380px;overflow:auto}.chatMessages{display:flex;flex-direction:column;gap:9px}.chatMessage{max-width:88%;padding:9px 10px;border-radius:12px;font-size:11px;line-height:1.5;border:1px solid var(--line)}.chatMessage.user{margin-left:auto;background:#eaf1ff;border-color:#dbe4ff}.chatMessage.bot{margin-right:auto;background:#f5f7fb}.chatComposer{display:flex;gap:8px;padding:12px;border-top:1px solid var(--line);background:#fff}.chatComposer input{flex:1;border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:12px}.chatComposer button{border:0;border-radius:10px;background:var(--accent);color:#fff;padding:9px 12px;font-weight:800;cursor:pointer}.chatStatus{padding:0 12px 12px;color:var(--muted);font-size:10px}.chatKeyPanel{padding:12px 14px;background:var(--soft);border-bottom:1px solid var(--line)}.chatKeyPanel p{margin:0 0 9px;font-size:10.5px;line-height:1.5;color:var(--muted)}.chatKeyPanel input{width:100%;border:1px solid var(--line);border-radius:10px;padding:9px 11px;font-size:12px;background:var(--panel);color:var(--text);box-sizing:border-box}.chatKeyPanelActions{display:flex;gap:8px;margin:9px 0}.chatKeyPanelActions .btn{padding:8px 12px;font-size:11px}.chatKeyPanel small{color:var(--muted);font-size:9.5px}.drillModal{position:fixed;inset:0;background:rgba(17,24,42,.35);display:none;align-items:center;justify-content:center;z-index:180;padding:24px}.drillModal.open{display:flex}.drillPanel{width:min(760px,100%);max-height:84vh;overflow:auto;background:var(--panel);border:1px solid var(--line);border-radius:18px;box-shadow:0 24px 60px rgba(17,24,42,.22)}.drillHeader{position:sticky;top:0;display:flex;justify-content:space-between;align-items:center;padding:16px 18px;border-bottom:1px solid var(--line);font-weight:900;background:var(--panel);z-index:2}.drillBody{padding:16px 18px 20px}.drillBody table{width:100%;border-collapse:collapse;font-size:11px}.drillBody th,.drillBody td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left}.drillBody th{color:var(--muted);font-size:9px;text-transform:uppercase;letter-spacing:.25px}.drillBody td{color:var(--text)}.drillClose{border:0;background:transparent;color:var(--muted);font-size:18px;cursor:pointer}.drillRow{cursor:pointer}.drillRow:hover td{background:#f5f7ff}.drillStats{display:grid;grid-template-columns:repeat(auto-fit,minmax(105px,1fr));gap:8px;margin-bottom:16px}.drillStat{background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:9px 10px}.drillStat small{display:block;color:var(--muted);font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.2px}.drillStat strong{display:block;font-size:14px;margin-top:4px}.drillSection{margin-bottom:18px}.drillSection:last-child{margin-bottom:0}.drillSection h4{margin:0 0 8px;font-size:10.5px;font-weight:900;text-transform:uppercase;letter-spacing:.3px;color:var(--muted)}.drillSection .tablewrap{max-height:220px;overflow:auto;border:1px solid var(--line);border-radius:10px}.drillSection table{font-size:10.5px}.drillSection th{position:sticky;top:0;background:var(--panel)}.cm2DrillCell{cursor:pointer}.cm2DrillCell:hover{background:#eef2ff}body[data-theme="dark"] .chatWidget{background:#131315;border-color:#2e2e31}body[data-theme="dark"] .chatBody,body[data-theme="dark"] .chatComposer,body[data-theme="dark"] .drillPanel{background:#131315}body[data-theme="dark"] .chatMessage.bot{background:#1a1a1c}body[data-theme="dark"] .chatMessage.user{background:#203057;border-color:#324a7b}body[data-theme="dark"] .drillRow:hover td{background:#1c1c1f}body[data-theme="dark"] .cm2DrillCell:hover{background:#1c2340}
 </style></head>
 <body><div class="app">
 <aside class="side" id="sidebar"><button class="sideToggle" id="sideToggle" type="button" onclick="toggleSidebar()" aria-label="Minimize sidebar">‹</button><div class="logo">Finj <span>SH Performance Matrix</span></div><nav class="nav">
@@ -103,8 +165,9 @@ body[data-theme="grey"] .scenario{background:#f7f8fa}
 <a href="#cm2Vehicle" class="pageTab" data-page="cm2VehiclePage" data-label="CM-2 Summary by Vehicle Type"><span class="navIcon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4zM4 9h16M9 9v10M14 9v10M19 9v10"/></svg></span><span class="navText">CM-2 Summary by Vehicle Type</span></a>
 <a href="#lenderPortfolio" class="pageTab" data-page="lenderPortfolioPage" data-label="Lender Portfolio Summary (External)"><span class="navIcon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6"/></svg></span><span class="navText">Lender Portfolio Summary (External)</span></a>
 <a href="#lenderGm" class="pageTab" data-page="lenderGmPage" data-label="Lender GM Analysis (Internal)"><span class="navIcon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 19h16M6 19V9m6 10V5m6 14v-7"/></svg></span><span class="navText">Lender GM Analysis (Internal)</span></a>
-<a href="#hiring" class="pageTab" data-page="hiringPage" data-label="Hiring &amp; Attrition"><span class="navIcon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm-7 10a7 7 0 0 1 14 0M17 8h5m-2.5-2.5v5"/></svg></span><span class="navText">Hiring &amp; Attrition</span></a></nav>
-<div class="sideNote">Finj SH Performance Matrix<br>Excel / Google Sheets ready<br>Single-file HTML dashboard</div></aside><div class="themeSwitcher" id="themeSwitcher"><span class="themeTitle">THEME</span><button type="button" data-theme="light" onclick="setDashboardTheme('light')">☀ Light</button><button type="button" data-theme="dark" onclick="setDashboardTheme('dark')">◐ Dark</button><button type="button" data-theme="grey" onclick="setDashboardTheme('grey')">◒ Grey</button></div>
+<a href="#hiring" class="pageTab" data-page="hiringPage" data-label="Hiring &amp; Attrition"><span class="navIcon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm-7 10a7 7 0 0 1 14 0M17 8h5m-2.5-2.5v5"/></svg></span><span class="navText">Hiring &amp; Attrition</span></a>
+<a href="#analysis" class="pageTab" data-page="analysisPage" data-label="Analysis"><span class="navIcon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 19h4v-6H4v6Zm6 0h4V9h-4v10Zm6 0h4V4h-4v15ZM3 21h18"/></svg></span><span class="navText">Analysis</span></a></nav>
+<div class="sideNote">Finj SH Performance Matrix<br>Excel / Google Sheets ready<br>Single-file HTML dashboard</div></aside><div class="themeSwitcher" id="themeSwitcher"><button type="button" class="themeToggle" id="themeToggle" onclick="toggleDashboardTheme()" aria-label="Toggle dark mode" title="Toggle Light / Dark theme"><span class="trackIcon sun">☀</span><span class="trackIcon moon">☾</span><span class="knob" id="themeKnob">☀</span></button></div>
 <main class="main">
 <section id="overallPage" class="page active">
 <div class="top"><div><div class="eyebrow">Management Dashboard</div><div class="title">Finj SH Performance Matrix</div><div class="subtitle">Loan origination, inflow economics, field productivity &amp; contribution-margin monitoring.</div></div><div class="actions"><label class="btn">📄 Load Excel<input id="excel" class="file" type="file" accept=".xlsx,.xls,.csv" onchange="handleExcelImport(event)"></label><button class="btn" id="googleSheetBtn" onclick="loadGoogleSheet()">🔗 Connect Google Sheet</button><button class="btn primary" onclick="downloadTemplate()">⬇ Data Template</button></div></div>
@@ -116,13 +179,13 @@ body[data-theme="grey"] .scenario{background:#f7f8fa}
 <div class="field multiField"><label>Month <span class="filterHint">Multiple selection</span></label><div class="multiSelect" id="overallMonthMulti"><button type="button" class="multiSelectBtn" onclick="toggleOverallMonthMenu(event)"><span id="overallMonthLabel">Mar-27</span><span class="chev">⌄</span></button><div class="multiMenu" id="overallMonthMenu"><label class="checkRow allRow"><input type="checkbox" id="overallMonthAll" onchange="toggleAllOverallMonths(this)"><span>All Months</span></label><div class="menuDivider"></div><div id="overallMonthOptions"></div><div class="multiFooter"><span id="overallMonthCount">1 month selected</span><button type="button" onclick="applyOverallMonths()">Apply</button></div></div></div></div></div>
 <div class="filterMeta"><div class="source">DATA SOURCE &nbsp;<b id="sourceName">No data imported yet</b>&nbsp; • &nbsp;<span class="live">● Live calculations</span></div><label class="unitControl">₹ Lac <span class="switch"><input id="overallUnitToggle" type="checkbox" onchange="renderOverall()"><span class="slider"></span></span> Per Unit</label></div></div>
 <div class="kpis">
-<div class="card kpi"><div class="label">TOTAL LOAN AMOUNT</div><div class="value" id="loan">₹0 Cr</div><div class="deltaRow"><span class="deltaItem"><small>vs last month</small><b class="delta neutral" id="loanD">—</b></span><span class="deltaItem"><small>vs last year</small><b class="delta neutral" id="loanY">—</b></span></div></div>
-<div class="card kpi"><div class="label">TOTAL CASES</div><div class="value" id="casesTotal">0</div><div class="delta neutral" id="casesTotalD">—</div></div>
-<div class="card kpi"><div class="label">AVERAGE TICKET SIZE</div><div class="value" id="ats">₹0 L</div><div class="deltaRow"><span class="deltaItem"><small>vs last month</small><b class="delta neutral" id="atsD">—</b></span><span class="deltaItem"><small>vs last year</small><b class="delta neutral" id="atsY">—</b></span></div></div>
-<div class="card kpi"><div class="label">GROSS INFLOW TOTAL</div><div class="value" id="inflow">₹0 L</div><div class="deltaRow"><span class="deltaItem"><small>vs last month</small><b class="delta neutral" id="inflowD">—</b></span><span class="deltaItem"><small>vs last year</small><b class="delta neutral" id="inflowY">—</b></span></div></div>
-<div class="card kpi"><div class="label">GROSS MARGIN %</div><div class="value" id="gm">0%</div><div class="deltaRow"><span class="deltaItem"><small>vs last month</small><b class="delta neutral" id="gmD">—</b></span><span class="deltaItem"><small>vs last year</small><b class="delta neutral" id="gmY">—</b></span></div></div>
-<div class="card kpi"><div class="label">CM-1 %</div><div class="value" id="cm1">0%</div><div class="deltaRow"><span class="deltaItem"><small>vs last month</small><b class="delta neutral" id="cm1D">—</b></span><span class="deltaItem"><small>vs last year</small><b class="delta neutral" id="cm1Y">—</b></span></div></div>
-<div class="card kpi"><div class="label">CM-2 %</div><div class="value" id="cm2">0%</div><div class="deltaRow"><span class="deltaItem"><small>vs last month</small><b class="delta neutral" id="cm2D">—</b></span><span class="deltaItem"><small>vs last year</small><b class="delta neutral" id="cm2Y">—</b></span></div></div>
+<div class="card kpi tone-accent"><span class="kpiIcon"><svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h13a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7Z"/><path d="M16 12h.01"/></svg></span><div class="label">TOTAL LOAN AMOUNT</div><div class="value" id="loan">₹0 Cr</div><div class="deltaRow"><span class="deltaItem"><small>vs last month</small><b class="delta neutral" id="loanD">—</b></span><span class="deltaItem"><small>vs last year</small><b class="delta neutral" id="loanY">—</b></span></div></div>
+<div class="card kpi tone-accent"><span class="kpiIcon"><svg viewBox="0 0 24 24"><path d="M9 11l2 2 4-4"/><path d="M21 12a9 9 0 1 1-9-9"/></svg></span><div class="label">TOTAL CASES</div><div class="value" id="casesTotal">0</div><div class="delta neutral" id="casesTotalD">—</div></div>
+<div class="card kpi tone-accent"><span class="kpiIcon"><svg viewBox="0 0 24 24"><path d="M20.59 13.41 11 23l-9-9V4a1 1 0 0 1 1-1h10zM7 7h.01"/></svg></span><div class="label">AVERAGE TICKET SIZE</div><div class="value" id="ats">₹0 L</div><div class="deltaRow"><span class="deltaItem"><small>vs last month</small><b class="delta neutral" id="atsD">—</b></span><span class="deltaItem"><small>vs last year</small><b class="delta neutral" id="atsY">—</b></span></div></div>
+<div class="card kpi tone-good"><span class="kpiIcon"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></svg></span><div class="label">GROSS INFLOW TOTAL</div><div class="value" id="inflow">₹0 L</div><div class="deltaRow"><span class="deltaItem"><small>vs last month</small><b class="delta neutral" id="inflowD">—</b></span><span class="deltaItem"><small>vs last year</small><b class="delta neutral" id="inflowY">—</b></span></div></div>
+<div class="card kpi tone-good"><span class="kpiIcon"><svg viewBox="0 0 24 24"><path d="M19 5 5 19M7.5 7a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5ZM16.5 22a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/></svg></span><div class="label">GROSS MARGIN %</div><div class="value" id="gm">0%</div><div class="deltaRow"><span class="deltaItem"><small>vs last month</small><b class="delta neutral" id="gmD">—</b></span><span class="deltaItem"><small>vs last year</small><b class="delta neutral" id="gmY">—</b></span></div></div>
+<div class="card kpi tone-accent2"><span class="kpiIcon"><svg viewBox="0 0 24 24"><path d="M4 4h16l-6.5 8.5v6L10.5 21v-8.5L4 4Z"/></svg></span><div class="label">CM-1 %</div><div class="value" id="cm1">0%</div><div class="deltaRow"><span class="deltaItem"><small>vs last month</small><b class="delta neutral" id="cm1D">—</b></span><span class="deltaItem"><small>vs last year</small><b class="delta neutral" id="cm1Y">—</b></span></div></div>
+<div class="card kpi tone-good"><span class="kpiIcon"><svg viewBox="0 0 24 24"><path d="M9 11l2 2 4-4"/><path d="M21 12a9 9 0 1 1-9-9"/></svg></span><div class="label">CM-2 %</div><div class="value" id="cm2">0%</div><div class="deltaRow"><span class="deltaItem"><small>vs last month</small><b class="delta neutral" id="cm2D">—</b></span><span class="deltaItem"><small>vs last year</small><b class="delta neutral" id="cm2Y">—</b></span></div></div>
 </div>
 <div class="grid2"><section class="card section"><div class="head"><h3>CM-2 Trendline</h3><span id="cm2ChartContext">₹ Lakh • Month-on-Month</span></div><div id="cm2Legend" class="overallCompareLegend"></div><div class="chartbox"><canvas id="cm2Chart"></canvas></div></section><section class="card section"><div class="head"><h3>Cases by Lender</h3><span>All lenders • Selected month</span></div><div id="lenderLegend" class="overallCompareLegend"></div><div class="chartbox chartScroll" id="lenderChartBox"><div class="chartScrollInner" id="lenderChartInner"><canvas id="lenderChart"></canvas></div></div></section></div>
 <div class="grid2 equal" id="productivitySection"><section class="card section"><div class="head"><h3>Cases by Vehicle Type</h3><span>Selected month</span></div><div id="vehicleLegend" class="overallCompareLegend"></div><div class="chartbox small"><canvas id="vehicleChart"></canvas></div></section><section class="card section"><div class="head"><h3>FO Productivity</h3><span>MoM cases / active FO</span></div><div id="prodLegend" class="overallCompareLegend"></div><div class="chartbox small"><canvas id="prodChart"></canvas></div></section></div>
@@ -130,11 +193,13 @@ body[data-theme="grey"] .scenario{background:#f7f8fa}
 
 <section id="pnlPage" class="page"><div class="pageHeader"><div><h2>MoM P&amp;L Matrix View</h2><p>Single monthly matrix for management review with full operating-cost and contribution-margin visibility.</p></div><label class="unitControl">₹ Lac <span class="switch"><input id="pnlUnitToggle" type="checkbox" onchange="renderPnlPage()"><span class="slider"></span></span> Per Unit</label></div>
 <div class="subFilters"><div class="field"><label>State Head</label><select id="pnlStateFilter" onchange="renderPnlPage()"></select></div><div class="field"><label>Financial Year</label><select id="pnlFyFilter" onchange="renderPnlPage()"></select></div><div class="field multiField"><label>Month <span class="filterHint">Multiple selection</span></label><div class="multiSelect" id="pnlMonthMulti"><button type="button" class="multiSelectBtn" onclick="toggleMonthMenu(event)"><span id="pnlMonthLabel">All Months</span><span class="chev">⌄</span></button><div class="multiMenu" id="pnlMonthMenu"><label class="checkRow allRow"><input type="checkbox" id="pnlMonthAll" checked onchange="toggleAllPnlMonths(this)"><span>All Months</span></label><div class="menuDivider"></div><div id="pnlMonthOptions"></div><div class="multiFooter"><span id="pnlMonthCount">All months selected</span><button type="button" onclick="applyPnlMonths()">Apply</button></div></div></div></div><button class="btn primary" onclick="resetPnlFilters()">↻ Reset Filters</button></div>
-<div class="matrixSummary" id="pnlSummary"></div><section class="card tableCard"><div class="tableTop"><h3>P&amp;L Matrix</h3><span id="pnlUnitHint">₹ Lac unless % • horizontal scroll enabled</span></div><div class="tablewrap"><table class="pnl"><thead><tr id="pnlHead"></tr></thead><tbody id="pnlBody"></tbody></table></div><div class="tableFooter">All metrics are calculated from the same source dataset. Per Unit normalizes monetary metrics by case count.</div></section></section>
+<div class="matrixSummary premiumSummary" id="pnlSummary"></div><section class="card tableCard"><div class="tableTop"><div><h3>P&amp;L Matrix</h3><span id="pnlUnitHint">₹ Lac unless % • horizontal scroll enabled</span></div><div class="tableTopActions"><span class="netChip" id="pnlLatestChip"></span><button type="button" class="exportBtn" onclick="exportPnlMatrix()"><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 17v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg>Export</button></div></div><div class="tablewrap"><table class="pnl"><thead><tr id="pnlHead"></tr></thead><tbody id="pnlBody"></tbody></table></div><div class="tableFooter">All metrics are calculated from the same source dataset. Per Unit normalizes monetary metrics by case count.</div></section></section>
 
 <section id="vehiclePnlPage" class="page"><div class="pageHeader"><div><h2>P&amp;L by Vehicle Category</h2><p>One consolidated table — no separate Used Car / New Car / CV tables. Filter the requested vehicle category from a single control.</p></div><label class="unitControl">₹ Lac <span class="switch"><input id="vehicleUnitToggle" type="checkbox" onchange="renderVehiclePnl()"><span class="slider"></span></span> Per Unit</label></div>
 <div class="subFilters"><div class="field"><label>State Head</label><select id="vehicleStateFilter" onchange="renderVehiclePnl()"></select></div><div class="field"><label>Financial Year</label><select id="vehicleFyFilter" onchange="renderVehiclePnl()"></select></div><div class="field multiField"><label>Month <span class="filterHint">Multiple selection</span></label><div class="multiSelect" id="vehicleMonthMulti"><button type="button" class="multiSelectBtn" onclick="toggleVehicleMonthMenu(event)"><span id="vehicleMonthLabel">All Months</span><span class="chev">⌄</span></button><div class="multiMenu" id="vehicleMonthMenu"><label class="checkRow allRow"><input type="checkbox" id="vehicleMonthAll" checked onchange="toggleAllVehicleMonths(this)"><span>All Months</span></label><div class="menuDivider"></div><div id="vehicleMonthOptions"></div><div class="multiFooter"><span id="vehicleMonthCount">All months selected</span><button type="button" onclick="applyVehicleMonths()">Apply</button></div></div></div></div><div class="field multiField"><label>Vehicle Category <span class="filterHint">Multiple selection</span></label><div class="multiSelect" id="vehicleCategoryMulti"><button type="button" class="multiSelectBtn" onclick="toggleVehicleCategoryMenu(event)"><span id="vehicleCategoryLabel">All Vehicle Categories</span><span class="chev">⌄</span></button><div class="multiMenu" id="vehicleCategoryMenu"><label class="checkRow allRow"><input type="checkbox" id="vehicleCategoryAll" checked onchange="toggleAllVehicleCategories(this)"><span>All Vehicle Categories</span></label><div class="menuDivider"></div><div id="vehicleCategoryOptions"></div><div class="multiFooter"><span id="vehicleCategoryCount">All categories selected</span><button type="button" onclick="applyVehicleCategories()">Apply</button></div></div></div></div><button class="btn primary" onclick="resetVehicleFilters()">↻ Reset Filters</button></div>
-<section class="card tableCard"><div class="tableTop"><h3>Vehicle Category P&amp;L Matrix</h3><span id="vehicleUnitHint">All Vehicle Categories • ₹ Lac • multiple month/category selection • single table</span></div><div class="tablewrap"><table class="pnl"><thead><tr id="vehicleHead"></tr></thead><tbody id="vehicleBody"></tbody></table></div><div class="tableFooter">Vehicle categories: PV, CV, TR, New PV, New CV, New TR, Backhoe Loader, New Backhoe Loader, Harvester, New Harvester.</div></section></section>
+<div class="matrixSummary premiumSummary" id="vehicleSummary"></div>
+<section class="card tableCard"><div class="tableTop"><div><h3>Vehicle Category P&amp;L Matrix</h3><span id="vehicleUnitHint">All Vehicle Categories • ₹ Lac • multiple month/category selection • single table</span></div><div class="tableTopActions"><span class="netChip" id="vehicleTopChip"></span><button type="button" class="exportBtn" onclick="exportVehiclePnl()"><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 17v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg>Export</button></div></div><div class="tablewrap"><table class="pnl"><thead><tr id="vehicleHead"></tr></thead><tbody id="vehicleBody"></tbody></table></div><div class="tableFooter">Vehicle categories: PV, CV, TR, New PV, New CV, New TR, Backhoe Loader, New Backhoe Loader, Harvester, New Harvester.</div></section></section>
+
 
 <section id="shPnlPage" class="page"><div class="pageHeader"><div><h2>1 SH vs 2 SH vs Company P&amp;L</h2><p>Company P&amp;L remains independent of State Head selection. Select SH-1 and/or SH-2 to add comparable State Head tables below.</p></div><label class="unitControl">₹ Lac <span class="switch"><input id="shUnitToggle" type="checkbox" onchange="renderShPnl()"><span class="slider"></span></span> Per Unit</label></div>
 <div class="subFilters shCompareFilters page4Filters">
@@ -146,7 +211,7 @@ body[data-theme="grey"] .scenario{background:#f7f8fa}
  <button class="btn primary resetBtn" type="button" onclick="resetPage4Filters()">↻ Reset Filters</button>
 </div>
 <div class="pageContextBar"><span id="p4ContextLeft">Company Level • All State Heads</span><span id="p4ContextRight">All Financial Years • All Months</span></div>
-<div class="shTablesHeader"><h3>P&amp;L Comparison</h3><span>Company first • State Head tables are added only when selected • ₹ Lac unless Per Unit</span></div><div class="shOnlyTables" id="shScenarioTables"></div><section class="card tableCard shCompareMatrix"><div class="tableTop"><h3>SH P&amp;L Comparison Summary</h3><span>Selected period aggregate</span></div><div class="tablewrap"><table class="pnl"><thead><tr><th>Scenario</th><th>Scope</th><th>Loan</th><th>Cases</th><th>Inflow</th><th>Outflow</th><th>CM-1</th><th>CM-2</th><th>CM-2 % of Inflow</th></tr></thead><tbody id="shPnlCompareBody"></tbody></table></div></section></section>
+<div class="shTablesHeader"><div class="shTablesHeadTitle"><span class="hiringGroupIcon"><svg viewBox="0 0 24 24"><path d="M8 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm8 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7ZM2.5 21a5.5 5.5 0 0 1 11 0M14 21a5 5 0 0 1 8 0"/></svg></span><h3>P&amp;L Comparison</h3></div><div class="shTablesHeadMeta"><span>Company first • State Head tables are added only when selected • ₹ Lac unless Per Unit</span><span class="netChip" id="shBestChip"></span><button type="button" class="exportBtn" onclick="exportShPnlExcel()"><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 17v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg>Export All</button></div></div><div class="shOnlyTables" id="shScenarioTables"></div><section class="card tableCard shCompareMatrix"><div class="tableTop"><h3>SH P&amp;L Comparison Summary</h3><span>Selected period aggregate</span></div><div class="tablewrap"><table class="pnl"><thead><tr><th>Scenario</th><th>Scope</th><th>Loan</th><th>Cases</th><th>Inflow</th><th>Outflow</th><th>CM-1</th><th>CM-2</th><th>CM-2 % of Inflow</th></tr></thead><tbody id="shPnlCompareBody"></tbody></table></div></section></section>
 
 <section id="cm2VehiclePage" class="page"><div class="pageHeader"><div><h2>CM-2 Summary by Vehicle Type</h2><p>Management summary of CM-2 performance across selected State Heads, months, financial years and vehicle types.</p></div><label class="unitControl">₹ Lac <span class="switch"><input id="cm2VehicleUnitToggle" type="checkbox" onchange="renderCm2Vehicle()"><span class="slider"></span></span> Per Unit</label></div>
 <div class="subFilters cm2VehicleFilters page5Filters">
@@ -157,8 +222,8 @@ body[data-theme="grey"] .scenario{background:#f7f8fa}
  <button class="btn primary resetBtn" type="button" onclick="resetPage5Filters()">↻ Reset Filters</button>
 </div>
 <div class="pageContextBar"><span id="p5ContextLeft">CM-2 Power BI-style management matrix</span><span id="p5ContextRight">All State Heads • All Financial Years • All Months • All Vehicle Types</span></div>
-<div class="matrixSummary" id="cm2VehicleSummary"></div>
-<section class="card tableCard"><div class="tableTop"><h3>P&amp;L by Category</h3><span id="cm2VehicleHint">₹ Lac unless % • multiple selection</span></div><div class="tablewrap cm2MatrixWrap"><table class="pnl cm2Matrix"><thead></thead><tbody id="cm2VehicleBody"></tbody></table></div><div class="tableFooter">Power BI-style vehicle matrix. Rows represent State Heads; columns show Case, CM-2 and CM-2% for each selected vehicle type.</div></section>
+<div class="matrixSummary premiumSummary" id="cm2VehicleSummary"></div>
+<section class="card tableCard"><div class="tableTop"><div><h3>P&amp;L by Category</h3><span id="cm2VehicleHint">₹ Lac unless % • multiple selection</span></div><div class="tableTopActions"><span class="netChip" id="cm2BestChip"></span><button type="button" class="exportBtn" onclick="exportCm2Vehicle()"><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 17v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg>Export</button></div></div><div class="tablewrap cm2MatrixWrap"><table class="pnl cm2Matrix"><thead></thead><tbody id="cm2VehicleBody"></tbody></table></div><div class="tableFooter">Power BI-style vehicle matrix. Rows represent State Heads; columns show Case, CM-2 and CM-2% for each selected vehicle type.</div></section>
 </section>
 
 <section id="lenderPortfolioPage" class="page"><div class="pageHeader"><div><h2>Lender Portfolio Summary (External)</h2><p>Lender mix, vehicle mix and state-wise contribution across the selected lenders, financial years and months.</p></div></div>
@@ -171,13 +236,13 @@ body[data-theme="grey"] .scenario{background:#f7f8fa}
  <button class="btn primary resetBtn" type="button" onclick="resetPage6Filters()">↻ Reset Filters</button>
 </div>
 <div class="pageContextBar"><span>Lender portfolio • Inflow % vs case volume trend</span><span id="lpContextRight">All Lenders • All Financial Years • All Months • All Vehicle Categories • All States</span></div>
-<div class="matrixSummary" id="lpSummary"></div>
-<section class="card section"><div class="head"><h3>Inflow % vs Case Count Trend</h3><span>Monthly</span></div><div id="lpTrendLegend" class="overallCompareLegend"></div><div class="chartbox"><canvas id="lenderTrendChart"></canvas></div></section>
+<div class="matrixSummary premiumSummary" id="lpSummary"></div>
+<section class="card section"><div class="head"><div><h3>Inflow % vs Case Count Trend</h3><span>Monthly</span></div><span class="netChip" id="lpTrendChip"></span></div><div id="lpTrendLegend" class="overallCompareLegend"></div><div class="chartbox"><canvas id="lenderTrendChart"></canvas></div></section>
 <div class="grid2 equal">
  <section class="card tableCard"><div class="tableTop"><h3>Lender-wise Portfolio</h3><span>Cases &amp; loan share by lender</span></div><div class="tablewrap lpTableWrap"><table class="lpTable"><thead><tr><th>Lender Name</th><th>Cases</th><th>Cases %</th><th>Loan Amount (Cr.)</th><th>% of Loan Amount</th></tr></thead><tbody id="lpLenderBody"></tbody></table></div></section>
  <section class="card tableCard"><div class="tableTop"><h3>Vehicle-wise Portfolio</h3><span>Cases &amp; loan share by vehicle type</span></div><div class="tablewrap lpTableWrap"><table class="lpTable"><thead><tr><th>Vehicle Type</th><th>Cases</th><th>Cases %</th><th>Loan Amount (Cr.)</th><th>% of Loan Amount</th></tr></thead><tbody id="lpVehicleBody"></tbody></table></div></section>
 </div>
-<section class="card section"><div class="head"><h3>Contribution of States</h3><span>Case count &amp; share by state</span></div><div class="chartbox chartScroll" id="lpStateChartBox"><div class="chartScrollInner" id="lpStateChartInner"><canvas id="lpStateChart"></canvas></div></div></section>
+<section class="card section"><div class="head"><div><h3>Contribution of States</h3><span>Case count &amp; share by state</span></div><span class="netChip" id="lpTopStateChip"></span></div><div class="chartbox chartScroll" id="lpStateChartBox"><div class="chartScrollInner" id="lpStateChartInner"><canvas id="lpStateChart"></canvas></div></div></section>
 </section>
 
 <section id="lenderGmPage" class="page"><div class="pageHeader"><div><h2>Lender GM Analysis (Internal)</h2><p>Gross margin performance by lender across the selected lenders, financial years, months and vehicle categories.</p></div></div>
@@ -190,10 +255,10 @@ body[data-theme="grey"] .scenario{background:#f7f8fa}
  <button class="btn primary resetBtn" type="button" onclick="resetPage7Filters()">↻ Reset Filters</button>
 </div>
 <div class="pageContextBar"><span>Lender GM analysis • Gross margin performance by lender</span><span id="gmContextRight">All Lenders • All Financial Years • All Months • All Vehicle Categories • All States</span></div>
-<div class="matrixSummary" id="gmSummary"></div>
-<section class="card section"><div class="head"><h3>Cases Count vs Inflow % Trend</h3><span>Monthly</span></div><div id="gmTrendLegend" class="overallCompareLegend"></div><div class="chartbox"><canvas id="gmTrendChart"></canvas></div></section>
-<section class="card section"><div class="head"><h3>Case Count Contribution</h3><span>By lender</span></div><div class="chartbox chartScroll" id="gmLenderChartBox"><div class="chartScrollInner" id="gmLenderChartInner"><canvas id="gmLenderChart"></canvas></div></div></section>
-<section class="card tableCard"><div class="tableTop"><h3>Lender-wise Gross Margin</h3><span>Cases, loan and margin performance by lender</span></div><div class="tablewrap lpTableWrap"><table class="lpTable gmTable"><thead><tr><th>Lender Name</th><th>Cases</th><th>Cases %</th><th>Loan (Cr.)</th><th>Loan %</th><th>Inflow (Cr.)</th><th>Inflow %</th><th>Outflow (Cr.)</th><th>Outflow %</th><th>Gross Margin (Cr.)</th><th>Gross Margin %</th></tr></thead><tbody id="gmLenderBody"></tbody></table></div></section>
+<div class="matrixSummary premiumSummary" id="gmSummary"></div>
+<section class="card section"><div class="head"><div><h3>Cases Count vs Inflow % Trend</h3><span>Monthly</span></div><span class="netChip" id="gmTrendChip"></span></div><div id="gmTrendLegend" class="overallCompareLegend"></div><div class="chartbox"><canvas id="gmTrendChart"></canvas></div></section>
+<section class="card section"><div class="head"><div><h3>Case Count Contribution</h3><span>By lender</span></div><span class="netChip" id="gmTopLenderChip"></span></div><div class="chartbox chartScroll" id="gmLenderChartBox"><div class="chartScrollInner" id="gmLenderChartInner"><canvas id="gmLenderChart"></canvas></div></div></section>
+<section class="card tableCard"><div class="tableTop"><div><h3>Lender-wise Gross Margin</h3><span>Cases, loan and margin performance by lender</span></div><button type="button" class="exportBtn" onclick="exportGmLender()"><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 17v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg>Export</button></div><div class="tablewrap lpTableWrap"><table class="lpTable gmTable"><thead><tr><th>Lender Name</th><th>Cases</th><th>Cases %</th><th>Loan (Cr.)</th><th>Loan %</th><th>Inflow (Cr.)</th><th>Inflow %</th><th>Outflow (Cr.)</th><th>Outflow %</th><th>Gross Margin (Cr.)</th><th>Gross Margin %</th></tr></thead><tbody id="gmLenderBody"></tbody></table></div></section>
 </section>
 
 <section id="hiringPage" class="page"><div class="pageHeader"><div><h2>Hiring &amp; Attrition</h2><p>FO and CH headcount movement — hiring, attrition and month-end headcount across State Heads, team types and levels.</p></div></div>
@@ -206,12 +271,31 @@ body[data-theme="grey"] .scenario{background:#f7f8fa}
  <div class="field multiField"><label>CH Type <span class="filterHint">Multiple selection</span></label><div class="multiSelect" id="hrChLevelMulti"><button type="button" class="multiSelectBtn" onclick="toggleP8Menu('hrChLevelMulti',event)"><span id="hrChLevelLabel">All CH Types</span><span class="chev">⌄</span></button><div class="multiMenu"><label class="checkRow allRow"><input type="checkbox" id="hrChLevelAll" checked onchange="toggleAllP8('chLevel',this)"><span>All CH Types</span></label><div class="menuDivider"></div><div id="hrChLevelOptions"></div><div class="multiFooter"><span id="hrChLevelCount">All CH Types selected</span><button type="button" onclick="applyP8Menu('hrChLevelMulti')">Apply</button></div></div></div></div>
  <button class="btn primary resetBtn" type="button" onclick="resetPage8Filters()">↻ Reset Filters</button>
 </div>
-<div class="hiringGroupHead">FO — Field Officers</div>
+<div class="hiringGroupHead"><span class="hiringGroupIcon"><svg viewBox="0 0 24 24"><path d="M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm-7 10a7 7 0 0 1 14 0"/></svg></span>FO — Field Officers</div>
 <div class="matrixSummary hiringSummary" id="foSummary"></div>
-<section class="card section"><div class="head"><h3>FO Headcount Movement</h3><span>Hired vs exited, month on month</span></div><div id="foMovementLegend" class="overallCompareLegend"></div><div class="chartbox"><canvas id="foMovementChart"></canvas></div></section>
-<div class="hiringGroupHead">CH — Cluster Heads</div>
+<section class="card section"><div class="head"><div><h3>FO Headcount Movement</h3><span>Hired vs exited, month on month</span></div><span class="netChip" id="foNetChip"></span></div><div id="foMovementLegend" class="overallCompareLegend"></div><div class="chartbox"><canvas id="foMovementChart"></canvas></div></section>
+<div class="hiringGroupHead"><span class="hiringGroupIcon"><svg viewBox="0 0 24 24"><path d="M8 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm8 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7ZM2.5 21a5.5 5.5 0 0 1 11 0M14 21a5 5 0 0 1 8 0"/></svg></span>CH — Cluster Heads</div>
 <div class="matrixSummary hiringSummary" id="chSummary"></div>
-<section class="card section"><div class="head"><h3>CH Headcount Movement</h3><span>Hired vs exited, month on month</span></div><div id="chMovementLegend" class="overallCompareLegend"></div><div class="chartbox"><canvas id="chMovementChart"></canvas></div></section>
+<section class="card section"><div class="head"><div><h3>CH Headcount Movement</h3><span>Hired vs exited, month on month</span></div><span class="netChip" id="chNetChip"></span></div><div id="chMovementLegend" class="overallCompareLegend"></div><div class="chartbox"><canvas id="chMovementChart"></canvas></div></section>
+</section>
+
+<section id="analysisPage" class="page"><div class="pageHeader"><div><h2>Analysis</h2><p>Complete margin analysis — Inflow, Outflow, GM, CM-1 and CM-2 side by side. Hover any trend point for a short MoM driver explanation.</p></div></div>
+<div class="subFilters analysisFilters">
+ <div class="field multiField"><label>State Head <span class="filterHint">Multiple selection</span></label><div class="multiSelect" id="anShMulti"><button type="button" class="multiSelectBtn" onclick="toggleP9Menu('anShMulti',event)"><span id="anShLabel">All State Heads</span><span class="chev">⌄</span></button><div class="multiMenu"><label class="checkRow allRow"><input type="checkbox" id="anShAll" checked onchange="toggleAllP9('sh',this)"><span>All State Heads</span></label><div class="menuDivider"></div><div id="anShOptions"></div><div class="multiFooter"><span id="anShCount">All State Heads selected</span><button type="button" onclick="applyP9Menu('anShMulti')">Apply</button></div></div></div></div>
+ <div class="field multiField"><label>Financial Year <span class="filterHint">Multiple selection</span></label><div class="multiSelect" id="anFyMulti"><button type="button" class="multiSelectBtn" onclick="toggleP9Menu('anFyMulti',event)"><span id="anFyLabel">All Financial Years</span><span class="chev">⌄</span></button><div class="multiMenu"><label class="checkRow allRow"><input type="checkbox" id="anFyAll" checked onchange="toggleAllP9('fy',this)"><span>All Financial Years</span></label><div class="menuDivider"></div><div id="anFyOptions"></div><div class="multiFooter"><span id="anFyCount">All Financial Years selected</span><button type="button" onclick="applyP9Menu('anFyMulti')">Apply</button></div></div></div></div>
+ <div class="field multiField"><label>Month <span class="filterHint">Multiple selection</span></label><div class="multiSelect" id="anMonthMulti"><button type="button" class="multiSelectBtn" onclick="toggleP9Menu('anMonthMulti',event)"><span id="anMonthLabel">All Months</span><span class="chev">⌄</span></button><div class="multiMenu"><label class="checkRow allRow"><input type="checkbox" id="anMonthAll" checked onchange="toggleAllP9('month',this)"><span>All Months</span></label><div class="menuDivider"></div><div id="anMonthOptions"></div><div class="multiFooter"><span id="anMonthCount">All Months selected</span><button type="button" onclick="applyP9Menu('anMonthMulti')">Apply</button></div></div></div></div>
+ <div class="field multiField"><label>Vehicle Category <span class="filterHint">Multiple selection</span></label><div class="multiSelect" id="anVehicleMulti"><button type="button" class="multiSelectBtn" onclick="toggleP9Menu('anVehicleMulti',event)"><span id="anVehicleLabel">All Vehicle Categories</span><span class="chev">⌄</span></button><div class="multiMenu"><label class="checkRow allRow"><input type="checkbox" id="anVehicleAll" checked onchange="toggleAllP9('vehicle',this)"><span>All Vehicle Categories</span></label><div class="menuDivider"></div><div id="anVehicleOptions"></div><div class="multiFooter"><span id="anVehicleCount">All Vehicle Categories selected</span><button type="button" onclick="applyP9Menu('anVehicleMulti')">Apply</button></div></div></div></div>
+ <div class="field multiField"><label>Lender <span class="filterHint">Multiple selection</span></label><div class="multiSelect" id="anLenderMulti"><button type="button" class="multiSelectBtn" onclick="toggleP9Menu('anLenderMulti',event)"><span id="anLenderLabel">All Lenders</span><span class="chev">⌄</span></button><div class="multiMenu"><label class="checkRow allRow"><input type="checkbox" id="anLenderAll" checked onchange="toggleAllP9('lender',this)"><span>All Lenders</span></label><div class="menuDivider"></div><div id="anLenderOptions"></div><div class="multiFooter"><span id="anLenderCount">All Lenders selected</span><button type="button" onclick="applyP9Menu('anLenderMulti')">Apply</button></div></div></div></div>
+ <div class="field multiField"><label>State Name <span class="filterHint">Multiple selection</span></label><div class="multiSelect" id="anStateMulti"><button type="button" class="multiSelectBtn" onclick="toggleP9Menu('anStateMulti',event)"><span id="anStateLabel">All States</span><span class="chev">⌄</span></button><div class="multiMenu"><label class="checkRow allRow"><input type="checkbox" id="anStateAll" checked onchange="toggleAllP9('state',this)"><span>All States</span></label><div class="menuDivider"></div><div id="anStateOptions"></div><div class="multiFooter"><span id="anStateCount">All States selected</span><button type="button" onclick="applyP9Menu('anStateMulti')">Apply</button></div></div></div></div>
+ <button class="btn primary resetBtn" type="button" onclick="resetPage9Filters()">↻ Reset Filters</button>
+</div>
+<div class="pageContextBar"><span>Complete margin analysis • hover any trend point for a MoM driver explanation</span><span id="anContextRight">All State Heads • All Financial Years • All Months • All Vehicle Categories • All Lenders • All States</span></div>
+<div class="kpis analysisKpis" id="anKpis"></div>
+<section class="card section"><div class="head"><div><h3>Inflow % Trend</h3><span>Hover any point for a quick MoM reason</span></div><span class="netChip" id="anInflowChip"></span></div><div class="chartbox"><canvas id="anInflowChart"></canvas></div><div class="anInsight" id="anInflowInsight"></div></section>
+<section class="card section"><div class="head"><div><h3>Outflow % Trend</h3><span>Hover any point for a quick MoM reason</span></div><span class="netChip" id="anOutflowChip"></span></div><div class="chartbox"><canvas id="anOutflowChart"></canvas></div><div class="anInsight" id="anOutflowInsight"></div></section>
+<section class="card section"><div class="head"><div><h3>GM % Trend</h3><span>Hover any point for a quick MoM reason</span></div><span class="netChip" id="anGmChip"></span></div><div class="chartbox"><canvas id="anGmChart"></canvas></div><div class="anInsight" id="anGmInsight"></div></section>
+<section class="card section"><div class="head"><div><h3>CM-1 % Trend</h3><span>Hover any point for a quick MoM reason</span></div><span class="netChip" id="anCm1Chip"></span></div><div class="chartbox"><canvas id="anCm1Chart"></canvas></div><div class="anInsight" id="anCm1Insight"></div></section>
+<section class="card section"><div class="head"><div><h3>CM-2 % Trend</h3><span>Hover any point for a quick MoM reason</span></div><span class="netChip" id="anCm2Chip"></span></div><div class="chartbox"><canvas id="anCm2Chart"></canvas></div><div class="anInsight" id="anCm2Insight"></div></section>
 </section>
 
 </main>
@@ -231,7 +315,7 @@ body[data-theme="grey"] .scenario{background:#f7f8fa}
 <div class="drillModal" id="drillModal" onclick="if(event.target.id === 'drillModal') closeDrillDown();">
   <div class="drillPanel" role="dialog" aria-modal="true">
     <div class="drillHeader"><span id="drillTitle">Data drill-down</span><button type="button" class="drillClose" aria-label="Close" onclick="closeDrillDown()">×</button></div>
-    <div class="drillBody"><table><tbody id="drillBodyTable"></tbody></table></div>
+    <div class="drillBody" id="drillBody"></div>
   </div>
 </div>
 </div>
@@ -392,7 +476,8 @@ if(yoy){delta('loanY',(r.loan-yoy.loan)/Math.max(yoy.loan,1)*100);delta('atsY',(
 const gridColor=getComputedStyle(document.body).getPropertyValue('--line').trim()||'#edf0f5';
 const mutedColor=getComputedStyle(document.body).getPropertyValue('--muted').trim()||'#71809a';
 const badColor=getComputedStyle(document.body).getPropertyValue('--bad').trim()||'#c7435c';
-const cm2Datasets=sources.map(src=>({label:src.name,data:ms.map(m=>{const z=calc(aggregate(src.source,m));const v=per?z.cm2/Math.max(z.cases,1):z.cm2;return per?v*1e5:v}),borderColor:chartColor(src.name),backgroundColor:'transparent',tension:.35,borderWidth:src.name===primaryName?2.5:2,pointRadius:src.name===primaryName?2.5:2}));chart('cm2Chart','line',ms,cm2Datasets,{scales:{x:{grid:{display:false},ticks:{font:{size:9},color:mutedColor}},y:{grid:{color:gridColor},ticks:{font:{size:9},color:mutedColor,callback:v=>per?'₹'+fmt(v,0):fmt(v,0)+' L'}}},plugins:{tooltip:{callbacks:{label:ctx=>`${ctx.dataset.label}: ${per?'₹'+fmt(ctx.parsed.y,0):fmt(ctx.parsed.y,0)+' L'}`}}}});
+const cm2ChartEl=document.getElementById('cm2Chart');const cm2Ctx=cm2ChartEl?cm2ChartEl.getContext('2d'):null;
+const cm2Datasets=sources.map(src=>({label:src.name,data:ms.map(m=>{const z=calc(aggregate(src.source,m));const v=per?z.cm2/Math.max(z.cases,1):z.cm2;return per?v*1e5:v}),borderColor:chartColor(src.name),backgroundColor:sources.length===1&&cm2Ctx?(()=>{const g=cm2Ctx.createLinearGradient(0,0,0,260);g.addColorStop(0,hexToRgba(chartColor(src.name),.22));g.addColorStop(1,hexToRgba(chartColor(src.name),0));return g;})():'transparent',fill:sources.length===1,tension:.35,borderWidth:src.name===primaryName?2.5:2,pointRadius:src.name===primaryName?2.5:2}));chart('cm2Chart','line',ms,cm2Datasets,{scales:{x:{grid:{display:false},ticks:{font:{size:9},color:mutedColor}},y:{grid:{color:gridColor},ticks:{font:{size:9},color:mutedColor,callback:v=>per?'₹'+fmt(v,0):fmt(v,0)+' L'}}},plugins:{tooltip:{callbacks:{label:ctx=>`${ctx.dataset.label}: ${per?'₹'+fmt(ctx.parsed.y,0):fmt(ctx.parsed.y,0)+' L'}`}}}});
 const s=companySrc.filter(x=>ms.includes(x.month)),vs=uniq(s.map(x=>x.vehicle));const ls=uniq(s.map(x=>x.lender)).map(l=>({l,c:sum(s.filter(x=>x.lender===l),'cases')})).sort((a,b)=>b.c-a.c).map(x=>x.l);const lenderDatasets=sources.map(src=>({label:src.name,data:ls.map(l=>sum(src.source.filter(x=>ms.includes(x.month)&&x.lender===l),'cases')),backgroundColor:chartColor(src.name),borderRadius:6}));const vehicleDatasets=sources.map(src=>({label:src.name,data:vs.map(v=>sum(src.source.filter(x=>ms.includes(x.month)&&x.vehicle===v),'cases')),backgroundColor:chartColor(src.name),borderRadius:6}));
 const lenderInner=document.getElementById('lenderChartInner');if(lenderInner)lenderInner.style.height=Math.max(260,ls.length*(sources.length>1?34:28))+'px';
 chart('lenderChart','bar',ls,lenderDatasets,{indexAxis:'y',layout:{padding:{right:58}},plugins:{datalabels:{display:true,anchor:'end',align:'end',clamp:true,color:mutedColor,font:{size:9,weight:'700'},formatter:(value,ctx)=>{const arr=ctx.dataset.data;const total=arr.reduce((a,b)=>a+b,0);const p=total?value/total*100:0;return value?`${fmt(value,0)} (${fmt(p,0)}%)`:''}}}});
@@ -405,11 +490,72 @@ const moneyIdx=[2,3,6,7,8,10,12,13,14,15,17,19,20,21,22,23,24];
 function pUnit(v,cases,per){return per?v/Math.max(cases,1):v}
 function moneyCell(x,per){return per?'₹'+fmt(x*1e5,0):fmt(x,1)}
 function row(r,per){const loan=pUnit(r.loan,r.cases,per),inflow=pUnit(r.inflow,r.cases,per),outflow=pUnit(r.outflow,r.cases,per),gm=pUnit(r.gm,r.cases,per),foSal=pUnit(r.foSalary,r.cases,per),foTravel=pUnit(r.foTravel,r.cases,per),cm1=pUnit(r.cm1,r.cases,per),chSal=pUnit(r.chSalary,r.cases,per),shSal=pUnit(r.shSalary,r.cases,per),chTravel=pUnit(r.chTravel,r.cases,per),shTravel=pUnit(r.shTravel,r.cases,per),cm2=pUnit(r.cm2,r.cases,per);const chMonth=Math.max(1,Math.round((r.fo||0)/20));const chCount=Math.max(1,Math.round(chMonth*.9));const avgCh=r.chSalary/Math.max(chCount,1);return [r.fy||'',r.month||'',loan,r.ats,r.cases,r.cases*.75,inflow,outflow,gm,r.gmp,foSal,r.fo, r.foSalary/Math.max(r.fo,1),foTravel,per?((r.foSalary+r.foTravel)/Math.max(r.cases,1)):(r.foSalary+r.foTravel),cm1,r.cm1p,chSal,chCount,avgCh,shSal,chTravel,shTravel,per?((r.chSalary+r.shSalary+r.chTravel+r.shTravel)/Math.max(r.cases,1)):(r.chSalary+r.shSalary+r.chTravel+r.shTravel),cm2,r.cm2p]}
-function renderTable(headId,bodyId,rows,per=false){document.getElementById(headId).innerHTML=cols.map(c=>`<th>${c}</th>`).join('');document.getElementById(bodyId).innerHTML=rows.map((a,idx)=>{const drillData=cols.reduce((acc,key,colIndex)=>{acc[key]=a[colIndex]; return acc;},{ rowIndex: idx, source: 'P&L Matrix' });return `<tr data-drill="${encodeDrillPayload(drillData)}">${a.map((x,i)=>`<td class="${[8,15,24].includes(i)?(x<0?'negative':'positive'):''}">${typeof x==='number'?(pctIdx.includes(i)?pct(x):(moneyIdx.includes(i)?moneyCell(x,per):fmt(x,1))):x}</td>`).join('')}</tr>`;}).join('')||`<tr><td colspan="${cols.length}" class="empty">No data for the selected filters.</td></tr>`;bindDrillRows('#'+bodyId+' tr[data-drill]', payload => `${payload['Month Year'] || payload.month || 'Row'} • ${payload['State Head'] || payload.state || 'All SHs'}`);}
-function renderPnlPage(){const st=document.getElementById('pnlStateFilter').value,fy=document.getElementById('pnlFyFilter').value,per=document.getElementById('pnlUnitToggle').checked,src=sourceFiltered(st,fy),selected=pnlSelectedMonths.length?pnlSelectedMonths:MONTHS,ms=MONTHS.filter(m=>selected.includes(m)&&(fy==='All Financial Years'||FYMAP(m)===fy));const rows=ms.map(m=>{const r=calc(aggregate(src,m));r.fy=FYMAP(m);return row(r,per)});renderTable('pnlHead','pnlBody',rows,per);const lr=ms.length?calc(aggregateMonths(src,ms)):calc(aggregate([],''));document.getElementById('pnlSummary').innerHTML=[['Loan',pUnit(lr.loan,lr.cases,per)],['Cases',lr.cases],['GM %',lr.gmp],['CM-1',pUnit(lr.cm1,lr.cases,per)],['CM-2',pUnit(lr.cm2,lr.cases,per)]].map(([n,v],i)=>`<div class="summaryBox"><small>${n}</small><strong>${i===2?pct(v):(n==='Cases'?fmt(v,0):moneyCell(v,per)+(per?' / Case':' L'))}</strong></div>`).join('');document.getElementById('pnlUnitHint').textContent=(per?'₹ / Case':'₹ Lac')+' unless % • '+rows.length+' month(s) shown • '+(pnlSelectedMonths.length?'Multiple month selection enabled':'all months shown')+' • summary reflects selected months • horizontal scroll enabled'}
+const DRILL_SECTION_SPECS=[['By Vehicle Category','Vehicle Category','vehicle'],['By State Head','State Head','state'],['By Lender','Lender','lender']];
+function safeSheetName(name){return String(name||'Sheet1').replace(/[\\/?*\[\]:]/g,' ').trim().slice(0,31)||'Sheet1';}
+function exportTableToExcel(tableEl,sheetName,filename){
+  if(!tableEl){alert('No data to export yet.');return;}
+  const wb=XLSX.utils.book_new();
+  const ws=XLSX.utils.table_to_sheet(tableEl);
+  XLSX.utils.book_append_sheet(wb,ws,safeSheetName(sheetName));
+  XLSX.writeFile(wb,filename);
+}
+function exportTablesToExcel(entries,filename){
+  const valid=(entries||[]).filter(e=>e&&e.el);
+  if(!valid.length){alert('No data to export yet.');return;}
+  const wb=XLSX.utils.book_new();
+  const usedNames=new Set();
+  valid.forEach(({el,name})=>{
+    let sheetName=safeSheetName(name);
+    let i=2;while(usedNames.has(sheetName)){sheetName=safeSheetName(`${name} (${i++})`);}
+    usedNames.add(sheetName);
+    const ws=XLSX.utils.table_to_sheet(el);
+    XLSX.utils.book_append_sheet(wb,ws,sheetName);
+  });
+  XLSX.writeFile(wb,filename);
+}
+function exportPnlMatrix(){const t=document.getElementById('pnlBody');exportTableToExcel(t?t.closest('table'):null,'MoM P&L Matrix','MoM_PnL_Matrix.xlsx');}
+function exportVehiclePnl(){const t=document.getElementById('vehicleBody');exportTableToExcel(t?t.closest('table'):null,'Vehicle Category PnL','Vehicle_Category_PnL.xlsx');}
+function exportCm2Vehicle(){const t=document.getElementById('cm2VehicleBody');exportTableToExcel(t?t.closest('table'):null,'CM-2 by Vehicle Type','CM2_Summary_by_Vehicle_Type.xlsx');}
+function exportGmLender(){const t=document.getElementById('gmLenderBody');exportTableToExcel(t?t.closest('table'):null,'Lender GM Analysis','Lender_GM_Analysis.xlsx');}
+function exportShPnlExcel(){
+  const entries=[];
+  document.querySelectorAll('#shScenarioTables .scenario').forEach(sec=>{
+    const label=sec.querySelector('.scenarioHead strong')?.textContent||'Scenario';
+    const table=sec.querySelector('table');
+    if(table)entries.push({el:table,name:label});
+  });
+  const summaryTable=document.querySelector('#shPnlPage .shCompareMatrix table');
+  if(summaryTable)entries.push({el:summaryTable,name:'Comparison Summary'});
+  exportTablesToExcel(entries,'SH_vs_SH_vs_Company_PnL.xlsx');
+}
+function renderTable(headId,bodyId,rows,per=false,src=[],ms=[],scopeLabel='All State Heads'){document.getElementById(headId).innerHTML=cols.map(c=>`<th>${c}</th>`).join('');document.getElementById(bodyId).innerHTML=rows.map((a,idx)=>{const month=ms[idx]||'';const monthRows=src.filter(x=>x.month===month);const payload=buildDrillPayload(monthRows,DRILL_SECTION_SPECS);const title=`${month||'Selected period'} • ${scopeLabel}`.replace(/"/g,'&quot;');return `<tr data-drill="${encodeDrillPayload(payload)}" data-drill-title="${title}">${a.map((x,i)=>`<td class="${[8,15,24].includes(i)?(x<0?'negative':'positive'):''}">${typeof x==='number'?(pctIdx.includes(i)?pct(x):(moneyIdx.includes(i)?moneyCell(x,per):fmt(x,1))):x}</td>`).join('')}</tr>`;}).join('')||`<tr><td colspan="${cols.length}" class="empty">No data for the selected filters.</td></tr>`;bindDrillRows('#'+bodyId+' tr[data-drill]');}
+function renderPnlPage(){const st=document.getElementById('pnlStateFilter').value,fy=document.getElementById('pnlFyFilter').value,per=document.getElementById('pnlUnitToggle').checked,src=sourceFiltered(st,fy),selected=pnlSelectedMonths.length?pnlSelectedMonths:MONTHS,ms=MONTHS.filter(m=>selected.includes(m)&&(fy==='All Financial Years'||FYMAP(m)===fy));const rows=ms.map(m=>{const r=calc(aggregate(src,m));r.fy=FYMAP(m);return row(r,per)});renderTable('pnlHead','pnlBody',rows,per,src,ms,st);const lr=ms.length?calc(aggregateMonths(src,ms)):calc(aggregate([],''));document.getElementById('pnlSummary').innerHTML=premiumSummaryHtml([['Loan',moneyCell(pUnit(lr.loan,lr.cases,per),per)+(per?' / Case':' L'),'neutral'],['Cases',fmt(lr.cases,0),'neutral'],['GM %',pct(lr.gmp),lr.gmp<0?'bad':'good'],['CM-1',moneyCell(pUnit(lr.cm1,lr.cases,per),per)+(per?' / Case':' L'),lr.cm1<0?'bad':'good'],['CM-2',moneyCell(pUnit(lr.cm2,lr.cases,per),per)+(per?' / Case':' L'),lr.cm2<0?'bad':'good']]);document.getElementById('pnlUnitHint').textContent=(per?'₹ / Case':'₹ Lac')+' unless % • '+rows.length+' month(s) shown • '+(pnlSelectedMonths.length?'Multiple month selection enabled':'all months shown')+' • summary reflects selected months • horizontal scroll enabled';
+  const pnlLatestChip=document.getElementById('pnlLatestChip');
+  if(pnlLatestChip){
+    if(!ms.length){pnlLatestChip.textContent='';pnlLatestChip.className='netChip';}
+    else{
+      const latestM=ms[ms.length-1];
+      const latestR=calc(aggregate(src,latestM));
+      const prevR=ms.length>1?calc(aggregate(src,ms[ms.length-2])):null;
+      const delta=prevR?latestR.cm2p-prevR.cm2p:null;
+      pnlLatestChip.className='netChip'+(delta===null?'':delta>=0?' netUp':' netDown');
+      pnlLatestChip.textContent=delta===null?`${latestM} CM-2: ${pct(latestR.cm2p)}`:`${latestM} CM-2 ${delta>0?'+':''}${fmt(delta,1)}pp`;
+    }
+  }
+}
 function resetPnlFilters(){document.getElementById('pnlStateFilter').value='All State Heads';document.getElementById('pnlFyFilter').value='All Financial Years';document.getElementById('pnlUnitToggle').checked=false;pnlSelectedMonths=[];document.querySelectorAll('.pnlMonthCheck').forEach(x=>x.checked=false);syncPnlMonthMenu(false);renderPnlPage()}
 let vehicleSelectedMonths=[];let vehicleSelectedCategories=[];function initVehicleMonthMulti(selected){const wrap=document.getElementById('vehicleMonthOptions');if(!wrap)return;vehicleSelectedMonths=selected&&selected.length?selected.slice():[];wrap.innerHTML=MONTHS.map(m=>`<label class="checkRow"><input type="checkbox" class="vehicleMonthCheck" value="${m}" ${vehicleSelectedMonths.includes(m)?'checked':''} onchange="onVehicleMonthCheck()"><span>${m}</span></label>`).join('');syncVehicleMonthMenu(false)}function toggleVehicleMonthMenu(e){e.stopPropagation();document.getElementById('vehicleMonthMulti').classList.toggle('open')}function onVehicleMonthCheck(){vehicleSelectedMonths=[...document.querySelectorAll('.vehicleMonthCheck')].filter(x=>x.checked).map(x=>x.value);syncVehicleMonthMenu(false)}function toggleAllVehicleMonths(cb){vehicleSelectedMonths=cb.checked?MONTHS.slice():[];document.querySelectorAll('.vehicleMonthCheck').forEach(x=>x.checked=cb.checked);syncVehicleMonthMenu(false)}function syncVehicleMonthMenu(render=true){const all=vehicleSelectedMonths.length===0||vehicleSelectedMonths.length===MONTHS.length;document.getElementById('vehicleMonthAll').checked=all;const label=document.getElementById('vehicleMonthLabel'),count=document.getElementById('vehicleMonthCount');if(all){label.textContent='All Months';count.textContent='All months selected'}else if(vehicleSelectedMonths.length===1){label.textContent=vehicleSelectedMonths[0];count.textContent='1 month selected'}else{label.textContent=`${vehicleSelectedMonths.length} Months selected`;count.textContent=`${vehicleSelectedMonths.length} months selected`}if(render)renderVehiclePnl()}function applyVehicleMonths(){document.getElementById('vehicleMonthMulti').classList.remove('open');renderVehiclePnl()}function initVehicleCategoryMulti(selected){const wrap=document.getElementById('vehicleCategoryOptions');if(!wrap)return;vehicleSelectedCategories=selected&&selected.length?selected.slice():[];wrap.innerHTML=VEHICLES.map(v=>`<label class="checkRow"><input type="checkbox" class="vehicleCategoryCheck" value="${v}" ${vehicleSelectedCategories.includes(v)?'checked':''} onchange="onVehicleCategoryCheck()"><span>${v}</span></label>`).join('');syncVehicleCategoryMenu(false)}function toggleVehicleCategoryMenu(e){e.stopPropagation();document.getElementById('vehicleCategoryMulti').classList.toggle('open')}function onVehicleCategoryCheck(){vehicleSelectedCategories=[...document.querySelectorAll('.vehicleCategoryCheck')].filter(x=>x.checked).map(x=>x.value);syncVehicleCategoryMenu(false)}function toggleAllVehicleCategories(cb){vehicleSelectedCategories=cb.checked?VEHICLES.slice():[];document.querySelectorAll('.vehicleCategoryCheck').forEach(x=>x.checked=cb.checked);syncVehicleCategoryMenu(false)}function syncVehicleCategoryMenu(render=true){const all=vehicleSelectedCategories.length===0||vehicleSelectedCategories.length===VEHICLES.length;document.getElementById('vehicleCategoryAll').checked=all;const label=document.getElementById('vehicleCategoryLabel'),count=document.getElementById('vehicleCategoryCount');if(all){label.textContent='All Vehicle Categories';count.textContent='All categories selected'}else if(vehicleSelectedCategories.length===1){label.textContent=vehicleSelectedCategories[0];count.textContent='1 category selected'}else{label.textContent=`${vehicleSelectedCategories.length} Categories selected`;count.textContent=`${vehicleSelectedCategories.length} categories selected`}if(render)renderVehiclePnl()}function applyVehicleCategories(){document.getElementById('vehicleCategoryMulti').classList.remove('open');renderVehiclePnl()}
-function renderVehiclePnl(){const st=document.getElementById('vehicleStateFilter').value,fy=document.getElementById('vehicleFyFilter').value,per=document.getElementById('vehicleUnitToggle').checked,vehicles=vehicleSelectedCategories.length?vehicleSelectedCategories:VEHICLES,src=sourceFiltered(st,fy).filter(x=>vehicles.includes(x.vehicle)),selected=vehicleSelectedMonths.length?vehicleSelectedMonths:MONTHS,ms=MONTHS.filter(m=>selected.includes(m)&&(fy==='All Financial Years'||FYMAP(m)===fy));const rows=ms.map(m=>{const r=calc(aggregate(src,m));r.fy=FYMAP(m);return row(r,per)});renderTable('vehicleHead','vehicleBody',rows,per);const catText=vehicleSelectedCategories.length===0||vehicleSelectedCategories.length===VEHICLES.length?'All Vehicle Categories':vehicleSelectedCategories.length===1?vehicleSelectedCategories[0]:`${vehicleSelectedCategories.length} categories`;const monthText=vehicleSelectedMonths.length===0||vehicleSelectedMonths.length===MONTHS.length?'All Months':vehicleSelectedMonths.length===1?vehicleSelectedMonths[0]:`${vehicleSelectedMonths.length} months`;document.getElementById('vehicleUnitHint').textContent=catText+' • '+monthText+' • '+(per?'₹ / Case':'₹ Lac')+' • one row per month • figures aggregate the selected vehicle categories'}
+function renderVehiclePnl(){const st=document.getElementById('vehicleStateFilter').value,fy=document.getElementById('vehicleFyFilter').value,per=document.getElementById('vehicleUnitToggle').checked,vehicles=vehicleSelectedCategories.length?vehicleSelectedCategories:VEHICLES,src=sourceFiltered(st,fy).filter(x=>vehicles.includes(x.vehicle)),selected=vehicleSelectedMonths.length?vehicleSelectedMonths:MONTHS,ms=MONTHS.filter(m=>selected.includes(m)&&(fy==='All Financial Years'||FYMAP(m)===fy));const rows=ms.map(m=>{const r=calc(aggregate(src,m));r.fy=FYMAP(m);return row(r,per)});const catText=vehicleSelectedCategories.length===0||vehicleSelectedCategories.length===VEHICLES.length?'All Vehicle Categories':vehicleSelectedCategories.length===1?vehicleSelectedCategories[0]:`${vehicleSelectedCategories.length} categories`;renderTable('vehicleHead','vehicleBody',rows,per,src,ms,`${st} • ${catText}`);const monthText=vehicleSelectedMonths.length===0||vehicleSelectedMonths.length===MONTHS.length?'All Months':vehicleSelectedMonths.length===1?vehicleSelectedMonths[0]:`${vehicleSelectedMonths.length} months`;document.getElementById('vehicleUnitHint').textContent=catText+' • '+monthText+' • '+(per?'₹ / Case':'₹ Lac')+' • one row per month • figures aggregate the selected vehicle categories';
+  const vlr=ms.length?calc(aggregateMonths(src,ms)):calc(aggregate([],''));
+  const vehicleSummary=document.getElementById('vehicleSummary');
+  if(vehicleSummary)vehicleSummary.innerHTML=premiumSummaryHtml([['Loan',moneyCell(pUnit(vlr.loan,vlr.cases,per),per)+(per?' / Case':' L'),'neutral'],['Cases',fmt(vlr.cases,0),'neutral'],['GM %',pct(vlr.gmp),vlr.gmp<0?'bad':'good'],['CM-1',moneyCell(pUnit(vlr.cm1,vlr.cases,per),per)+(per?' / Case':' L'),vlr.cm1<0?'bad':'good'],['CM-2',moneyCell(pUnit(vlr.cm2,vlr.cases,per),per)+(per?' / Case':' L'),vlr.cm2<0?'bad':'good']]);
+  const vehicleTopChip=document.getElementById('vehicleTopChip');
+  if(vehicleTopChip){
+    const vehicleTotals=uniq(src.map(x=>x.vehicle)).map(v=>({v,cases:sum(src.filter(x=>x.vehicle===v),'cases')})).sort((a,b)=>b.cases-a.cases);
+    if(!vehicleTotals.length||!vehicleTotals[0].cases){vehicleTopChip.textContent='';vehicleTopChip.className='netChip';}
+    else{vehicleTopChip.className='netChip netUp';vehicleTopChip.textContent=`Top: ${vehicleTotals[0].v} · ${fmt(vehicleTotals[0].cases,0)} cases`;}
+  }
+}
 function resetVehicleFilters(){document.getElementById('vehicleStateFilter').value='All State Heads';document.getElementById('vehicleFyFilter').value='All Financial Years';document.getElementById('vehicleUnitToggle').checked=false;vehicleSelectedMonths=[];document.querySelectorAll('.vehicleMonthCheck').forEach(x=>x.checked=false);syncVehicleMonthMenu(false);vehicleSelectedCategories=[];document.querySelectorAll('.vehicleCategoryCheck').forEach(x=>x.checked=false);syncVehicleCategoryMenu(false);renderVehiclePnl()}
 let cmpSh1Selected=[],cmpSh2Selected=[],cmpFySelected=[],cmpMonthSelected=[],cmpVehicleSelected=[];function initCmpMulti(){ cmpSh1Selected=SHS.slice(0,1);cmpSh2Selected=SHS.slice(1,2);cmpFySelected=[];cmpMonthSelected=[];cmpVehicleSelected=[]; buildCmpOptions('sh1',SHS,cmpSh1Selected);buildCmpOptions('sh2',SHS,cmpSh2Selected);buildCmpOptions('fy',['FY 2025-26','FY 2026-27'],cmpFySelected);buildCmpOptions('month',MONTHS,cmpMonthSelected);buildCmpOptions('vehicle',VEHICLES,cmpVehicleSelected);syncCmpMenu('sh1');syncCmpMenu('sh2');syncCmpMenu('fy');syncCmpMenu('month');syncCmpMenu('vehicle');refreshCmpStateExclusions();}
 function buildCmpOptions(type,items,selected){const el=document.getElementById('cmp'+({sh1:'Sh1',sh2:'Sh2',fy:'Fy',month:'Month',vehicle:'Vehicle'}[type])+'Options');if(!el)return;el.innerHTML=items.map(x=>`<label class="checkRow"><input type="checkbox" class="cmpCheck-${type}" value="${x}" ${selected.includes(x)?'checked':''} onchange="onCmpCheck('${type}')"><span>${x}</span></label>`).join('')}
@@ -434,8 +580,15 @@ function syncP4(type,render=true){const cap={fy:'Fy',month:'Month',vehicle:'Vehi
 function applyP4Menu(id){document.getElementById(id).classList.remove('open');renderShPnl()}
 function p4Filtered(states,ignoreVehicle=false){return data.filter(x=>(!states.length||states.includes(x.state))&&(!p4.fy.length||p4.fy.includes(FYDISPLAY(x.fy)))&&(!p4.month.length||p4.month.includes(x.month))&&(ignoreVehicle||!p4.vehicle.length||p4.vehicle.includes(x.vehicle)))}
 function p4Months(){return MONTHS.filter(m=>(!p4.month.length||p4.month.includes(m))&&(!p4.fy.length||p4.fy.includes(FYDISPLAY(FYMAP(m))))&&data.some(x=>x.month===m))}
-function p4Table(name,src,scope,ms,per){return `<section class="card scenario"><div class="scenarioHead"><strong>${name}</strong><span>${scope} • ${per?'₹ / Case':'₹ Lac'} • ${ms.length} month(s)</span></div><div class="tablewrap"><table class="pnl"><thead><tr>${cols.map(c=>`<th>${c}</th>`).join('')}</tr></thead><tbody>${ms.map(m=>{const r=calc(aggregate(src,m));r.fy=FYMAP(m);const rowValues=row(r,per);const drillData=cols.reduce((acc,key,colIndex)=>{acc[key]=rowValues[colIndex]; return acc;},{ month: m, scenario: name, source: scope });return `<tr data-drill="${encodeDrillPayload(drillData)}">${rowValues.map((x,i)=>`<td class="${[8,15,24].includes(i)?(x<0?'negative':'positive'):''}">${typeof x==='number'?(pctIdx.includes(i)?pct(x):(moneyIdx.includes(i)?moneyCell(x,per):fmt(x,1))):x}</td>`).join('')}</tr>`;}).join('')||`<tr><td colspan="${cols.length}" class="empty">No data for the selected filters.</td></tr>`}</tbody></table></div></section>`}
-function renderShPnl(){const per=document.getElementById('shUnitToggle').checked;const ms=p4Months();const companySrc=p4Filtered([],true);const sources=[['Company P&L',companySrc,'Company Level — All State Heads']];if(p4.sh1)sources.push(['SH-1 P&L',p4Filtered([p4.sh1]),p4.sh1]);if(p4.sh2)sources.push(['SH-2 P&L',p4Filtered([p4.sh2]),p4.sh2]);document.getElementById('shScenarioTables').innerHTML=sources.map(x=>p4Table(x[0],x[1],x[2],ms,per)).join('');bindDrillRows('#shScenarioTables tr[data-drill]', payload => `${payload.scenario || 'Scenario'} • ${payload.month || 'Selected period'}`);const compareRows=sources.map(([name,src,scope])=>{const r=ms.map(m=>calc(aggregate(src,m))).reduce((a,x)=>({loan:a.loan+x.loan,cases:a.cases+x.cases,inflow:a.inflow+x.inflow,outflow:a.outflow+x.outflow,cm1:a.cm1+x.cm1,cm2:a.cm2+x.cm2}),{loan:0,cases:0,inflow:0,outflow:0,cm1:0,cm2:0});const loanCell=per?moneyCell(pUnit(r.loan,r.cases,per),per)+' / Case':fmt(r.loan/100,1)+' Cr';const money=(v)=>per?moneyCell(pUnit(v,r.cases,per),per)+' / Case':fmt(v,1)+' L';return `<tr><td>${name}</td><td>${scope}</td><td>${loanCell}</td><td>${fmt(r.cases,0)}</td><td>${money(r.inflow)}</td><td>${money(r.outflow)}</td><td>${money(r.cm1)}</td><td>${money(r.cm2)}</td><td>${pct((r.cm2/Math.max(r.inflow,1))*100)}</td></tr>`}).join('');document.getElementById('shPnlCompareBody').innerHTML=compareRows;document.getElementById('p4ContextLeft').textContent=(p4.sh1||p4.sh2)?`Company Level + ${[p4.sh1,p4.sh2].filter(Boolean).join(' • ')}`:'Company Level • All State Heads';document.getElementById('p4ContextRight').textContent=`${p4.fy.length?p4.fy.join(' • '):'All Financial Years'} • ${p4.month.length?p4.month.join(' • '):'All Months'} • ${p4.vehicle.length?p4.vehicle.join(' • '):'All Vehicle Categories'}`}
+function p4Table(name,src,scope,ms,per){const tone=name==='SH-1 P&L'?' tone-sh1':name==='SH-2 P&L'?' tone-sh2':'';return `<section class="card scenario${tone}"><div class="scenarioHead"><strong>${name}</strong><span>${scope} • ${per?'₹ / Case':'₹ Lac'} • ${ms.length} month(s)</span></div><div class="tablewrap"><table class="pnl"><thead><tr>${cols.map(c=>`<th>${c}</th>`).join('')}</tr></thead><tbody>${ms.map(m=>{const r=calc(aggregate(src,m));r.fy=FYMAP(m);const rowValues=row(r,per);const monthRows=src.filter(x=>x.month===m);const payload=buildDrillPayload(monthRows,DRILL_SECTION_SPECS);const title=`${name} • ${m}`.replace(/"/g,'&quot;');return `<tr data-drill="${encodeDrillPayload(payload)}" data-drill-title="${title}">${rowValues.map((x,i)=>`<td class="${[8,15,24].includes(i)?(x<0?'negative':'positive'):''}">${typeof x==='number'?(pctIdx.includes(i)?pct(x):(moneyIdx.includes(i)?moneyCell(x,per):fmt(x,1))):x}</td>`).join('')}</tr>`;}).join('')||`<tr><td colspan="${cols.length}" class="empty">No data for the selected filters.</td></tr>`}</tbody></table></div></section>`}
+function renderShPnl(){const per=document.getElementById('shUnitToggle').checked;const ms=p4Months();const companySrc=p4Filtered([],true);const sources=[['Company P&L',companySrc,'Company Level — All State Heads']];if(p4.sh1)sources.push(['SH-1 P&L',p4Filtered([p4.sh1]),p4.sh1]);if(p4.sh2)sources.push(['SH-2 P&L',p4Filtered([p4.sh2]),p4.sh2]);document.getElementById('shScenarioTables').innerHTML=sources.map(x=>p4Table(x[0],x[1],x[2],ms,per)).join('');bindDrillRows('#shScenarioTables tr[data-drill]');const scenarioResults=sources.map(([name,src,scope])=>{const r=ms.map(m=>calc(aggregate(src,m))).reduce((a,x)=>({loan:a.loan+x.loan,cases:a.cases+x.cases,inflow:a.inflow+x.inflow,outflow:a.outflow+x.outflow,cm1:a.cm1+x.cm1,cm2:a.cm2+x.cm2}),{loan:0,cases:0,inflow:0,outflow:0,cm1:0,cm2:0});return {name,scope,src,r,cm2p:r.inflow?r.cm2/r.inflow*100:0};});
+  const compareRows=scenarioResults.map(({name,scope,src,r,cm2p})=>{const loanCell=per?moneyCell(pUnit(r.loan,r.cases,per),per)+' / Case':fmt(r.loan/100,1)+' Cr';const money=(v)=>per?moneyCell(pUnit(v,r.cases,per),per)+' / Case':fmt(v,1)+' L';const scopeRows=src.filter(x=>ms.includes(x.month));const payload=buildDrillPayload(scopeRows,DRILL_SECTION_SPECS);const title=`${name} • ${ms.length?(ms.length===1?ms[0]:ms[0]+' – '+ms[ms.length-1]):'Selected period'}`.replace(/"/g,'&quot;');return `<tr data-drill="${encodeDrillPayload(payload)}" data-drill-title="${title}"><td>${name}</td><td>${scope}</td><td>${loanCell}</td><td>${fmt(r.cases,0)}</td><td>${money(r.inflow)}</td><td>${money(r.outflow)}</td><td class="${r.cm1<0?'negative':'positive'}">${money(r.cm1)}</td><td class="${r.cm2<0?'negative':'positive'}">${money(r.cm2)}</td><td class="${cm2p<0?'negative':'positive'}">${pct(cm2p)}</td></tr>`}).join('');document.getElementById('shPnlCompareBody').innerHTML=compareRows;bindDrillRows('#shPnlCompareBody tr[data-drill]');
+  const shBestChip=document.getElementById('shBestChip');
+  if(shBestChip){
+    if(!scenarioResults.length){shBestChip.textContent='';shBestChip.className='netChip';}
+    else{const best=scenarioResults.reduce((a,b)=>b.cm2p>a.cm2p?b:a);shBestChip.className='netChip'+(best.cm2p<0?' netDown':' netUp');shBestChip.textContent=`Best CM-2%: ${best.name.replace(' P&L','')} · ${pct(best.cm2p)}`;}
+  }
+  document.getElementById('p4ContextLeft').textContent=(p4.sh1||p4.sh2)?`Company Level + ${[p4.sh1,p4.sh2].filter(Boolean).join(' • ')}`:'Company Level • All State Heads';document.getElementById('p4ContextRight').textContent=`${p4.fy.length?p4.fy.join(' • '):'All Financial Years'} • ${p4.month.length?p4.month.join(' • '):'All Months'} • ${p4.vehicle.length?p4.vehicle.join(' • '):'All Vehicle Categories'}`}
 function initPage4Filters(){p4={sh1:'',sh2:'',fy:[],month:[],vehicle:[]};fillP4ShSelects();['fy','month','vehicle'].forEach(buildP4)}
 function resetPage4Filters(){initPage4Filters();document.getElementById('shUnitToggle').checked=false;renderShPnl()}
 
@@ -447,12 +600,20 @@ function toggleAllP5(type,cb){p5[type]=cb.checked?p5Options(type).slice():[];doc
 function syncP5(type,render=true){const cap={sh:'Sh',fy:'Fy',month:'Month',vehicle:'Vehicle'}[type],a=p5[type],all=!a.length||a.length===p5Options(type).length;const label=document.getElementById('p5'+cap+'Label'),count=document.getElementById('p5'+cap+'Count'),allEl=document.getElementById('p5'+cap+'All');if(all){label.textContent=type==='fy'?'All Financial Years':type==='month'?'All Months':type==='vehicle'?'All Vehicle Types':'All State Heads';count.textContent=type==='fy'?'All years selected':type==='month'?'All months selected':type==='vehicle'?'All vehicle types selected':'All state heads selected'}else{label.textContent=a.length===1?a[0]:`${a.length} selected`;count.textContent=`${a.length} selected`};if(allEl)allEl.checked=all;if(render)renderCm2Vehicle()}
 function applyP5Menu(id){document.getElementById(id).classList.remove('open');renderCm2Vehicle()}
 function p5Filtered(){return data.filter(x=>(!p5.sh.length||p5.sh.includes(x.state))&&(!p5.fy.length||p5.fy.includes(FYDISPLAY(x.fy)))&&(!p5.month.length||p5.month.includes(x.month))&&(!p5.vehicle.length||p5.vehicle.includes(x.vehicle)))}
-function cm2MatrixCell(r,per){
+function cm2MatrixCell(r,per,scopeRows,title){
  const cases=r.cases||0,cm2=pUnit(r.cm2,cases,per),cm2p=r.cm2p;
- return `<td class="metricCase">${fmt(cases,0)}</td><td class="metricCm2 ${cm2<0?'negative':'positive'}">${moneyCell(cm2,per)}</td><td class="${cm2p<0?'pctNegative':'pctPositive'}">${pct(cm2p)}</td>`;
+ const payload=buildDrillPayload(scopeRows||[],[['By Month','Month','month'],['By Lender','Lender','lender']]);
+ const drillAttr=`data-drill="${encodeDrillPayload(payload)}" data-drill-title="${(title||'Data drill-down').replace(/"/g,'&quot;')}"`;
+ return `<td class="metricCase cm2DrillCell" ${drillAttr}>${fmt(cases,0)}</td><td class="metricCm2 cm2DrillCell ${cm2<0?'negative':'positive'}" ${drillAttr}>${moneyCell(cm2,per)}</td><td class="cm2DrillCell ${cm2p<0?'pctNegative':'pctPositive'}" ${drillAttr}>${pct(cm2p)}</td>`;
 }
 function cm2RawAggregate(rows){ const a=rows||[]; return {   month:'',   loan:sum(a,'loan'),   cases:sum(a,'cases'),   inflow:sum(a,'inflow'),   outflow:sum(a,'outflow'),   fo:sum(a,'fo'),   foSalary:sum(a,'foSalary'),   foTravel:sum(a,'foTravel'),   foIncentive:sum(a,'foIncentive'),   chSalary:sum(a,'chSalary'),   shSalary:sum(a,'shSalary'),   chTravel:sum(a,'chTravel'),   shTravel:sum(a,'shTravel'),   chIncentive:sum(a,'chIncentive'),   shIncentive:sum(a,'shIncentive') };}
-function renderCm2Vehicle(){const per=document.getElementById('cm2VehicleUnitToggle').checked;const vehicles=VEHICLES.filter(v=>!p5.vehicle.length||p5.vehicle.includes(v));const states=SHS.filter(sh=>!p5.sh.length||p5.sh.includes(sh));const totalSrc=p5Filtered();const totalR=calc(cm2RawAggregate(totalSrc));const thead=document.querySelector('#cm2VehiclePage .cm2Matrix thead');if(thead){thead.innerHTML=`<tr class="group"><th rowspan="2">Vehicle Type<br><span style="font-weight:800;color:#4b6075">SH Name</span></th>${vehicles.map(v=>`<th colspan="3">${v}</th>`).join('')}</tr><tr class="sub">${vehicles.map(()=>'<th>Case</th><th>CM-2</th><th>CM-2%</th>').join('')}</tr>`}const matrixEl=document.querySelector('#cm2VehiclePage .cm2Matrix');if(matrixEl)matrixEl.style.minWidth=Math.max(500,220+vehicles.length*150)+'px';const rows=[];rows.push(`<tr class="total"><td>Total</td>${vehicles.map(v=>cm2MatrixCell(calc(cm2RawAggregate(totalSrc.filter(x=>x.vehicle===v))),per)).join('')}</tr>`);states.forEach(sh=>rows.push(`<tr><td>${sh}</td>${vehicles.map(v=>cm2MatrixCell(calc(cm2RawAggregate(totalSrc.filter(x=>x.state===sh&&x.vehicle===v))),per)).join('')}</tr>`));if(p5.sh.length)rows.push(`<tr class="company"><td>Company</td>${vehicles.map(v=>cm2MatrixCell(calc(cm2RawAggregate(data.filter(x=>x.vehicle===v&&(!p5.fy.length||p5.fy.includes(FYDISPLAY(x.fy)))&&(!p5.month.length||p5.month.includes(x.month))))),per)).join('')}</tr>`);document.getElementById('cm2VehicleBody').innerHTML=rows.join('')||`<tr><td colspan="${1+vehicles.length*3}" class="empty">No data for the selected filters.</td></tr>`;document.getElementById('cm2VehicleSummary').innerHTML=[['Loan',pUnit(totalR.loan,totalR.cases,per)],['Cases',totalR.cases],['GM %',totalR.gmp],['CM-1',pUnit(totalR.cm1,totalR.cases,per)],['CM-2',pUnit(totalR.cm2,totalR.cases,per)]].map(([n,v],i)=>`<div class="summaryBox"><small>${n}</small><strong>${i===2?pct(v):(n==='Cases'?fmt(v,0):moneyCell(v,per)+(per?' / Case':' L'))}</strong></div>`).join('');document.getElementById('cm2VehicleHint').textContent=`${per?'₹ / Case':'₹ Lac'} unless % • ${states.length} State Head(s) • ${vehicles.length} vehicle type(s) • ${p5.month.length?p5.month.length:'All'} month(s) • ${p5.fy.length?p5.fy.join(', '):'All FYs'}`;document.getElementById('p5ContextRight').textContent=`${p5.sh.length?p5.sh.join(' • '):'All State Heads'} • ${p5.fy.length?p5.fy.join(' • '):'All Financial Years'} • ${p5.month.length?p5.month.join(' • '):'All Months'} • ${p5.vehicle.length?p5.vehicle.join(' • '):'All Vehicle Types'}`}
+function renderCm2Vehicle(){const per=document.getElementById('cm2VehicleUnitToggle').checked;const vehicles=VEHICLES.filter(v=>!p5.vehicle.length||p5.vehicle.includes(v));const states=SHS.filter(sh=>!p5.sh.length||p5.sh.includes(sh));const totalSrc=p5Filtered();const totalR=calc(cm2RawAggregate(totalSrc));const thead=document.querySelector('#cm2VehiclePage .cm2Matrix thead');if(thead){thead.innerHTML=`<tr class="group"><th rowspan="2">Vehicle Type<br><span style="font-weight:800;color:#4b6075">SH Name</span></th>${vehicles.map(v=>`<th colspan="3">${v}</th>`).join('')}</tr><tr class="sub">${vehicles.map(()=>'<th>Case</th><th>CM-2</th><th>CM-2%</th>').join('')}</tr>`}const matrixEl=document.querySelector('#cm2VehiclePage .cm2Matrix');if(matrixEl)matrixEl.style.minWidth=Math.max(500,220+vehicles.length*150)+'px';const rows=[];const bestCombo={sh:null,v:null,cm2p:-Infinity,cases:0};rows.push(`<tr class="total"><td><span class="cm2RowBadge">Total</span></td>${vehicles.map(v=>{const scopeRows=totalSrc.filter(x=>x.vehicle===v);return cm2MatrixCell(calc(cm2RawAggregate(scopeRows)),per,scopeRows,`Total • ${v}`);}).join('')}</tr>`);states.forEach(sh=>rows.push(`<tr><td>${sh}</td>${vehicles.map(v=>{const scopeRows=totalSrc.filter(x=>x.state===sh&&x.vehicle===v);const r=calc(cm2RawAggregate(scopeRows));if(r.cases>0&&r.cm2p>bestCombo.cm2p){bestCombo.sh=sh;bestCombo.v=v;bestCombo.cm2p=r.cm2p;bestCombo.cases=r.cases;}return cm2MatrixCell(r,per,scopeRows,`${sh} • ${v}`);}).join('')}</tr>`));if(p5.sh.length)rows.push(`<tr class="company"><td><span class="cm2RowBadge">Company</span></td>${vehicles.map(v=>{const scopeRows=data.filter(x=>x.vehicle===v&&(!p5.fy.length||p5.fy.includes(FYDISPLAY(x.fy)))&&(!p5.month.length||p5.month.includes(x.month)));return cm2MatrixCell(calc(cm2RawAggregate(scopeRows)),per,scopeRows,`Company • ${v}`);}).join('')}</tr>`);document.getElementById('cm2VehicleBody').innerHTML=rows.join('')||`<tr><td colspan="${1+vehicles.length*3}" class="empty">No data for the selected filters.</td></tr>`;bindDrillCells('#cm2VehicleBody .cm2DrillCell');
+  const cm2BestChip=document.getElementById('cm2BestChip');
+  if(cm2BestChip){
+    if(!bestCombo.sh){cm2BestChip.textContent='';cm2BestChip.className='netChip';}
+    else{cm2BestChip.className='netChip'+(bestCombo.cm2p<0?' netDown':' netUp');cm2BestChip.textContent=`Best CM-2%: ${bestCombo.sh} · ${bestCombo.v} · ${pct(bestCombo.cm2p)}`;}
+  }
+  document.getElementById('cm2VehicleSummary').innerHTML=premiumSummaryHtml([['Loan',moneyCell(pUnit(totalR.loan,totalR.cases,per),per)+(per?' / Case':' L'),'neutral'],['Cases',fmt(totalR.cases,0),'neutral'],['GM %',pct(totalR.gmp),totalR.gmp<0?'bad':'good'],['CM-1',moneyCell(pUnit(totalR.cm1,totalR.cases,per),per)+(per?' / Case':' L'),totalR.cm1<0?'bad':'good'],['CM-2',moneyCell(pUnit(totalR.cm2,totalR.cases,per),per)+(per?' / Case':' L'),totalR.cm2<0?'bad':'good']]);document.getElementById('cm2VehicleHint').textContent=`${per?'₹ / Case':'₹ Lac'} unless % • ${states.length} State Head(s) • ${vehicles.length} vehicle type(s) • ${p5.month.length?p5.month.length:'All'} month(s) • ${p5.fy.length?p5.fy.join(', '):'All FYs'}`;document.getElementById('p5ContextRight').textContent=`${p5.sh.length?p5.sh.join(' • '):'All State Heads'} • ${p5.fy.length?p5.fy.join(' • '):'All Financial Years'} • ${p5.month.length?p5.month.join(' • '):'All Months'} • ${p5.vehicle.length?p5.vehicle.join(' • '):'All Vehicle Types'}`}
 function initPage5Filters(){p5={sh:[],fy:[],month:[],vehicle:[]};['sh','fy','month','vehicle'].forEach(buildP5)}
 function resetPage5Filters(){initPage5Filters();document.getElementById('cm2VehicleUnitToggle').checked=false;renderCm2Vehicle()}
 
@@ -492,12 +653,21 @@ function renderLenderPortfolio(){
   const totalCases=sum(src,'cases'),totalLoan=sum(src,'loan'),totalInflow=sum(src,'inflow');
   const totalInflowPct=totalLoan?totalInflow/totalLoan*100:0;
   const lpSummary=document.getElementById('lpSummary');
-  if(lpSummary)lpSummary.innerHTML=[['Count of Cases',fmt(totalCases,0)],['Loan Amount (Cr.)',fmt(totalLoan/100,1)],['Inflow %',pct(totalInflowPct)],['Inflow Amount (Cr.)',fmt(totalInflow/100,1)]].map(([n,v])=>`<div class="summaryBox"><small>${n}</small><strong>${v}</strong></div>`).join('');
+  if(lpSummary)lpSummary.innerHTML=premiumSummaryHtml([['Count of Cases',fmt(totalCases,0),'neutral'],['Loan Amount (Cr.)',fmt(totalLoan/100,1),'neutral'],['Inflow %',pct(totalInflowPct),'good'],['Inflow Amount (Cr.)',fmt(totalInflow/100,1),'good']]);
   const cs=getComputedStyle(document.body);
   const gridColor=cs.getPropertyValue('--line').trim()||'#edf0f5',mutedColor=cs.getPropertyValue('--muted').trim()||'#71809a',accentColor=cs.getPropertyValue('--accent').trim()||'#465ed4',goodColor=cs.getPropertyValue('--good').trim()||'#19875d',badColor=cs.getPropertyValue('--bad').trim()||'#c7435c';
   const trendData=ms.map(m=>{const rows=src.filter(x=>x.month===m);const loan=sum(rows,'loan'),inflow=sum(rows,'inflow'),cases=sum(rows,'cases');return {inflowPct:loan?inflow/loan*100:0,cases}});
+  const lpTrendChartEl=document.getElementById('lenderTrendChart');
+  const lpTrendCtx=lpTrendChartEl?lpTrendChartEl.getContext('2d'):null;
+  const lpFillGradient=hex=>{
+    if(!lpTrendCtx)return 'transparent';
+    const g=lpTrendCtx.createLinearGradient(0,0,0,220);
+    g.addColorStop(0,hexToRgba(hex,.20));
+    g.addColorStop(1,hexToRgba(hex,0));
+    return g;
+  };
   chart('lenderTrendChart','line',ms,[
-    {label:'Inflow %',data:trendData.map(x=>x.inflowPct),borderColor:accentColor,backgroundColor:'transparent',tension:.35,borderWidth:2.5,pointRadius:2.5,yAxisID:'y'},
+    {label:'Inflow %',data:trendData.map(x=>x.inflowPct),borderColor:accentColor,backgroundColor:lpFillGradient(accentColor),fill:true,tension:.35,borderWidth:2.5,pointRadius:2.5,yAxisID:'y'},
     {label:'Case Count',data:trendData.map(x=>x.cases),borderColor:goodColor,backgroundColor:'transparent',tension:.3,borderWidth:2,pointRadius:2,yAxisID:'y1'}
   ],{scales:{
     x:{grid:{display:false},ticks:{font:{size:9},color:mutedColor}},
@@ -505,12 +675,28 @@ function renderLenderPortfolio(){
     y1:{position:'right',grid:{display:false},ticks:{font:{size:9},color:mutedColor,callback:v=>fmt(v,0)}}
   },plugins:{datalabels:{display:'auto',align:'top',anchor:'end',offset:4,color:ctx=>(ctx.dataset.data[ctx.dataIndex]<0?badColor:ctx.dataset.borderColor),font:{size:8,weight:'700'},formatter:(v,ctx)=>ctx.dataset.label==='Inflow %'?fmt(v,1)+'%':fmt(v,0)}}});
   const trendLegend=document.getElementById('lpTrendLegend');if(trendLegend)trendLegend.innerHTML=`<span><i style="background:${accentColor}"></i>Inflow %</span><span><i style="background:${goodColor}"></i>Case Count</span>`;
+  const lpTrendChip=document.getElementById('lpTrendChip');
+  if(lpTrendChip){
+    if(!trendData.length){lpTrendChip.textContent='';lpTrendChip.className='netChip';}
+    else{
+      const last=trendData[trendData.length-1].inflowPct;
+      const prev=trendData.length>1?trendData[trendData.length-2].inflowPct:null;
+      const delta=prev===null?null:last-prev;
+      lpTrendChip.className='netChip'+(delta===null?'':delta>0?' netUp':delta<0?' netDown':'');
+      lpTrendChip.textContent=delta===null?`${ms[ms.length-1]}: ${fmt(last,1)}% inflow`:`${ms[ms.length-1]} ${delta>0?'+':''}${fmt(delta,1)}pp vs prior month`;
+    }
+  }
   const lenderRows=lpBreakdownRows(src,'lender',totalCases,totalLoan);
   const lenderBody=document.getElementById('lpLenderBody');if(lenderBody)lenderBody.innerHTML=lpTableRows(lenderRows);
   const vehicleRows=lpBreakdownRows(src,'vehicle',totalCases,totalLoan);
   const vehicleBody=document.getElementById('lpVehicleBody');if(vehicleBody)vehicleBody.innerHTML=lpTableRows(vehicleRows);
   const stateRows=lpBreakdownRows(src,'geoState',totalCases,totalLoan).sort((a,b)=>b.cases-a.cases);
   const stateNames=stateRows.map(x=>x.name);
+  const lpTopStateChip=document.getElementById('lpTopStateChip');
+  if(lpTopStateChip){
+    if(!stateRows.length){lpTopStateChip.textContent='';lpTopStateChip.className='netChip';}
+    else{lpTopStateChip.className='netChip netUp';lpTopStateChip.textContent=`Top: ${stateRows[0].name} · ${fmt(stateRows[0].cases,0)} cases`;}
+  }
   const stateInner=document.getElementById('lpStateChartInner');if(stateInner)stateInner.style.width=Math.max(500,stateNames.length*70)+'px';
   chart('lpStateChart','bar',stateNames,stackedVehicleDatasets(src,'geoState',stateNames),{
     layout:{padding:{top:20}},
@@ -538,6 +724,14 @@ function p7Filtered(){return data.filter(x=>(!p7.lender.length||p7.lender.includ
 function p7Months(){return MONTHS.filter(m=>(!p7.month.length||p7.month.includes(m))&&(!p7.fy.length||p7.fy.includes(FYDISPLAY(FYMAP(m))))&&data.some(x=>x.month===m))}
 function initPage7Filters(){p7={lender:[],fy:[],month:[],vehicle:[],state:[]};['lender','fy','month','vehicle','state'].forEach(buildP7)}
 function resetPage7Filters(){initPage7Filters();renderLenderGm()}
+const TREND_ICONS={
+  neutral:'<svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6"/></svg>',
+  good:'<svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></svg>',
+  bad:'<svg viewBox="0 0 24 24"><path d="M3 7l6 6 4-4 8 8M21 11v6h-6"/></svg>'
+};
+function premiumSummaryHtml(items){
+  return items.map(([n,v,kind])=>`<div class="summaryBox kind-${kind}"><span class="summaryIcon">${TREND_ICONS[kind]}</span><div class="summaryText"><small>${n}</small><strong>${v}</strong></div></div>`).join('');
+}
 function renderLenderGm(){
   const src=p7Filtered(),ms=p7Months();
   const totalCases=sum(src,'cases'),totalLoan=sum(src,'loan'),totalInflow=sum(src,'inflow'),totalOutflow=sum(src,'outflow');
@@ -547,22 +741,31 @@ function renderLenderGm(){
   const totalGmPct=totalInflow?totalGm/totalInflow*100:0;
   const lenderCount=uniq(src.map(x=>x.lender)).length;
   const gmSummary=document.getElementById('gmSummary');
-  if(gmSummary)gmSummary.innerHTML=[
-    ['Count of Cases',fmt(totalCases,0)],
-    ['Loan Amount (Cr.)',fmt(totalLoan/100,1)],
-    ['Lenders Count',fmt(lenderCount,0)],
-    ['Inflow %',pct(totalInflowPct)],
-    ['Outflow %',pct(totalOutflowPct)],
-    ['GM %',pct(totalGmPct)],
-    ['Inflow Amount (Cr.)',fmt(totalInflow/100,1)],
-    ['Outflow Amount (Cr.)',fmt(totalOutflow/100,1)],
-    ['GM (Cr.)',fmt(totalGm/100,1)]
-  ].map(([n,v])=>`<div class="summaryBox"><small>${n}</small><strong>${v}</strong></div>`).join('');
+  if(gmSummary)gmSummary.innerHTML=premiumSummaryHtml([
+    ['Count of Cases',fmt(totalCases,0),'neutral'],
+    ['Loan Amount (Cr.)',fmt(totalLoan/100,1),'neutral'],
+    ['Lenders Count',fmt(lenderCount,0),'neutral'],
+    ['Inflow %',pct(totalInflowPct),'good'],
+    ['Outflow %',pct(totalOutflowPct),'bad'],
+    ['GM %',pct(totalGmPct),totalGmPct<0?'bad':'good'],
+    ['Inflow Amount (Cr.)',fmt(totalInflow/100,1),'good'],
+    ['Outflow Amount (Cr.)',fmt(totalOutflow/100,1),'bad'],
+    ['GM (Cr.)',fmt(totalGm/100,1),totalGm<0?'bad':'good']
+  ]);
   const cs=getComputedStyle(document.body);
   const gridColor=cs.getPropertyValue('--line').trim()||'#edf0f5',mutedColor=cs.getPropertyValue('--muted').trim()||'#71809a',accentColor=cs.getPropertyValue('--accent').trim()||'#465ed4',goodColor=cs.getPropertyValue('--good').trim()||'#19875d',badColor=cs.getPropertyValue('--bad').trim()||'#c7435c';
   const trendData=ms.map(m=>{const rows=src.filter(x=>x.month===m);const loan=sum(rows,'loan'),inflow=sum(rows,'inflow'),cases=sum(rows,'cases');return {inflowPct:loan?inflow/loan*100:0,cases}});
+  const gmTrendChartEl=document.getElementById('gmTrendChart');
+  const gmTrendCtx=gmTrendChartEl?gmTrendChartEl.getContext('2d'):null;
+  const gmFillGradient=hex=>{
+    if(!gmTrendCtx)return 'transparent';
+    const g=gmTrendCtx.createLinearGradient(0,0,0,220);
+    g.addColorStop(0,hexToRgba(hex,.20));
+    g.addColorStop(1,hexToRgba(hex,0));
+    return g;
+  };
   chart('gmTrendChart','line',ms,[
-    {label:'Case Count',data:trendData.map(x=>x.cases),borderColor:goodColor,backgroundColor:'transparent',tension:.3,borderWidth:2.5,pointRadius:2.5,yAxisID:'y'},
+    {label:'Case Count',data:trendData.map(x=>x.cases),borderColor:goodColor,backgroundColor:gmFillGradient(goodColor),fill:true,tension:.3,borderWidth:2.5,pointRadius:2.5,yAxisID:'y'},
     {label:'Inflow %',data:trendData.map(x=>x.inflowPct),borderColor:accentColor,backgroundColor:'transparent',tension:.35,borderWidth:2,pointRadius:2,yAxisID:'y1'}
   ],{scales:{
     x:{grid:{display:false},ticks:{font:{size:9},color:mutedColor}},
@@ -570,6 +773,17 @@ function renderLenderGm(){
     y1:{position:'right',grid:{display:false},ticks:{font:{size:9},color:mutedColor,callback:v=>fmt(v,1)+'%'}}
   },plugins:{datalabels:{display:'auto',align:'top',anchor:'end',offset:4,color:ctx=>(ctx.dataset.data[ctx.dataIndex]<0?badColor:ctx.dataset.borderColor),font:{size:8,weight:'700'},formatter:(v,ctx)=>ctx.dataset.label==='Inflow %'?fmt(v,1)+'%':fmt(v,0)}}});
   const gmTrendLegend=document.getElementById('gmTrendLegend');if(gmTrendLegend)gmTrendLegend.innerHTML=`<span><i style="background:${goodColor}"></i>Case Count</span><span><i style="background:${accentColor}"></i>Inflow %</span>`;
+  const gmTrendChip=document.getElementById('gmTrendChip');
+  if(gmTrendChip){
+    if(!trendData.length){gmTrendChip.textContent='';gmTrendChip.className='netChip';}
+    else{
+      const last=trendData[trendData.length-1].cases;
+      const prev=trendData.length>1?trendData[trendData.length-2].cases:null;
+      const delta=prev===null?null:last-prev;
+      gmTrendChip.className='netChip'+(delta===null?'':delta>0?' netUp':delta<0?' netDown':'');
+      gmTrendChip.textContent=delta===null?`${ms[ms.length-1]}: ${fmt(last,0)} cases`:`${ms[ms.length-1]} ${delta>0?'+':''}${fmt(delta,0)} vs prior month`;
+    }
+  }
 
   const lenderNames=uniq(src.map(x=>x.lender));
   const lenderStats=lenderNames.map(name=>{
@@ -583,6 +797,11 @@ function renderLenderGm(){
       outflowPct:loan?outflow/loan*100:0,
       gmPct:inflow?gm/inflow*100:0};
   }).sort((a,b)=>b.cases-a.cases);
+  const gmTopLenderChip=document.getElementById('gmTopLenderChip');
+  if(gmTopLenderChip){
+    if(!lenderStats.length){gmTopLenderChip.textContent='';gmTopLenderChip.className='netChip';}
+    else{gmTopLenderChip.className='netChip netUp';gmTopLenderChip.textContent=`Top: ${lenderStats[0].name} · ${fmt(lenderStats[0].cases,0)} cases`;}
+  }
 
   const lenderNamesSorted=lenderStats.map(x=>x.name);
   const chartInner=document.getElementById('gmLenderChartInner');if(chartInner){chartInner.style.height='';chartInner.style.width=Math.max(100,lenderNamesSorted.length*70)+'px';}
@@ -634,9 +853,19 @@ function hiringMetrics(records,ms){
   const cumulativeExited=records.filter(r=>{if(!r.doe)return false;const k=monthSortKey(r.doe);return k>=base&&k<=endKey}).length;
   return {openingHC,hiredFtm,exitedFtm,monthEndHC:openingHC+hiredFtm-exitedFtm,cumulativeHired,cumulativeExited};
 }
+const HIRING_ICONS={
+  neutral:'<svg viewBox="0 0 24 24"><path d="M8 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm8 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7ZM2.5 21a5.5 5.5 0 0 1 11 0M14 21a5 5 0 0 1 8 0"/></svg>',
+  hired:'<svg viewBox="0 0 24 24"><path d="M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm-7 10a7 7 0 0 1 14 0M17 8h5m-2.5-2.5v5"/></svg>',
+  exited:'<svg viewBox="0 0 24 24"><path d="M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm-7 10a7 7 0 0 1 14 0M17 8h5"/></svg>'
+};
 function hiringSummaryHtml(m){
   return [['Opening HC',m.openingHC,'neutral'],['Hired FTM',m.hiredFtm,'hired'],['Exited FTM',m.exitedFtm,'exited'],['Month End HC',m.monthEndHC,'neutral'],['Cumulative Hired',m.cumulativeHired,'hired'],['Cumulative Exited',m.cumulativeExited,'exited']]
-    .map(([n,v,kind])=>`<div class="summaryBox kind-${kind}"><small>${n}</small><strong>${fmt(v,0)}</strong></div>`).join('');
+    .map(([n,v,kind])=>`<div class="summaryBox kind-${kind}"><span class="summaryIcon">${HIRING_ICONS[kind]}</span><div class="summaryText"><small>${n}</small><strong>${fmt(v,0)}</strong></div></div>`).join('');
+}
+function hexToRgba(hex,alpha){
+  const h=String(hex||'').replace('#','');
+  const r=parseInt(h.substring(0,2),16)||0,g=parseInt(h.substring(2,4),16)||0,b=parseInt(h.substring(4,6),16)||0;
+  return `rgba(${r},${g},${b},${alpha})`;
 }
 function renderHiring(){
   const ms=p8Months(),foRecs=p8FilteredFO(),chRecs=p8FilteredCH();
@@ -645,19 +874,26 @@ function renderHiring(){
   const chBox=document.getElementById('chSummary');if(chBox)chBox.innerHTML=hiringSummaryHtml(chM);
   const cs=getComputedStyle(document.body);
   const gridColor=cs.getPropertyValue('--line').trim()||'#edf0f5',mutedColor=cs.getPropertyValue('--muted').trim()||'#71809a',goodColor=cs.getPropertyValue('--good').trim()||'#19875d',badColor=cs.getPropertyValue('--bad').trim()||'#c7435c';
-  const byShCounts=(records,field,m)=>{
-    const bySh=new Map();
-    records.filter(r=>r[field]===m).forEach(r=>{const key=r.sh||'Unknown';bySh.set(key,(bySh.get(key)||0)+1)});
-    return [...bySh.entries()].sort((a,b)=>b[1]-a[1]);
-  };
-  const buildMovement=(canvasId,records)=>{
+  const buildMovement=(canvasId,records,chipId)=>{
     const hired=ms.map(m=>records.filter(r=>r.doj===m).length);
     const exited=ms.map(m=>records.filter(r=>r.doe===m).length);
-    const hiredBySh=ms.map(m=>byShCounts(records,'doj',m));
-    const exitedBySh=ms.map(m=>byShCounts(records,'doe',m));
+    const monthStats=ms.map((m,i)=>{
+      const startKey=monthSortKey(m);
+      const opening=records.filter(r=>monthSortKey(r.doj)<startKey&&(!r.doe||monthSortKey(r.doe)>=startKey)).length;
+      return {opening,monthEnd:opening+hired[i]-exited[i]};
+    });
+    const canvasEl=document.getElementById(canvasId);
+    const ctx2d=canvasEl?canvasEl.getContext('2d'):null;
+    const fillGradient=hex=>{
+      if(!ctx2d)return 'transparent';
+      const g=ctx2d.createLinearGradient(0,0,0,220);
+      g.addColorStop(0,hexToRgba(hex,.24));
+      g.addColorStop(1,hexToRgba(hex,0));
+      return g;
+    };
     chart(canvasId,'line',ms,[
-      {label:'Hired',data:hired,borderColor:goodColor,backgroundColor:'transparent',tension:.3,borderWidth:2.5,pointRadius:2.5},
-      {label:'Exited',data:exited,borderColor:badColor,backgroundColor:'transparent',tension:.3,borderWidth:2,pointRadius:2}
+      {label:'Hired',data:hired,borderColor:goodColor,backgroundColor:fillGradient(goodColor),fill:true,tension:.3,borderWidth:2.5,pointRadius:2.5},
+      {label:'Exited',data:exited,borderColor:badColor,backgroundColor:fillGradient(badColor),fill:true,tension:.3,borderWidth:2,pointRadius:2}
     ],{
       interaction:{mode:'index',intersect:false},
       scales:{
@@ -667,23 +903,291 @@ function renderHiring(){
       plugins:{
         datalabels:{display:'auto',align:'top',anchor:'end',offset:4,color:ctx=>ctx.dataset.borderColor,font:{size:8,weight:'700'},formatter:v=>v?fmt(v,0):''},
         tooltip:{callbacks:{
+          beforeBody:items=>{
+            if(!items.length)return [];
+            return [`Opening HC: ${fmt(monthStats[items[0].dataIndex].opening,0)}`];
+          },
           afterBody:items=>{
             if(!items.length)return [];
-            const idx=items[0].dataIndex,lines=[];
-            const hiredList=hiredBySh[idx].slice(0,4),exitedList=exitedBySh[idx].slice(0,4);
-            if(hiredList.length){lines.push('Hired by State Head:');hiredList.forEach(([sh,c])=>lines.push(`  ${sh}: ${c}`))}else{lines.push('Hired by State Head: —')}
-            if(exitedList.length){lines.push('','Exited by State Head:');exitedList.forEach(([sh,c])=>lines.push(`  ${sh}: ${c}`))}else{lines.push('','Exited by State Head: —')}
-            return lines;
+            return [`Month End HC: ${fmt(monthStats[items[0].dataIndex].monthEnd,0)}`];
           }
         }}
       }
     });
+    const chip=document.getElementById(chipId);
+    if(chip){
+      if(!hired.length){chip.textContent='';chip.className='netChip';}
+      else{
+        const net=hired[hired.length-1]-exited[exited.length-1];
+        chip.className='netChip '+(net>0?'netUp':net<0?'netDown':'');
+        chip.textContent=`${ms[ms.length-1]} net ${net>0?'+':''}${fmt(net,0)}`;
+      }
+    }
   };
-  buildMovement('foMovementChart',foRecs);
-  buildMovement('chMovementChart',chRecs);
+  buildMovement('foMovementChart',foRecs,'foNetChip');
+  buildMovement('chMovementChart',chRecs,'chNetChip');
   const legendHtml=`<span><i style="background:${goodColor}"></i>Hired</span><span><i style="background:${badColor}"></i>Exited</span>`;
   const foLeg=document.getElementById('foMovementLegend');if(foLeg)foLeg.innerHTML=legendHtml;
   const chLeg=document.getElementById('chMovementLegend');if(chLeg)chLeg.innerHTML=legendHtml;
+}
+
+/* Analysis page */
+let p9={sh:[],fy:[],month:[],vehicle:[],lender:[],state:[]};
+function p9Options(type){return {sh:SHS,fy:FY_OPTIONS,month:MONTHS,vehicle:VEHICLES,lender:LENDERS,state:GEOSTATES}[type]||[]}
+function p9Cap(type){return {sh:'Sh',fy:'Fy',month:'Month',vehicle:'Vehicle',lender:'Lender',state:'State'}[type]}
+function p9AllLabel(type){return {sh:'All State Heads',fy:'All Financial Years',month:'All Months',vehicle:'All Vehicle Categories',lender:'All Lenders',state:'All States'}[type]}
+function buildP9(type){const el=document.getElementById('an'+p9Cap(type)+'Options');if(!el)return;el.innerHTML=p9Options(type).map(x=>`<label class="checkRow"><input type="checkbox" class="p9Check-${type}" value="${x}" ${p9[type].includes(x)?'checked':''} onchange="onP9Check('${type}')"><span>${x}</span></label>`).join('');syncP9(type,false)}
+function toggleP9Menu(id,e){e.stopPropagation();document.getElementById(id).classList.toggle('open')}
+function onP9Check(type){p9[type]=[...document.querySelectorAll('.p9Check-'+type)].filter(x=>x.checked).map(x=>x.value);syncP9(type);renderAnalysis()}
+function toggleAllP9(type,cb){p9[type]=cb.checked?p9Options(type).slice():[];document.querySelectorAll('.p9Check-'+type).forEach(x=>x.checked=cb.checked);syncP9(type);renderAnalysis()}
+function syncP9(type,render=true){const cap=p9Cap(type),a=p9[type],all=!a.length||a.length===p9Options(type).length;const label=document.getElementById('an'+cap+'Label'),count=document.getElementById('an'+cap+'Count'),allEl=document.getElementById('an'+cap+'All');if(!label)return;if(all){label.textContent=p9AllLabel(type);count.textContent=p9AllLabel(type)+' selected'}else{label.textContent=a.length===1?a[0]:`${a.length} selected`;count.textContent=`${a.length} selected`};if(allEl)allEl.checked=all;if(render)renderAnalysis()}
+function applyP9Menu(id){document.getElementById(id).classList.remove('open');renderAnalysis()}
+function p9Filtered(){return data.filter(x=>(!p9.sh.length||p9.sh.includes(x.state))&&(!p9.fy.length||p9.fy.includes(FYDISPLAY(x.fy)))&&(!p9.month.length||p9.month.includes(x.month))&&(!p9.vehicle.length||p9.vehicle.includes(x.vehicle))&&(!p9.lender.length||p9.lender.includes(x.lender))&&(!p9.state.length||p9.state.includes(x.geoState)))}
+function p9Months(){return MONTHS.filter(m=>(!p9.month.length||p9.month.includes(m))&&(!p9.fy.length||p9.fy.includes(FYDISPLAY(FYMAP(m))))&&data.some(x=>x.month===m))}
+function initPage9Filters(){p9={sh:[],fy:[],month:[],vehicle:[],lender:[],state:[]};['sh','fy','month','vehicle','lender','state'].forEach(buildP9)}
+function resetPage9Filters(){initPage9Filters();renderAnalysis()}
+function analysisKpiCard(label,valueText,deltaText,deltaClass,tone,iconSvg){
+  return `<div class="card kpi tone-${tone}"><span class="kpiIcon">${iconSvg}</span><div class="label">${label}</div><div class="value">${valueText}</div><div class="delta ${deltaClass}">${deltaText}</div></div>`;
+}
+function analysisDelta(cur,prev,isPct){
+  if(prev===null||prev===undefined)return {text:'—',cls:'neutral'};
+  const d=cur-prev;
+  const cls=d>0.0001?'up':d<-0.0001?'down':'neutral';
+  const arrow=cls==='up'?'▲ ':cls==='down'?'▼ ':'';
+  return {text:`${arrow}${fmt(Math.abs(d),1)}${isPct?' pp':' L'} MoM`,cls};
+}
+function analysisDriverLines(kind,monthAgg,idx){
+  if(idx<0||!monthAgg[idx])return [];
+  if(idx===0)return ['First month in the selected range — no prior month to compare MoM.'];
+  const cur=monthAgg[idx],prev=monthAgg[idx-1];
+  const growth=(a,b)=>{if(!b)return null;return (a-b)/Math.abs(b)*100;};
+  const fmtG=v=>v===null?'n/a':`${v>=0?'+':''}${fmt(v,1)}%`;
+  const lines=[];
+  if(kind==='inflow'){
+    lines.push(`Inflow ${fmtG(growth(cur.agg.inflow,prev.agg.inflow))} MoM vs Loan Amount ${fmtG(growth(cur.agg.loan,prev.agg.loan))} MoM.`);
+  }else if(kind==='outflow'){
+    lines.push(`Outflow ${fmtG(growth(cur.agg.outflow,prev.agg.outflow))} MoM vs Loan Amount ${fmtG(growth(cur.agg.loan,prev.agg.loan))} MoM.`);
+  }else if(kind==='gm'){
+    lines.push(`Inflow ${fmtG(growth(cur.agg.inflow,prev.agg.inflow))} MoM vs Outflow ${fmtG(growth(cur.agg.outflow,prev.agg.outflow))} MoM.`);
+  }else if(kind==='cm1'){
+    const curFo=cur.agg.foSalary+cur.agg.foTravel+(cur.agg.foIncentive||0),prevFo=prev.agg.foSalary+prev.agg.foTravel+(prev.agg.foIncentive||0);
+    lines.push(`GM ${fmtG(growth(cur.c.gm,prev.c.gm))} MoM vs FO Cost ${fmtG(growth(curFo,prevFo))} MoM.`);
+  }else if(kind==='cm2'){
+    const curCh=cur.agg.chSalary+cur.agg.shSalary+cur.agg.chTravel+cur.agg.shTravel+(cur.agg.chIncentive||0)+(cur.agg.shIncentive||0);
+    const prevCh=prev.agg.chSalary+prev.agg.shSalary+prev.agg.chTravel+prev.agg.shTravel+(prev.agg.chIncentive||0)+(prev.agg.shIncentive||0);
+    lines.push(`CM-1 ${fmtG(growth(cur.c.cm1,prev.c.cm1))} MoM vs CH/SH Cost ${fmtG(growth(curCh,prevCh))} MoM.`);
+  }
+  const valueFn={
+    inflow:rows=>sum(rows,'inflow'),
+    outflow:rows=>sum(rows,'outflow'),
+    gm:rows=>{const a=cm2RawAggregate(rows);return a.inflow-a.outflow;},
+    cm1:rows=>calc(cm2RawAggregate(rows)).cm1,
+    cm2:rows=>calc(cm2RawAggregate(rows)).cm2
+  }[kind];
+  const names=uniq([...cur.rows.map(x=>x.vehicle),...prev.rows.map(x=>x.vehicle)]).filter(Boolean);
+  const movers=names.map(name=>{
+    const curV=valueFn(cur.rows.filter(x=>x.vehicle===name));
+    const prevV=valueFn(prev.rows.filter(x=>x.vehicle===name));
+    return {name,delta:curV-prevV};
+  }).filter(m=>Math.abs(m.delta)>5).sort((a,b)=>Math.abs(b.delta)-Math.abs(a.delta)).slice(0,2);
+  if(movers.length){
+    lines.push('Top movers by Vehicle Category:');
+    movers.forEach(m=>lines.push(`  ${m.name}: ${m.delta>=0?'+':''}${fmt(m.delta,1)} L`));
+  }
+  return lines;
+}
+const ANALYSIS_VALUE_FN={
+  inflow:rows=>sum(rows,'inflow'),
+  outflow:rows=>sum(rows,'outflow'),
+  gm:rows=>{const a=cm2RawAggregate(rows);return a.inflow-a.outflow;},
+  cm1:rows=>calc(cm2RawAggregate(rows)).cm1,
+  cm2:rows=>calc(cm2RawAggregate(rows)).cm2
+};
+function analysisCaseVolumeNote(cur,prev){
+  const curCases=sum(cur.rows,'cases'),prevCases=sum(prev.rows,'cases');
+  if(!prevCases)return null;
+  const chg=(curCases-prevCases)/prevCases*100;
+  if(Math.abs(chg)<2)return null;
+  return `Case volume ${chg>=0?'grew':'declined'} ${fmt(Math.abs(chg),1)}% (${fmt(prevCases,0)} → ${fmt(curCases,0)} cases) over the same window.`;
+}
+function analysisLenderMixNote(cur,prev){
+  const lenders=uniq([...cur.rows.map(x=>x.lender),...prev.rows.map(x=>x.lender)]).filter(Boolean);
+  if(lenders.length<2)return null;
+  const totalCur=sum(cur.rows,'cases')||1,totalPrev=sum(prev.rows,'cases')||1;
+  const stats=lenders.map(l=>{
+    const curRows=cur.rows.filter(x=>x.lender===l),prevRows=prev.rows.filter(x=>x.lender===l);
+    const curShare=sum(curRows,'cases')/totalCur*100,prevShare=sum(prevRows,'cases')/totalPrev*100;
+    const curAgg=cm2RawAggregate(curRows);
+    const curGm=curAgg.inflow?(curAgg.inflow-curAgg.outflow)/curAgg.inflow*100:null;
+    return {l,shareDelta:curShare-prevShare,curGm};
+  }).filter(s=>Math.abs(s.shareDelta)>1);
+  if(!stats.length)return null;
+  stats.sort((a,b)=>Math.abs(b.shareDelta)-Math.abs(a.shareDelta));
+  const top=stats[0];
+  const companyGm=cur.c.gmp;
+  const marginWord=top.curGm!==null?(top.curGm>companyGm?'a higher-margin':'a lower-margin'):null;
+  const dirWord=top.shareDelta>0?'gained':'lost';
+  return `${top.l} ${dirWord} ${fmt(Math.abs(top.shareDelta),1)} pp of case share${marginWord?`, ${marginWord} lender relative to the overall book`:''} — a lender-mix shift worth watching.`;
+}
+function marketContextNote(ms){
+  const monthsOnly=uniq((ms||[]).map(m=>String(m).split('-')[0]));
+  const has=arr=>arr.some(mo=>monthsOnly.includes(mo));
+  if(has(['Oct','Nov','Dec']))return 'Oct-Dec is typically festive season for Indian vehicle retail (2W/PV/CV) and Rabi sowing lifts tractor demand — a seasonal tailwind that can lift case volumes and sharpen lender competition.';
+  if(has(['Jun','Jul','Aug','Sep']))return 'The Jun-Sep monsoon window often softens rural cash flow and can pressure CV/tractor collections, even as early-monsoon Kharif sowing lifts fresh tractor financing demand.';
+  if(has(['Jan','Feb','Mar']))return 'Jan-Mar is the NBFC/vehicle-finance fiscal year-end push — disbursement targets typically lift volumes and can shift lender mix as year-end sourcing incentives kick in.';
+  if(has(['Apr','May']))return 'Apr-May marks the start of the financial year, usually a slower ramp-up period before festive and year-end volumes build later.';
+  return 'Consider external factors such as interest-rate movement, lender risk-appetite changes and regional demand cycles alongside the case-level data above.';
+}
+function buildAnalysisBullets(kind,label,ms,monthAgg,pctFn){
+  if(!monthAgg.length)return [{label:'No Data',text:'No data available for the current filter selection — adjust filters to see an analysis.'}];
+  if(monthAgg.length===1)return [{label:'No Data',text:`Only ${ms[0]} is in view. Select at least two months to see a trend analysis.`}];
+  const first=monthAgg[0],last=monthAgg[monthAgg.length-1];
+  const firstV=pctFn(first),lastV=pctFn(last);
+  const delta=lastV-firstV;
+  const shortRange=monthAgg.length<=4;
+  const dirWord=delta>0.05?'improved':delta<-0.05?'declined':'held broadly steady';
+  const bullets=[];
+  if(shortRange){
+    bullets.push({label:'Trend',text:`${monthAgg.length}-month window (${ms[0]} → ${ms[ms.length-1]}): ${label} % ${dirWord}, ${fmt(firstV,1)}% → ${fmt(lastV,1)}% (${delta>=0?'+':''}${fmt(delta,1)} pp).`});
+  }else{
+    let peak=monthAgg[0],trough=monthAgg[0];
+    monthAgg.forEach(m=>{const v=pctFn(m);if(v>pctFn(peak))peak=m;if(v<pctFn(trough))trough=m;});
+    bullets.push({label:'Trend',text:`${monthAgg.length}-month window (${ms[0]} → ${ms[ms.length-1]}): ${label} % ${dirWord} overall, ${fmt(firstV,1)}% → ${fmt(lastV,1)}% (${delta>=0?'+':''}${fmt(delta,1)} pp). Peak ${fmt(pctFn(peak),1)}% (${peak.month}), trough ${fmt(pctFn(trough),1)}% (${trough.month}).`});
+  }
+  const growth=(a,b)=>b?((a-b)/Math.abs(b)*100):null;
+  const fmtG=v=>v===null?'n/a':`${v>=0?'+':''}${fmt(v,1)}%`;
+  const netEffect=delta>=0.05?'net effect pushed the ratio up.':delta<=-0.05?'net effect pulled the ratio down.':'the two moved roughly in step, net-neutral.';
+  if(kind==='inflow'){
+    bullets.push({label:'Key Driver',text:`Inflow ${fmtG(growth(last.agg.inflow,first.agg.inflow))} vs Loan Amount ${fmtG(growth(last.agg.loan,first.agg.loan))} — ${netEffect}`});
+  }else if(kind==='outflow'){
+    bullets.push({label:'Key Driver',text:`Outflow ${fmtG(growth(last.agg.outflow,first.agg.outflow))} vs Loan Amount ${fmtG(growth(last.agg.loan,first.agg.loan))} — ${netEffect}`});
+  }else if(kind==='gm'){
+    bullets.push({label:'Key Driver',text:`Inflow ${fmtG(growth(last.agg.inflow,first.agg.inflow))} vs Outflow ${fmtG(growth(last.agg.outflow,first.agg.outflow))} — ${netEffect}`});
+  }else if(kind==='cm1'){
+    const firstFo=first.agg.foSalary+first.agg.foTravel+(first.agg.foIncentive||0),lastFo=last.agg.foSalary+last.agg.foTravel+(last.agg.foIncentive||0);
+    bullets.push({label:'Key Driver',text:`GM ${fmtG(growth(last.c.gm,first.c.gm))} vs FO Cost ${fmtG(growth(lastFo,firstFo))} — ${netEffect}`});
+  }else if(kind==='cm2'){
+    const firstCh=first.agg.chSalary+first.agg.shSalary+first.agg.chTravel+first.agg.shTravel+(first.agg.chIncentive||0)+(first.agg.shIncentive||0);
+    const lastCh=last.agg.chSalary+last.agg.shSalary+last.agg.chTravel+last.agg.shTravel+(last.agg.chIncentive||0)+(last.agg.shIncentive||0);
+    bullets.push({label:'Key Driver',text:`CM-1 ${fmtG(growth(last.c.cm1,first.c.cm1))} vs CH/SH Cost ${fmtG(growth(lastCh,firstCh))} — ${netEffect}`});
+  }
+  const volNote=analysisCaseVolumeNote(last,first);
+  if(volNote)bullets.push({label:'Volume Impact',text:volNote});
+  const valueFn=ANALYSIS_VALUE_FN[kind];
+  const vehNames=uniq([...first.rows.map(x=>x.vehicle),...last.rows.map(x=>x.vehicle)]).filter(Boolean);
+  const vehMovers=vehNames.map(name=>({name,delta:valueFn(last.rows.filter(x=>x.vehicle===name))-valueFn(first.rows.filter(x=>x.vehicle===name))})).filter(m=>Math.abs(m.delta)>5).sort((a,b)=>Math.abs(b.delta)-Math.abs(a.delta));
+  if(vehMovers.length){
+    const top2=vehMovers.slice(0,2);
+    const strong=top2.filter(m=>m.delta>0).map(m=>`${m.name} (${m.delta>=0?'+':''}${fmt(m.delta,1)} L)`);
+    const weak=top2.filter(m=>m.delta<0).map(m=>`${m.name} (${fmt(m.delta,1)} L)`);
+    let vs='';
+    if(strong.length)vs+=`Strongest gain: ${strong.join(', ')}.`;
+    if(weak.length)vs+=(vs?' ':'')+`Biggest drag: ${weak.join(', ')}.`;
+    if(vs)bullets.push({label:'Vehicle Mix',text:vs});
+  }
+  const lenderNote=analysisLenderMixNote(last,first);
+  if(lenderNote)bullets.push({label:'Lender Mix',text:lenderNote});
+  bullets.push({label:'Market Context',text:marketContextNote(ms)});
+  return bullets;
+}
+function renderAnalysis(){
+  const src=p9Filtered(),ms=p9Months();
+  const cs=getComputedStyle(document.body);
+  const gridColor=cs.getPropertyValue('--line').trim()||'#edf0f5',mutedColor=cs.getPropertyValue('--muted').trim()||'#71809a',accentColor=cs.getPropertyValue('--accent').trim()||'#465ed4',goodColor=cs.getPropertyValue('--good').trim()||'#19875d',badColor=cs.getPropertyValue('--bad').trim()||'#c7435c';
+  const monthAgg=ms.map(m=>{const rows=src.filter(x=>x.month===m);const agg=cm2RawAggregate(rows);return {month:m,rows,agg,c:calc(agg)};});
+  const anKpis=document.getElementById('anKpis');
+  if(anKpis){
+    if(!monthAgg.length){anKpis.innerHTML='';}
+    else{
+      const last=monthAgg[monthAgg.length-1],prevM=monthAgg.length>1?monthAgg[monthAgg.length-2]:null;
+      const ICONS={
+        up:'<svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></svg>',
+        down:'<svg viewBox="0 0 24 24"><path d="M3 7l6 6 4-4 8 8M21 11v6h-6"/></svg>',
+        percent:'<svg viewBox="0 0 24 24"><path d="M19 5 5 19M7.5 7a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5ZM16.5 22a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/></svg>',
+        funnel:'<svg viewBox="0 0 24 24"><path d="M4 4h16l-6.5 8.5v6L10.5 21v-8.5L4 4Z"/></svg>',
+        check:'<svg viewBox="0 0 24 24"><path d="M9 11l2 2 4-4"/><path d="M21 12a9 9 0 1 1-9-9"/></svg>'
+      };
+      const rows=[
+        ['Inflow %',pct(last.agg.loan?last.agg.inflow/last.agg.loan*100:0),prevM?(prevM.agg.loan?prevM.agg.inflow/prevM.agg.loan*100:0):null,true,'good',ICONS.up],
+        ['Outflow %',pct(last.agg.loan?last.agg.outflow/last.agg.loan*100:0),prevM?(prevM.agg.loan?prevM.agg.outflow/prevM.agg.loan*100:0):null,true,'bad',ICONS.down],
+        ['GM %',pct(last.c.gmp),prevM?prevM.c.gmp:null,true,last.c.gmp<0?'bad':'good',ICONS.percent],
+        ['CM-1 %',pct(last.c.cm1p),prevM?prevM.c.cm1p:null,true,last.c.cm1p<0?'bad':'good',ICONS.funnel],
+        ['CM-2 %',pct(last.c.cm2p),prevM?prevM.c.cm2p:null,true,last.c.cm2p<0?'bad':'good',ICONS.check],
+        ['Inflow Amount',fmt(last.agg.inflow,1)+' L',prevM?prevM.agg.inflow:null,false,'good',ICONS.up],
+        ['Outflow Amount',fmt(last.agg.outflow,1)+' L',prevM?prevM.agg.outflow:null,false,'bad',ICONS.down],
+        ['GM Amount',fmt(last.c.gm,1)+' L',prevM?prevM.c.gm:null,false,last.c.gm<0?'bad':'good',ICONS.percent],
+        ['CM-1 Amount',fmt(last.c.cm1,1)+' L',prevM?prevM.c.cm1:null,false,last.c.cm1<0?'bad':'good',ICONS.funnel],
+        ['CM-2 Amount',fmt(last.c.cm2,1)+' L',prevM?prevM.c.cm2:null,false,last.c.cm2<0?'bad':'good',ICONS.check]
+      ];
+      const curVals={
+        'Inflow %':last.agg.loan?last.agg.inflow/last.agg.loan*100:0,
+        'Outflow %':last.agg.loan?last.agg.outflow/last.agg.loan*100:0,
+        'GM %':last.c.gmp,'CM-1 %':last.c.cm1p,'CM-2 %':last.c.cm2p,
+        'Inflow Amount':last.agg.inflow,'Outflow Amount':last.agg.outflow,
+        'GM Amount':last.c.gm,'CM-1 Amount':last.c.cm1,'CM-2 Amount':last.c.cm2
+      };
+      anKpis.innerHTML=rows.map(([label,valueText,prevVal,isPct,tone,icon])=>{
+        const d=analysisDelta(curVals[label],prevVal,isPct);
+        return analysisKpiCard(label,valueText,d.text,d.cls,tone,icon);
+      }).join('');
+    }
+  }
+  const SPARKLE_ICON='<svg viewBox="0 0 24 24"><path d="M12 2l1.8 5.2L19 9l-5.2 1.8L12 16l-1.8-5.2L5 9l5.2-1.8L12 2Z"/></svg>';
+  const buildMetricChart=(canvasId,chipId,insightId,kind,label,pctFn)=>{
+    const canvasEl=document.getElementById(canvasId);
+    const ctx2d=canvasEl?canvasEl.getContext('2d'):null;
+    const lineColor=kind==='outflow'?badColor:accentColor;
+    const fillGradient=(()=>{
+      if(!ctx2d)return 'transparent';
+      const g=ctx2d.createLinearGradient(0,0,0,260);
+      g.addColorStop(0,hexToRgba(lineColor,.24));
+      g.addColorStop(1,hexToRgba(lineColor,0));
+      return g;
+    })();
+    const pctData=monthAgg.map(pctFn);
+    const driverCache=monthAgg.map((m,i)=>analysisDriverLines(kind,monthAgg,i));
+    chart(canvasId,'line',ms,[
+      {label:`${label} %`,data:pctData,borderColor:lineColor,backgroundColor:fillGradient,fill:true,tension:.3,borderWidth:2.5,pointRadius:3,pointHoverRadius:6,pointHitRadius:16}
+    ],{
+      interaction:{mode:'index',intersect:false},
+      scales:{
+        x:{grid:{display:false},ticks:{font:{size:9},color:mutedColor}},
+        y:{grid:{color:gridColor},ticks:{font:{size:9},color:mutedColor,callback:v=>fmt(v,1)+'%'}}
+      },
+      plugins:{
+        datalabels:{display:'auto',align:'top',anchor:'end',offset:6,color:lineColor,font:{size:8,weight:'700'},formatter:v=>fmt(v,1)+'%'},
+        tooltip:{mode:'index',intersect:false,callbacks:{
+          afterBody:items=>{
+            if(!items.length)return [];
+            const lines=driverCache[items[0].dataIndex];
+            return lines&&lines.length?['',...lines]:[];
+          }
+        }}
+      }
+    });
+    const chip=document.getElementById(chipId);
+    if(chip){
+      if(monthAgg.length<2){chip.textContent='';chip.className='netChip';}
+      else{
+        const curV=pctData[pctData.length-1],prevV=pctData[pctData.length-2];
+        const d=curV-prevV;
+        chip.className='netChip'+(d>0.0001?' netUp':d<-0.0001?' netDown':'');
+        chip.textContent=`${ms[ms.length-1]} ${d>=0?'+':''}${fmt(d,1)}pp MoM`;
+      }
+    }
+    const insightEl=document.getElementById(insightId);
+    if(insightEl){
+      const bullets=buildAnalysisBullets(kind,label,ms,monthAgg,pctFn);
+      insightEl.innerHTML=`<div class="anInsightHead">${SPARKLE_ICON}Auto-Analysis</div><ul class="anInsightList">${bullets.map(b=>`<li><span class="anInsightTag">${b.label}</span>${b.text}</li>`).join('')}</ul>`;
+    }
+  };
+  buildMetricChart('anInflowChart','anInflowChip','anInflowInsight','inflow','Inflow',m=>m.agg.loan?m.agg.inflow/m.agg.loan*100:0);
+  buildMetricChart('anOutflowChart','anOutflowChip','anOutflowInsight','outflow','Outflow',m=>m.agg.loan?m.agg.outflow/m.agg.loan*100:0);
+  buildMetricChart('anGmChart','anGmChip','anGmInsight','gm','GM',m=>m.c.gmp);
+  buildMetricChart('anCm1Chart','anCm1Chip','anCm1Insight','cm1','CM-1',m=>m.c.cm1p);
+  buildMetricChart('anCm2Chart','anCm2Chip','anCm2Insight','cm2','CM-2',m=>m.c.cm2p);
+  const anContextRight=document.getElementById('anContextRight');
+  if(anContextRight)anContextRight.textContent=`${p9.sh.length?p9.sh.join(' • '):'All State Heads'} • ${p9.fy.length?p9.fy.join(' • '):'All Financial Years'} • ${p9.month.length?p9.month.join(' • '):'All Months'} • ${p9.vehicle.length?p9.vehicle.join(' • '):'All Vehicle Categories'} • ${p9.lender.length?p9.lender.join(' • '):'All Lenders'} • ${p9.state.length?p9.state.join(' • '):'All States'}`;
 }
 
 function encodeDrillPayload(payload){
@@ -693,25 +1197,70 @@ function decodeDrillPayload(payload){
   try { return JSON.parse(decodeURIComponent(escape(atob(payload)))); }
   catch (err) { return {}; }
 }
-function bindDrillRows(selector, labelFactory){
-  const rows = document.querySelectorAll(selector);
-  rows.forEach((row) => {
+function drillGroupRows(rows, groupField){
+  const names = uniq(rows.map(x => x[groupField])).filter(Boolean);
+  return names.map(name => {
+    const subset = rows.filter(x => x[groupField] === name);
+    const r = calc(cm2RawAggregate(subset));
+    return { name, cases: sum(subset, 'cases'), loan: sum(subset, 'loan'), inflow: sum(subset, 'inflow'), outflow: sum(subset, 'outflow'), cm2: r.cm2, cm2p: r.cm2p };
+  }).sort((a, b) => b.cases - a.cases);
+}
+function drillTotals(rows){
+  const r = calc(cm2RawAggregate(rows));
+  return [
+    { label: 'Cases', value: fmt(sum(rows, 'cases'), 0) },
+    { label: 'Loan (Cr.)', value: fmt(sum(rows, 'loan') / 100, 1) },
+    { label: 'Inflow (Cr.)', value: fmt(sum(rows, 'inflow') / 100, 1) },
+    { label: 'Outflow (Cr.)', value: fmt(sum(rows, 'outflow') / 100, 1) },
+    { label: 'CM-2 (Cr.)', value: fmt(r.cm2 / 100, 1) },
+    { label: 'CM-2 %', value: pct(r.cm2p) }
+  ];
+}
+function drillSection(heading, groupLabel, groupRows){
+  return {
+    heading,
+    columns: [groupLabel, 'Cases', 'Loan (Cr.)', 'Inflow (Cr.)', 'Outflow (Cr.)', 'CM-2 (Cr.)', 'CM-2 %'],
+    rows: groupRows.map(r => [r.name, fmt(r.cases, 0), fmt(r.loan / 100, 1), fmt(r.inflow / 100, 1), fmt(r.outflow / 100, 1), fmt(r.cm2 / 100, 1), pct(r.cm2p)])
+  };
+}
+function buildDrillPayload(rows, sectionSpecs){
+  const safeRows = rows || [];
+  return {
+    totals: drillTotals(safeRows),
+    sections: sectionSpecs.map(([heading, groupLabel, groupField]) => drillSection(heading, groupLabel, drillGroupRows(safeRows, groupField)))
+  };
+}
+function bindDrillRows(selector){
+  document.querySelectorAll(selector).forEach((row) => {
     if (row.dataset.drillBound === 'true') return;
     row.dataset.drillBound = 'true';
     row.classList.add('drillRow');
     row.addEventListener('click', () => {
       const payload = decodeDrillPayload(row.dataset.drill || '');
-      openDrillDown(payload, typeof labelFactory === 'function' ? labelFactory(payload) : 'Data drill-down');
+      openDrillDown(payload, row.dataset.drillTitle || 'Data drill-down');
+    });
+  });
+}
+function bindDrillCells(selector){
+  document.querySelectorAll(selector).forEach((cell) => {
+    if (cell.dataset.drillBound === 'true') return;
+    cell.dataset.drillBound = 'true';
+    cell.addEventListener('click', () => {
+      const payload = decodeDrillPayload(cell.dataset.drill || '');
+      openDrillDown(payload, cell.dataset.drillTitle || 'Data drill-down');
     });
   });
 }
 function openDrillDown(payload, title){
   const modal = document.getElementById('drillModal');
-  const table = document.getElementById('drillBodyTable');
-  if (!modal || !table) return;
+  const body = document.getElementById('drillBody');
+  if (!modal || !body) return;
   const safe = payload && typeof payload === 'object' ? payload : {};
-  const rows = Object.entries(safe).map(([key, value]) => `<tr><th>${key}</th><td>${value === null || value === undefined || value === '' ? '—' : String(value)}</td></tr>`).join('');
-  table.innerHTML = rows || '<tr><td>No drill-down data available.</td></tr>';
+  const totals = Array.isArray(safe.totals) ? safe.totals : [];
+  const sections = Array.isArray(safe.sections) ? safe.sections : [];
+  const statsHtml = totals.length ? `<div class="drillStats">${totals.map(t => `<div class="drillStat"><small>${t.label}</small><strong>${t.value}</strong></div>`).join('')}</div>` : '';
+  const sectionsHtml = sections.map(s => `<div class="drillSection"><h4>${s.heading}</h4><div class="tablewrap"><table><thead><tr>${s.columns.map(c => `<th>${c}</th>`).join('')}</tr></thead><tbody>${s.rows.length ? s.rows.map(r => `<tr>${r.map(c => `<td>${c}</td>`).join('')}</tr>`).join('') : `<tr><td colspan="${s.columns.length}" class="empty">No underlying records for this selection.</td></tr>`}</tbody></table></div></div>`).join('');
+  body.innerHTML = statsHtml + sectionsHtml || '<p class="empty">No drill-down data available.</p>';
   const titleEl = document.getElementById('drillTitle');
   if (titleEl) titleEl.textContent = title || 'Data drill-down';
   modal.classList.add('open');
@@ -754,7 +1303,11 @@ async function loadGoogleSheet(silent){
     if (!built.rows.length) throw new Error('The Case Data tab has no usable rows.');
     importedWorkbook = wb; importedSheets = sheets; importedActiveSheet = wb.SheetNames[0] || '';
     data = built.rows; MONTHS = built.months; SHS = built.shs; LENDERS = built.lenders; VEHICLES = built.vehicles; GEOSTATES = built.geoStates;
-    const hiring = buildHiringData(sheets);
+    // cellDates:true silently shifts 1st-of-month DOJ/DOE cells into the prior month in this environment; re-parse those two sheets as raw serials to avoid the misattribution.
+    const wbRaw = XLSX.read(new Uint8Array(buf), { type: 'array', cellDates: false });
+    const hiringSheets = {};
+    ['FO Hiring & Attrition', 'CH Hiring & Attrition'].forEach(name => { if (wbRaw.Sheets[name]) hiringSheets[name] = XLSX.utils.sheet_to_json(wbRaw.Sheets[name], { header: 1, defval: '' }); });
+    const hiring = buildHiringData(hiringSheets);
     FO_HIRING = hiring.fo; CH_HIRING = hiring.ch; TEAM_TYPES = hiring.teams; FO_LEVELS = hiring.foLevels; CH_LEVELS = hiring.chLevels; HIRING_SHS = uniq([...SHS, ...hiring.shs]).filter(Boolean).sort();
     sourceLabel = 'Google Sheet (Live)';
     googleSheetConnected = true;
@@ -959,11 +1512,13 @@ function renderAll(){
   renderLenderPortfolio();
   renderLenderGm();
   renderHiring();
+  renderAnalysis();
 }
 
 /* Dashboard themes */
-function setDashboardTheme(theme){document.body.setAttribute('data-theme',theme);localStorage.setItem('lpDashboardTheme',theme);document.querySelectorAll('.themeSwitcher button').forEach(b=>b.classList.toggle('active',b.dataset.theme===theme));if(typeof renderAll==='function')renderAll()}
-function initDashboardTheme(){setDashboardTheme(localStorage.getItem('lpDashboardTheme')||'light')}
+function setDashboardTheme(theme){document.body.setAttribute('data-theme',theme);localStorage.setItem('lpDashboardTheme',theme);const knob=document.getElementById('themeKnob');if(knob)knob.textContent=theme==='dark'?'☾':'☀';const btn=document.getElementById('themeToggle');if(btn)btn.setAttribute('aria-pressed',theme==='dark');if(typeof renderAll==='function')renderAll()}
+function toggleDashboardTheme(){setDashboardTheme(document.body.getAttribute('data-theme')==='dark'?'light':'dark')}
+function initDashboardTheme(){setDashboardTheme(localStorage.getItem('lpDashboardTheme')==='dark'?'dark':'light')}
 
 function downloadTemplate(){
   const csv = ['Month,State Head,Vehicle Type,Lender,Loan Amount,Inflow Amount,Outflow Amount,Case Count','Apr-25,SH-1,Tractor,HDFC,250000,300000,200000,10','Apr-25,SH-2,Truck,ICICI,180000,220000,140000,8'].join('\n');
@@ -1002,12 +1557,12 @@ function toggleSidebar(){
 })();
 
 /* Override navigation so page filters initialize correctly */
-document.querySelectorAll('.pageTab').forEach(tab=>tab.addEventListener('click',e=>{e.preventDefault();document.querySelectorAll('.pageTab').forEach(t=>t.classList.remove('active'));tab.classList.add('active');document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(tab.dataset.page).classList.add('active');if(tab.dataset.page==='pnlPage')renderPnlPage();if(tab.dataset.page==='vehiclePnlPage')renderVehiclePnl();if(tab.dataset.page==='shPnlPage'){initPage4Filters();renderShPnl()}if(tab.dataset.page==='cm2VehiclePage'){initPage5Filters();renderCm2Vehicle()}if(tab.dataset.page==='lenderPortfolioPage'){initPage6Filters();renderLenderPortfolio()}if(tab.dataset.page==='lenderGmPage'){initPage7Filters();renderLenderGm()}if(tab.dataset.page==='hiringPage'){initPage8Filters();renderHiring()}window.scrollTo({top:0,behavior:'smooth'})}));
-initFilters();initPage4Filters();initPage5Filters();initPage6Filters();initPage7Filters();initPage8Filters();initDashboardTheme();renderPnlPage();renderVehiclePnl();renderAll();renderShPnl();renderCm2Vehicle();
+document.querySelectorAll('.pageTab').forEach(tab=>tab.addEventListener('click',e=>{e.preventDefault();document.querySelectorAll('.pageTab').forEach(t=>t.classList.remove('active'));tab.classList.add('active');document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(tab.dataset.page).classList.add('active');if(tab.dataset.page==='pnlPage')renderPnlPage();if(tab.dataset.page==='vehiclePnlPage')renderVehiclePnl();if(tab.dataset.page==='shPnlPage'){initPage4Filters();renderShPnl()}if(tab.dataset.page==='cm2VehiclePage'){initPage5Filters();renderCm2Vehicle()}if(tab.dataset.page==='lenderPortfolioPage'){initPage6Filters();renderLenderPortfolio()}if(tab.dataset.page==='lenderGmPage'){initPage7Filters();renderLenderGm()}if(tab.dataset.page==='hiringPage'){initPage8Filters();renderHiring()}if(tab.dataset.page==='analysisPage'){initPage9Filters();renderAnalysis()}window.scrollTo({top:0,behavior:'smooth'})}));
+initFilters();initPage4Filters();initPage5Filters();initPage6Filters();initPage7Filters();initPage8Filters();initPage9Filters();initDashboardTheme();renderPnlPage();renderVehiclePnl();renderAll();renderShPnl();renderCm2Vehicle();
 loadGoogleSheet(true);
 
 /* V18 Excel import / preview feature. Does not alter existing dashboard page markup or calculations. */
-function handleExcelImport(event){const file=event?.target?.files?.[0];if(!file)return;const reader=new FileReader();reader.onload=function(e){try{const wb=XLSX.read(new Uint8Array(e.target.result),{type:'array',cellDates:true});importedWorkbook=wb;importedSheets={};wb.SheetNames.forEach(name=>{importedSheets[name]=XLSX.utils.sheet_to_json(wb.Sheets[name],{header:1,defval:''});});importedActiveSheet=wb.SheetNames[0]||'';sourceLabel=file.name;const built=buildRealData(importedSheets);data=built.rows;MONTHS=built.months;SHS=built.shs;LENDERS=built.lenders;VEHICLES=built.vehicles;GEOSTATES=built.geoStates;const hiring=buildHiringData(importedSheets);FO_HIRING=hiring.fo;CH_HIRING=hiring.ch;TEAM_TYPES=hiring.teams;FO_LEVELS=hiring.foLevels;CH_LEVELS=hiring.chLevels;HIRING_SHS=uniq([...SHS,...hiring.shs]).filter(Boolean).sort();const source=document.getElementById('sourceName');if(source)source.textContent=file.name;buildImportedDataPage(file.name);initFilters();initPage4Filters();initPage5Filters();initPage6Filters();initPage7Filters();initPage8Filters();renderAll();}catch(err){alert('Unable to read this Excel file. Please use a valid .xlsx, .xls or .csv file.\n\n'+err.message);}};reader.readAsArrayBuffer(file);}
+function handleExcelImport(event){const file=event?.target?.files?.[0];if(!file)return;const reader=new FileReader();reader.onload=function(e){try{const buf=e.target.result;const wb=XLSX.read(new Uint8Array(buf),{type:'array',cellDates:true});importedWorkbook=wb;importedSheets={};wb.SheetNames.forEach(name=>{importedSheets[name]=XLSX.utils.sheet_to_json(wb.Sheets[name],{header:1,defval:''});});importedActiveSheet=wb.SheetNames[0]||'';sourceLabel=file.name;const built=buildRealData(importedSheets);data=built.rows;MONTHS=built.months;SHS=built.shs;LENDERS=built.lenders;VEHICLES=built.vehicles;GEOSTATES=built.geoStates;const wbRaw=XLSX.read(new Uint8Array(buf),{type:'array',cellDates:false});const hiringSheets={};['FO Hiring & Attrition','CH Hiring & Attrition'].forEach(name=>{if(wbRaw.Sheets[name])hiringSheets[name]=XLSX.utils.sheet_to_json(wbRaw.Sheets[name],{header:1,defval:''});});const hiring=buildHiringData(hiringSheets);FO_HIRING=hiring.fo;CH_HIRING=hiring.ch;TEAM_TYPES=hiring.teams;FO_LEVELS=hiring.foLevels;CH_LEVELS=hiring.chLevels;HIRING_SHS=uniq([...SHS,...hiring.shs]).filter(Boolean).sort();const source=document.getElementById('sourceName');if(source)source.textContent=file.name;buildImportedDataPage(file.name);initFilters();initPage4Filters();initPage5Filters();initPage6Filters();initPage7Filters();initPage8Filters();renderAll();}catch(err){alert('Unable to read this Excel file. Please use a valid .xlsx, .xls or .csv file.\n\n'+err.message);}};reader.readAsArrayBuffer(file);}
 function buildImportedDataPage(fileName){const names=Object.keys(importedSheets),tabs=document.getElementById('importSheetTabs');if(!tabs)return;tabs.innerHTML=names.map(n=>`<button type="button" class="sheetTab ${n===importedActiveSheet?'active':''}" onclick="selectImportedSheet(${JSON.stringify(n)})">${escapeImportedHtml(n)}</button>`).join('');const rows=importedSheets[importedActiveSheet]||[],headers=rows[0]||[],body=rows.slice(1);document.getElementById('importFileName').textContent=fileName||'Imported workbook';document.getElementById('importRowCount').textContent=body.length.toLocaleString('en-IN');document.getElementById('importColCount').textContent=headers.length.toLocaleString('en-IN');document.getElementById('importSheetCount').textContent=names.length.toLocaleString('en-IN');renderImportedSheet();document.getElementById('importNotice').innerHTML=`<strong>Imported successfully:</strong> ${escapeImportedHtml(fileName||'Workbook')} • Showing sheet <strong>${escapeImportedHtml(importedActiveSheet)}</strong>. Read-only preview.`;}
 function selectImportedSheet(name){importedActiveSheet=name;buildImportedDataPage(document.getElementById('importFileName').textContent||'Imported workbook');}
 const IMPORT_PREVIEW_ROW_CAP=500;function renderImportedSheet(){const rows=importedSheets[importedActiveSheet]||[],head=document.getElementById('importTableHead'),body=document.getElementById('importTableBody');if(!head||!body)return;const headers=rows[0]||[],dataRows=rows.slice(1),previewRows=dataRows.slice(0,IMPORT_PREVIEW_ROW_CAP);head.innerHTML=headers.map((h,i)=>`<th>${escapeImportedHtml(String(h||'Column '+(i+1)))}</th>`).join('');body.innerHTML=previewRows.length?previewRows.map(r=>`<tr>${headers.map((_,i)=>`<td>${escapeImportedHtml(formatImportedValue(r[i]))}</td>`).join('')}</tr>`).join(''):`<tr><td colspan="${Math.max(headers.length,1)}" class="importEmpty">No rows found in this sheet.</td></tr>`;if(dataRows.length>IMPORT_PREVIEW_ROW_CAP){body.innerHTML+=`<tr><td colspan="${Math.max(headers.length,1)}" class="importEmpty">Showing first ${IMPORT_PREVIEW_ROW_CAP.toLocaleString('en-IN')} of ${dataRows.length.toLocaleString('en-IN')} rows. All rows are still used in the dashboard calculations — this preview is capped for performance.</td></tr>`}filterImportedTable();}
