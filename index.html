@@ -341,6 +341,10 @@ function buildRealData(sheets){
   kekaRows.forEach(r=>noteSh(r['Tagged SH Employee Code'],r['Tagged SH Name']));
   const shCodeToName=new Map();
   shNameCount.forEach((nameMap,code)=>{let best=code,bestCount=-1;nameMap.forEach((cnt,name)=>{if(cnt>bestCount){best=name;bestCount=cnt;}});shCodeToName.set(code,best);});
+  // Cost sheets' "Tagged SH Employee Code" is occasionally corrupted (a broken lookup that
+  // self-references the FO/CH's own code instead of their SH's) — only backfill a zero-case
+  // SH entry for codes already confirmed genuine via Case Data's own SH column.
+  const genuineShCodes=new Set(caseRows.map(r=>String(r['SH']||'').trim()).filter(Boolean));
   const caseGroups=new Map(),shMonthCases=new Map();
   caseRows.forEach(r=>{
     const month=normalizeMonthLabel(r['Month']),shCode=String(r['SH']||'').trim();
@@ -359,7 +363,7 @@ function buildRealData(sheets){
   fuelRows.forEach(r=>{const month=normalizeMonthLabel(r['Month']),shCode=String(r['Tagged SH Employee Code']||'').trim();if(!month||!shCode)return;const type=String(r['Employee Type']||'').trim().toUpperCase();const amt=(+r['Amount']||0)/1e5;const c=ensureCost(month,shCode);if(type==='FO')c.foTravel+=amt;else if(type==='CH')c.chTravel+=amt;});
   kekaRows.forEach(r=>{const month=normalizeMonthLabel(r['Expenses Submitted month']),shCode=String(r['Tagged SH Employee Code']||'').trim();if(!month||!shCode)return;const type=String(r['Emp Categiry']||'').trim().toUpperCase();const amt=(+r['Amount Value']||0)/1e5;const c=ensureCost(month,shCode);if(type==='FO')c.foTravel+=amt;else if(type==='CH')c.chTravel+=amt;else if(type==='SH')c.shTravel+=amt;});
   incentiveRows.forEach(r=>{const month=normalizeMonthLabel(r['Month']),shCode=String(r['Tagged Sh Employee Code']||'').trim();if(!month||!shCode)return;const type=String(r['Employee Type']||'').trim().toUpperCase();const amt=(+r['Amount']||0)/1e5;const c=ensureCost(month,shCode);if(type==='FO')c.foIncentive+=amt;else if(type==='CH')c.chIncentive+=amt;else if(type==='SH')c.shIncentive+=amt;});
-  cost.forEach((c,smKey)=>{if(!shMonthCases.has(smKey)){const key=c.month+'|'+c.shCode+'|Other|Unknown|Unknown';if(!caseGroups.has(key))caseGroups.set(key,{month:c.month,shCode:c.shCode,vehicle:'Other',lender:'Unknown',geoState:'Unknown',loan:0,cases:0,inflow:0,outflow:0});}});
+  cost.forEach((c,smKey)=>{if(!shMonthCases.has(smKey)&&genuineShCodes.has(c.shCode)){const key=c.month+'|'+c.shCode+'|Other|Unknown|Unknown';if(!caseGroups.has(key))caseGroups.set(key,{month:c.month,shCode:c.shCode,vehicle:'Other',lender:'Unknown',geoState:'Unknown',loan:0,cases:0,inflow:0,outflow:0});}});
   const result=[];
   caseGroups.forEach(g=>{
     const smKey=g.month+'|'+g.shCode,totalCases=shMonthCases.get(smKey)||0,share=totalCases?g.cases/totalCases:1;
@@ -404,6 +408,28 @@ function excelSerialToMonthStr(serial){
   if(isNaN(d.getTime()))return null;
   return MONTH_ABBR[d.getUTCMonth()]+'-'+String(d.getUTCFullYear()).slice(-2);
 }
+function shNameIsCanonical(candidate,canonicalNames){
+  const norm=s=>String(s||'').trim().toLowerCase().replace(/\s+/g,' ');
+  const c=norm(candidate);
+  if(!c)return false;
+  for(const canon of canonicalNames){
+    const cn=norm(canon);
+    if(!cn)continue;
+    if(c===cn)return true;
+    const words=cn.split(' ').filter(Boolean);
+    if(words.length&&words.every(w=>c.includes(w)))return true;
+  }
+  return false;
+}
+function mergeShNames(base,extra){
+  const result=base.slice();
+  extra.forEach(name=>{
+    if(!name)return;
+    const isDupe=result.some(existing=>existing===name||shNameIsCanonical(existing,[name])||shNameIsCanonical(name,[existing]));
+    if(!isDupe)result.push(name);
+  });
+  return result.sort();
+}
 function buildHiringData(sheets){
   const foRows=sheetObjects(sheets,'FO Hiring & Attrition'),chRows=sheetObjects(sheets,'CH Hiring & Attrition');
   const fo=foRows.map(r=>({
@@ -420,7 +446,13 @@ function buildHiringData(sheets){
   const teams=uniq([...fo.map(x=>x.team),...ch.map(x=>x.team)]).filter(Boolean).sort();
   const foLevels=uniq(fo.map(x=>x.level)).filter(Boolean).sort();
   const chLevels=uniq(ch.map(x=>x.level)).filter(Boolean).sort();
-  const shs=uniq([...fo.map(x=>x.sh),...ch.map(x=>x.sh)]).filter(Boolean).sort();
+  // "SH - Name" is free text and occasionally holds a wrong/stray name rather than a genuine
+  // State Head — only keep names that match the authoritative "SH Name List" tab (fuzzy, since
+  // that list sometimes omits a middle name the Hiring sheets include, e.g. "Prashant
+  // Bhanushali" vs "Prashant Jayanti Bhanushali").
+  const canonicalShNames=sheetObjects(sheets,'SH Name List').map(r=>String(r['SH Name']||'').trim()).filter(Boolean);
+  const rawShs=uniq([...fo.map(x=>x.sh),...ch.map(x=>x.sh)]).filter(Boolean);
+  const shs=canonicalShNames.length?rawShs.filter(name=>shNameIsCanonical(name,canonicalShNames)).sort():rawShs.sort();
   return {fo,ch,teams,foLevels,chLevels,shs};
 }
 
@@ -1322,9 +1354,9 @@ async function loadGoogleSheet(silent){
     // cellDates:true silently shifts 1st-of-month DOJ/DOE cells into the prior month in this environment; re-parse those two sheets as raw serials to avoid the misattribution.
     const wbRaw = XLSX.read(new Uint8Array(buf), { type: 'array', cellDates: false });
     const hiringSheets = {};
-    ['FO Hiring & Attrition', 'CH Hiring & Attrition'].forEach(name => { if (wbRaw.Sheets[name]) hiringSheets[name] = XLSX.utils.sheet_to_json(wbRaw.Sheets[name], { header: 1, defval: '' }); });
+    ['FO Hiring & Attrition', 'CH Hiring & Attrition', 'SH Name List'].forEach(name => { if (wbRaw.Sheets[name]) hiringSheets[name] = XLSX.utils.sheet_to_json(wbRaw.Sheets[name], { header: 1, defval: '' }); });
     const hiring = buildHiringData(hiringSheets);
-    FO_HIRING = hiring.fo; CH_HIRING = hiring.ch; TEAM_TYPES = hiring.teams; FO_LEVELS = hiring.foLevels; CH_LEVELS = hiring.chLevels; HIRING_SHS = uniq([...SHS, ...hiring.shs]).filter(Boolean).sort();
+    FO_HIRING = hiring.fo; CH_HIRING = hiring.ch; TEAM_TYPES = hiring.teams; FO_LEVELS = hiring.foLevels; CH_LEVELS = hiring.chLevels; HIRING_SHS = mergeShNames(SHS, hiring.shs);
     sourceLabel = 'Google Sheet (Live)';
     googleSheetConnected = true;
     const syncedAt = new Date().toLocaleString('en-IN', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' });
@@ -1578,7 +1610,7 @@ initFilters();initPage4Filters();initPage5Filters();initPage6Filters();initPage7
 loadGoogleSheet(true);
 
 /* V18 Excel import / preview feature. Does not alter existing dashboard page markup or calculations. */
-function handleExcelImport(event){const file=event?.target?.files?.[0];if(!file)return;const reader=new FileReader();reader.onload=function(e){try{const buf=e.target.result;const wb=XLSX.read(new Uint8Array(buf),{type:'array',cellDates:true});importedWorkbook=wb;importedSheets={};wb.SheetNames.forEach(name=>{importedSheets[name]=XLSX.utils.sheet_to_json(wb.Sheets[name],{header:1,defval:''});});importedActiveSheet=wb.SheetNames[0]||'';sourceLabel=file.name;const built=buildRealData(importedSheets);data=built.rows;MONTHS=built.months;SHS=built.shs;LENDERS=built.lenders;VEHICLES=built.vehicles;GEOSTATES=built.geoStates;const wbRaw=XLSX.read(new Uint8Array(buf),{type:'array',cellDates:false});const hiringSheets={};['FO Hiring & Attrition','CH Hiring & Attrition'].forEach(name=>{if(wbRaw.Sheets[name])hiringSheets[name]=XLSX.utils.sheet_to_json(wbRaw.Sheets[name],{header:1,defval:''});});const hiring=buildHiringData(hiringSheets);FO_HIRING=hiring.fo;CH_HIRING=hiring.ch;TEAM_TYPES=hiring.teams;FO_LEVELS=hiring.foLevels;CH_LEVELS=hiring.chLevels;HIRING_SHS=uniq([...SHS,...hiring.shs]).filter(Boolean).sort();const source=document.getElementById('sourceName');if(source)source.textContent=file.name;buildImportedDataPage(file.name);initFilters();initPage4Filters();initPage5Filters();initPage6Filters();initPage7Filters();initPage8Filters();renderAll();}catch(err){alert('Unable to read this Excel file. Please use a valid .xlsx, .xls or .csv file.\n\n'+err.message);}};reader.readAsArrayBuffer(file);}
+function handleExcelImport(event){const file=event?.target?.files?.[0];if(!file)return;const reader=new FileReader();reader.onload=function(e){try{const buf=e.target.result;const wb=XLSX.read(new Uint8Array(buf),{type:'array',cellDates:true});importedWorkbook=wb;importedSheets={};wb.SheetNames.forEach(name=>{importedSheets[name]=XLSX.utils.sheet_to_json(wb.Sheets[name],{header:1,defval:''});});importedActiveSheet=wb.SheetNames[0]||'';sourceLabel=file.name;const built=buildRealData(importedSheets);data=built.rows;MONTHS=built.months;SHS=built.shs;LENDERS=built.lenders;VEHICLES=built.vehicles;GEOSTATES=built.geoStates;const wbRaw=XLSX.read(new Uint8Array(buf),{type:'array',cellDates:false});const hiringSheets={};['FO Hiring & Attrition','CH Hiring & Attrition','SH Name List'].forEach(name=>{if(wbRaw.Sheets[name])hiringSheets[name]=XLSX.utils.sheet_to_json(wbRaw.Sheets[name],{header:1,defval:''});});const hiring=buildHiringData(hiringSheets);FO_HIRING=hiring.fo;CH_HIRING=hiring.ch;TEAM_TYPES=hiring.teams;FO_LEVELS=hiring.foLevels;CH_LEVELS=hiring.chLevels;HIRING_SHS=mergeShNames(SHS,hiring.shs);const source=document.getElementById('sourceName');if(source)source.textContent=file.name;buildImportedDataPage(file.name);initFilters();initPage4Filters();initPage5Filters();initPage6Filters();initPage7Filters();initPage8Filters();renderAll();}catch(err){alert('Unable to read this Excel file. Please use a valid .xlsx, .xls or .csv file.\n\n'+err.message);}};reader.readAsArrayBuffer(file);}
 function buildImportedDataPage(fileName){const names=Object.keys(importedSheets),tabs=document.getElementById('importSheetTabs');if(!tabs)return;tabs.innerHTML=names.map(n=>`<button type="button" class="sheetTab ${n===importedActiveSheet?'active':''}" onclick="selectImportedSheet(${JSON.stringify(n)})">${escapeImportedHtml(n)}</button>`).join('');const rows=importedSheets[importedActiveSheet]||[],headers=rows[0]||[],body=rows.slice(1);document.getElementById('importFileName').textContent=fileName||'Imported workbook';document.getElementById('importRowCount').textContent=body.length.toLocaleString('en-IN');document.getElementById('importColCount').textContent=headers.length.toLocaleString('en-IN');document.getElementById('importSheetCount').textContent=names.length.toLocaleString('en-IN');renderImportedSheet();document.getElementById('importNotice').innerHTML=`<strong>Imported successfully:</strong> ${escapeImportedHtml(fileName||'Workbook')} • Showing sheet <strong>${escapeImportedHtml(importedActiveSheet)}</strong>. Read-only preview.`;}
 function selectImportedSheet(name){importedActiveSheet=name;buildImportedDataPage(document.getElementById('importFileName').textContent||'Imported workbook');}
 const IMPORT_PREVIEW_ROW_CAP=500;function renderImportedSheet(){const rows=importedSheets[importedActiveSheet]||[],head=document.getElementById('importTableHead'),body=document.getElementById('importTableBody');if(!head||!body)return;const headers=rows[0]||[],dataRows=rows.slice(1),previewRows=dataRows.slice(0,IMPORT_PREVIEW_ROW_CAP);head.innerHTML=headers.map((h,i)=>`<th>${escapeImportedHtml(String(h||'Column '+(i+1)))}</th>`).join('');body.innerHTML=previewRows.length?previewRows.map(r=>`<tr>${headers.map((_,i)=>`<td>${escapeImportedHtml(formatImportedValue(r[i]))}</td>`).join('')}</tr>`).join(''):`<tr><td colspan="${Math.max(headers.length,1)}" class="importEmpty">No rows found in this sheet.</td></tr>`;if(dataRows.length>IMPORT_PREVIEW_ROW_CAP){body.innerHTML+=`<tr><td colspan="${Math.max(headers.length,1)}" class="importEmpty">Showing first ${IMPORT_PREVIEW_ROW_CAP.toLocaleString('en-IN')} of ${dataRows.length.toLocaleString('en-IN')} rows. All rows are still used in the dashboard calculations — this preview is capped for performance.</td></tr>`}filterImportedTable();}
