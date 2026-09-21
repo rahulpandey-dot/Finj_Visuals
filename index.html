@@ -343,7 +343,7 @@ function buildRealData(sheets){
   shNameCount.forEach((nameMap,code)=>{let best=code,bestCount=-1;nameMap.forEach((cnt,name)=>{if(cnt>bestCount){best=name;bestCount=cnt;}});shCodeToName.set(code,best);});
   const caseGroups=new Map(),shMonthCases=new Map();
   caseRows.forEach(r=>{
-    const month=String(r['Month']||'').trim(),shCode=String(r['SH']||'').trim();
+    const month=normalizeMonthLabel(r['Month']),shCode=String(r['SH']||'').trim();
     if(!month||!shCode)return;
     const vehicle=normalizeVehicle(r['Vehicle Type']),lender=String(r['Lender']||'').trim()||'Unknown';
     const geoState=String(r['State Name']||'').trim()||'Unknown';
@@ -355,10 +355,10 @@ function buildRealData(sheets){
   });
   const cost=new Map();
   function ensureCost(month,shCode){const k=month+'|'+shCode;if(!cost.has(k))cost.set(k,{month,shCode,foSalary:0,chSalary:0,shSalary:0,foTravel:0,chTravel:0,shTravel:0,foIncentive:0,chIncentive:0,shIncentive:0,foSet:new Set()});return cost.get(k);}
-  salaryRows.forEach(r=>{const month=String(r['Month']||'').trim(),shCode=String(r['Tagged SH Employee Code']||'').trim();if(!month||!shCode)return;const type=String(r['Employee Type']||'').trim().toUpperCase();const amt=(+r['Final Salary']||0)/1e5;const c=ensureCost(month,shCode);if(type==='FO'){c.foSalary+=amt;c.foSet.add(String(r['Employee Id']||''));}else if(type==='CH')c.chSalary+=amt;else if(type==='SH')c.shSalary+=amt;});
-  fuelRows.forEach(r=>{const month=String(r['Month']||'').trim(),shCode=String(r['Tagged SH Employee Code']||'').trim();if(!month||!shCode)return;const type=String(r['Employee Type']||'').trim().toUpperCase();const amt=(+r['Amount']||0)/1e5;const c=ensureCost(month,shCode);if(type==='FO')c.foTravel+=amt;else if(type==='CH')c.chTravel+=amt;});
-  kekaRows.forEach(r=>{const month=String(r['Expenses Submitted month']||'').trim(),shCode=String(r['Tagged SH Employee Code']||'').trim();if(!month||!shCode)return;const type=String(r['Emp Categiry']||'').trim().toUpperCase();const amt=(+r['Amount Value']||0)/1e5;const c=ensureCost(month,shCode);if(type==='FO')c.foTravel+=amt;else if(type==='CH')c.chTravel+=amt;else if(type==='SH')c.shTravel+=amt;});
-  incentiveRows.forEach(r=>{const month=String(r['Month']||'').trim(),shCode=String(r['Tagged Sh Employee Code']||'').trim();if(!month||!shCode)return;const type=String(r['Employee Type']||'').trim().toUpperCase();const amt=(+r['Amount']||0)/1e5;const c=ensureCost(month,shCode);if(type==='FO')c.foIncentive+=amt;else if(type==='CH')c.chIncentive+=amt;else if(type==='SH')c.shIncentive+=amt;});
+  salaryRows.forEach(r=>{const month=normalizeMonthLabel(r['Month']),shCode=String(r['Tagged SH Employee Code']||'').trim();if(!month||!shCode)return;const type=String(r['Employee Type']||'').trim().toUpperCase();const amt=(+r['Final Salary']||0)/1e5;const c=ensureCost(month,shCode);if(type==='FO'){c.foSalary+=amt;c.foSet.add(String(r['Employee Id']||''));}else if(type==='CH')c.chSalary+=amt;else if(type==='SH')c.shSalary+=amt;});
+  fuelRows.forEach(r=>{const month=normalizeMonthLabel(r['Month']),shCode=String(r['Tagged SH Employee Code']||'').trim();if(!month||!shCode)return;const type=String(r['Employee Type']||'').trim().toUpperCase();const amt=(+r['Amount']||0)/1e5;const c=ensureCost(month,shCode);if(type==='FO')c.foTravel+=amt;else if(type==='CH')c.chTravel+=amt;});
+  kekaRows.forEach(r=>{const month=normalizeMonthLabel(r['Expenses Submitted month']),shCode=String(r['Tagged SH Employee Code']||'').trim();if(!month||!shCode)return;const type=String(r['Emp Categiry']||'').trim().toUpperCase();const amt=(+r['Amount Value']||0)/1e5;const c=ensureCost(month,shCode);if(type==='FO')c.foTravel+=amt;else if(type==='CH')c.chTravel+=amt;else if(type==='SH')c.shTravel+=amt;});
+  incentiveRows.forEach(r=>{const month=normalizeMonthLabel(r['Month']),shCode=String(r['Tagged Sh Employee Code']||'').trim();if(!month||!shCode)return;const type=String(r['Employee Type']||'').trim().toUpperCase();const amt=(+r['Amount']||0)/1e5;const c=ensureCost(month,shCode);if(type==='FO')c.foIncentive+=amt;else if(type==='CH')c.chIncentive+=amt;else if(type==='SH')c.shIncentive+=amt;});
   cost.forEach((c,smKey)=>{if(!shMonthCases.has(smKey)){const key=c.month+'|'+c.shCode+'|Other|Unknown|Unknown';if(!caseGroups.has(key))caseGroups.set(key,{month:c.month,shCode:c.shCode,vehicle:'Other',lender:'Unknown',geoState:'Unknown',loan:0,cases:0,inflow:0,outflow:0});}});
   const result=[];
   caseGroups.forEach(g=>{
@@ -379,6 +379,22 @@ function buildRealData(sheets){
 /* Hiring & attrition ETL: one row per employee, with joining/exit dates stored as Excel date
    serials. Converted here to the dashboard's "Mon-YY" month keys so headcount can be bucketed. */
 const MONTH_ABBR=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+function normalizeMonthLabel(v){
+  if(v===null||v===undefined||v==='')return '';
+  if(v instanceof Date){
+    if(isNaN(v.getTime()))return '';
+    const d=new Date(v.getTime()+12*3600*1000);
+    return MONTH_ABBR[d.getUTCMonth()]+'-'+String(d.getUTCFullYear()).slice(-2);
+  }
+  const s=String(v).trim();
+  if(/^[A-Za-z]{3}-\d{2}$/.test(s))return s;
+  const n=Number(s);
+  if(s!==''&&isFinite(n)&&n>20000&&n<60000){
+    const d=new Date(Math.round((n-25569)*86400*1000)+12*3600*1000);
+    return MONTH_ABBR[d.getUTCMonth()]+'-'+String(d.getUTCFullYear()).slice(-2);
+  }
+  return s;
+}
 function excelSerialToMonthStr(serial){
   if(serial===''||serial===null||serial===undefined)return null;
   if(serial instanceof Date)return MONTH_ABBR[serial.getMonth()]+'-'+String(serial.getFullYear()).slice(-2);
