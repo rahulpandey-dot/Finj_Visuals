@@ -203,6 +203,15 @@ body[data-theme="dark"] .scenario{background:#131315;border-color:#2a2a2d}body[d
 .loadWarnBullet{flex:0 0 auto;color:var(--warn)}
 .loadWarnText{flex:1;min-width:0}
 .loadWarnHint{color:var(--accent);font-weight:800;font-size:10px}
+.loadWarnImpact{display:block;margin-top:6px;padding:7px 10px;border-radius:8px;background:rgba(199,67,92,.10);border-left:2px solid var(--bad);font-size:10.5px;line-height:1.55;color:var(--text)}
+.loadWarnImpact strong{display:block;color:var(--bad);font-weight:900;text-transform:uppercase;font-size:8.5px;letter-spacing:.4px;margin-bottom:2px}
+.loadResolvedBox{margin-top:16px;padding:12px 14px;border-radius:12px;background:rgba(25,135,93,.10);border-left:3px solid var(--good);font-size:11px;line-height:1.65;color:var(--text)}
+.loadResolvedItem{margin-top:6px}
+.loadStatusBadge{display:inline-block;margin-left:7px;padding:1px 8px;border-radius:999px;font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:.2px;vertical-align:1px;white-space:nowrap}
+.loadStatusBadge.progress{background:rgba(184,120,22,.16);color:var(--warn)}
+.loadStatusBadge.notResolved{background:rgba(199,67,92,.16);color:var(--bad)}
+body[data-theme="dark"] .loadResolvedBox{background:rgba(85,199,149,.12)}
+body[data-theme="dark"] .loadWarnImpact{background:rgba(255,113,136,.12)}
 .loadIssueDetail{width:100%;margin-top:8px}
 .loadIssueEmpty{font-size:10.5px;color:var(--muted);font-style:italic;padding:4px 2px}
 .loadIssuesWrap{max-height:190px;overflow:auto;border:1px solid var(--line);border-radius:10px}
@@ -416,6 +425,8 @@ function makeIssueTracker(){
 }
 function buildRealData(sheets){
   const issueTracker=makeIssueTracker(),pushIssue=issueTracker.pushIssue;
+  const impactBySheet={};
+  function addImpact(sheet,amount,isCase){if(!impactBySheet[sheet])impactBySheet[sheet]={amount:0,cases:0};impactBySheet[sheet].amount+=amount;if(isCase)impactBySheet[sheet].cases++;}
   const caseRows=sheetObjects(sheets,'Case Data'),salaryRows=sheetObjects(sheets,'Salary Data'),fuelRows=sheetObjects(sheets,'Fuel Data'),incentiveRows=sheetObjects(sheets,'Incentive Data'),kekaRows=sheetObjects(sheets,'Keka Reimbursements');
   const shNameCount=new Map();
   function noteSh(code,name){code=String(code||'').trim();if(!code)return;if(!shNameCount.has(code))shNameCount.set(code,new Map());const m=shNameCount.get(code);const label=String(name||'').trim()||code;m.set(label,(m.get(label)||0)+1);}
@@ -438,6 +449,7 @@ function buildRealData(sheets){
     if(!month||!shCode){
       const missing=[];if(!month)missing.push('Month');if(!shCode)missing.push('SH');
       pushIssue('Case Data',sheetRow,missing.join(', '),'Missing or blank value','missing');
+      addImpact('Case Data',(+r['Loan Amount']||0)/1e5,true);
       return;
     }
     caseIncluded++;
@@ -452,20 +464,21 @@ function buildRealData(sheets){
   });
   const cost=new Map();
   function ensureCost(month,shCode){const k=month+'|'+shCode;if(!cost.has(k))cost.set(k,{month,shCode,foSalary:0,chSalary:0,shSalary:0,foTravel:0,chTravel:0,shTravel:0,foIncentive:0,chIncentive:0,shIncentive:0,foSet:new Set()});return cost.get(k);}
-  function requireMonthAndCode(r,idx,sheetName,monthField,codeField){
+  function requireMonthAndCode(r,idx,sheetName,monthField,codeField,amountField){
     const sheetRow=idx+2;
     const month=normalizeMonthLabel(r[monthField]),shCode=String(r[codeField]||'').trim();
     if(!month||!shCode){
       const missing=[];if(!month)missing.push(monthField);if(!shCode)missing.push(codeField);
       pushIssue(sheetName,sheetRow,missing.join(', '),'Missing or blank value','missing');
+      if(amountField)addImpact(sheetName,(+r[amountField]||0)/1e5,false);
       return null;
     }
     return {month,shCode};
   }
-  let salaryIncluded=0;salaryRows.forEach((r,idx)=>{const mc=requireMonthAndCode(r,idx,'Salary Data','Month','Tagged SH Employee Code');if(!mc)return;salaryIncluded++;const{month,shCode}=mc;const type=String(r['Employee Type']||'').trim().toUpperCase();const amt=(+r['Final Salary']||0)/1e5;const c=ensureCost(month,shCode);if(type==='FO'){c.foSalary+=amt;c.foSet.add(String(r['Employee Id']||''));}else if(type==='CH')c.chSalary+=amt;else if(type==='SH')c.shSalary+=amt;});
-  let fuelIncluded=0;fuelRows.forEach((r,idx)=>{const mc=requireMonthAndCode(r,idx,'Fuel Data','Month','Tagged SH Employee Code');if(!mc)return;fuelIncluded++;const{month,shCode}=mc;const type=String(r['Employee Type']||'').trim().toUpperCase();const amt=(+r['Amount']||0)/1e5;const c=ensureCost(month,shCode);if(type==='FO')c.foTravel+=amt;else if(type==='CH')c.chTravel+=amt;});
-  let kekaIncluded=0;kekaRows.forEach((r,idx)=>{const mc=requireMonthAndCode(r,idx,'Keka Reimbursements','Expenses Submitted month','Tagged SH Employee Code');if(!mc)return;kekaIncluded++;const{month,shCode}=mc;const type=String(r['Emp Categiry']||'').trim().toUpperCase();const amt=(+r['Amount Value']||0)/1e5;const c=ensureCost(month,shCode);if(type==='FO')c.foTravel+=amt;else if(type==='CH')c.chTravel+=amt;else if(type==='SH')c.shTravel+=amt;});
-  let incentiveIncluded=0;incentiveRows.forEach((r,idx)=>{const mc=requireMonthAndCode(r,idx,'Incentive Data','Month','Tagged Sh Employee Code');if(!mc)return;incentiveIncluded++;const{month,shCode}=mc;const type=String(r['Employee Type']||'').trim().toUpperCase();const amt=(+r['Amount']||0)/1e5;const c=ensureCost(month,shCode);if(type==='FO')c.foIncentive+=amt;else if(type==='CH')c.chIncentive+=amt;else if(type==='SH')c.shIncentive+=amt;});
+  let salaryIncluded=0;salaryRows.forEach((r,idx)=>{const mc=requireMonthAndCode(r,idx,'Salary Data','Month','Tagged SH Employee Code','Final Salary');if(!mc)return;salaryIncluded++;const{month,shCode}=mc;const type=String(r['Employee Type']||'').trim().toUpperCase();const amt=(+r['Final Salary']||0)/1e5;const c=ensureCost(month,shCode);if(type==='FO'){c.foSalary+=amt;c.foSet.add(String(r['Employee Id']||''));}else if(type==='CH')c.chSalary+=amt;else if(type==='SH')c.shSalary+=amt;});
+  let fuelIncluded=0;fuelRows.forEach((r,idx)=>{const mc=requireMonthAndCode(r,idx,'Fuel Data','Month','Tagged SH Employee Code','Amount');if(!mc)return;fuelIncluded++;const{month,shCode}=mc;const type=String(r['Employee Type']||'').trim().toUpperCase();const amt=(+r['Amount']||0)/1e5;const c=ensureCost(month,shCode);if(type==='FO')c.foTravel+=amt;else if(type==='CH')c.chTravel+=amt;});
+  let kekaIncluded=0;kekaRows.forEach((r,idx)=>{const mc=requireMonthAndCode(r,idx,'Keka Reimbursements','Expenses Submitted month','Tagged SH Employee Code','Amount Value');if(!mc)return;kekaIncluded++;const{month,shCode}=mc;const type=String(r['Emp Categiry']||'').trim().toUpperCase();const amt=(+r['Amount Value']||0)/1e5;const c=ensureCost(month,shCode);if(type==='FO')c.foTravel+=amt;else if(type==='CH')c.chTravel+=amt;else if(type==='SH')c.shTravel+=amt;});
+  let incentiveIncluded=0;incentiveRows.forEach((r,idx)=>{const mc=requireMonthAndCode(r,idx,'Incentive Data','Month','Tagged Sh Employee Code','Amount');if(!mc)return;incentiveIncluded++;const{month,shCode}=mc;const type=String(r['Employee Type']||'').trim().toUpperCase();const amt=(+r['Amount']||0)/1e5;const c=ensureCost(month,shCode);if(type==='FO')c.foIncentive+=amt;else if(type==='CH')c.chIncentive+=amt;else if(type==='SH')c.shIncentive+=amt;});
   cost.forEach((c,smKey)=>{if(!shMonthCases.has(smKey)&&genuineShCodes.has(c.shCode)){const key=c.month+'|'+c.shCode+'|Other|Unknown|Unknown';if(!caseGroups.has(key))caseGroups.set(key,{month:c.month,shCode:c.shCode,vehicle:'Other',lender:'Unknown',geoState:'Unknown',loan:0,cases:0,inflow:0,outflow:0});}});
   const result=[];
   caseGroups.forEach(g=>{
@@ -488,10 +501,18 @@ function buildRealData(sheets){
     {name:'Keka Reimbursements',total:kekaRows.length,included:kekaIncluded,excluded:kekaRows.length-kekaIncluded}
   ];
   const warnings=[];
-  if(caseBadNumeric>0)warnings.push({sheet:'Case Data',kind:'numeric',count:caseBadNumeric,text:`Case Data: ${caseBadNumeric} value(s) in Loan/Inflow/Outflow Amount could not be read as a number and were treated as 0.`});
+  if(caseBadNumeric>0)warnings.push({sheet:'Case Data',kind:'numeric',count:caseBadNumeric,text:`Case Data: ${caseBadNumeric} value(s) in Loan/Inflow/Outflow Amount could not be read as a number and were treated as 0.`,impact:`Case counts stay correct, but the Loan/Inflow/Outflow figures for these ${fmt(caseBadNumeric,0)} row(s) read as ₹0 — totals, KPIs and charts are understated by whatever the real amount should have been.`});
   sheetStats.forEach(s=>{
-    if(s.total===0)warnings.push({sheet:s.name,kind:'empty',count:0,text:`${s.name}: tab is present but has no data rows.`});
-    else if(s.excluded>0)warnings.push({sheet:s.name,kind:'missing',count:s.excluded,text:`${s.name}: ${s.excluded} of ${s.total} row(s) skipped — missing Month or SH/employee code.`});
+    if(s.total===0){warnings.push({sheet:s.name,kind:'empty',count:0,text:`${s.name}: tab is present but has no data rows.`});return;}
+    if(s.excluded<=0)return;
+    const imp=impactBySheet[s.name];
+    let impact;
+    if(s.name==='Case Data'&&imp){
+      impact=`≈₹${fmt(imp.amount/100,2)} Cr in Loan Amount across ${fmt(imp.cases,0)} case(s) is completely missing from every total, KPI, chart and filter on this dashboard — not just understated, absent.`;
+    }else if(imp){
+      impact=`≈₹${fmt(imp.amount,1)} L in cost from these rows is not being subtracted anywhere — CM-1/CM-2 margins for the affected State Head(s)/month(s) will look better than they actually are.`;
+    }
+    warnings.push({sheet:s.name,kind:'missing',count:s.excluded,text:`${s.name}: ${s.excluded} of ${s.total} row(s) skipped — missing Month or SH/employee code.`,impact});
   });
   return {rows:result,months:monthsOut,shs:shsOut,lenders:lendersOut,vehicles:vehiclesOut,geoStates:geoStatesOut,sheetStats,warnings,dataIssues:issueTracker.dataIssues,dataIssuesTotal:issueTracker.dataIssuesTotal};
 }
@@ -580,8 +601,10 @@ function buildHiringData(sheets){
   ];
   const warnings=[];
   sheetStats.forEach(s=>{
-    if(s.total===0)warnings.push({sheet:s.name,kind:'empty',count:0,text:`${s.name}: tab is present but has no data rows.`});
-    else if(s.excluded>0)warnings.push({sheet:s.name,kind:'missing',count:s.excluded,text:`${s.name}: ${s.excluded} of ${s.total} row(s) skipped — missing employee ID or joining date.`});
+    if(s.total===0){warnings.push({sheet:s.name,kind:'empty',count:0,text:`${s.name}: tab is present but has no data rows.`});return;}
+    if(s.excluded<=0)return;
+    const role=s.name.startsWith('FO')?'FO(s)':'CH(s)';
+    warnings.push({sheet:s.name,kind:'missing',count:s.excluded,text:`${s.name}: ${s.excluded} of ${s.total} row(s) skipped — missing employee ID or joining date.`,impact:`These ${fmt(s.excluded,0)} ${role} are entirely excluded from Opening/Month-End headcount, Hired FTM and Exited FTM on the Hiring & Attrition page — actual headcount may be higher than what's shown.`});
   });
   if(!canonicalShNames.length)warnings.push({sheet:null,kind:'other',count:0,text:'SH Name List tab not found — State Head names on the Hiring & Attrition filter could not be validated against the master list.'});
   return {fo,ch,teams,foLevels,chLevels,shs,sheetStats,warnings,dataIssues:issueTracker.dataIssues,dataIssuesTotal:issueTracker.dataIssuesTotal};
@@ -1509,12 +1532,53 @@ function loadSummaryTableHtml(sheetStats){
 }
 let LAST_LOAD_ISSUES = [];
 function jsStringArg(s){ return String(s == null ? '' : s).replace(/\\/g, '\\\\').replace(/'/g, "\\'"); }
-function loadWarningsHtml(warnings){
+const LOAD_BASELINE_KEY = 'finjDataQualityBaseline';
+function issueKindLabel(kind){ return kind === 'numeric' ? 'non-numeric values' : 'missing/skipped rows'; }
+/* Compares this load's issue counts against the counts saved from the last visible sync, so
+   fixes made in the source sheet since then show up as Resolved / In Progress, then saves the
+   current counts as the new baseline for next time. */
+function compareAndUpdateIssueBaseline(warnings){
+  const trackable = (warnings || []).filter(w => w.sheet && (w.kind === 'missing' || w.kind === 'numeric'));
+  const currentMap = new Map(trackable.map(w => [w.sheet + '|' + w.kind, Number(w.count) || 0]));
+  let baseline = [];
+  try { const raw = localStorage.getItem(LOAD_BASELINE_KEY); if (raw) baseline = JSON.parse(raw).issues || []; } catch (e) {}
+  const baselineMap = new Map(baseline.map(b => [b.sheet + '|' + b.kind, b.count]));
+  const statusMap = new Map();
+  const resolved = [];
+  currentMap.forEach((now, key) => {
+    const was = baselineMap.get(key);
+    if (was === undefined || was <= 0) return;
+    if (now < was) statusMap.set(key, { status: 'progress', was, now });
+    else statusMap.set(key, { status: 'notResolved', was, now });
+  });
+  baselineMap.forEach((was, key) => {
+    if (was > 0 && !currentMap.has(key)) {
+      const [sheet, kind] = key.split('|');
+      resolved.push({ sheet, kind, was });
+    }
+  });
+  try {
+    const issues = [...currentMap.entries()].map(([key, count]) => { const [sheet, kind] = key.split('|'); return { sheet, kind, count }; });
+    localStorage.setItem(LOAD_BASELINE_KEY, JSON.stringify({ savedAt: Date.now(), issues }));
+  } catch (e) {}
+  return { resolved, statusMap };
+}
+function loadResolvedHtml(resolved){
+  if (!resolved || !resolved.length) return '';
+  const items = resolved.map(r => `<div class="loadResolvedItem">✓ ${r.sheet} — ${issueKindLabel(r.kind)} resolved (was ${fmt(r.was, 0)}, now 0).</div>`).join('');
+  return `<div class="loadResolvedBox"><strong>Resolved since last check:</strong>${items}</div>`;
+}
+function loadWarningsHtml(warnings, statusMap){
   if (!warnings || !warnings.length) return '';
   const items = warnings.map((w, i) => {
     const clickable = !!(w.sheet && (w.kind === 'missing' || w.kind === 'numeric'));
     const openAttr = clickable ? ` onclick="toggleLoadIssueDetail(this,'${jsStringArg(w.sheet)}','${jsStringArg(w.kind)}',${Number(w.count) || 0})"` : '';
-    return `<div class="loadWarnItem${clickable ? ' clickable' : ''}"${openAttr}><span class="loadWarnBullet">•</span><span class="loadWarnText">${w.text}${clickable ? ' <span class="loadWarnHint">— click to see rows ›</span>' : ''}</span><div class="loadIssueDetail" id="loadIssueDetail${i}"></div></div>`;
+    const impactHtml = w.impact ? `<div class="loadWarnImpact"><strong>Impact if left as-is</strong>${w.impact}</div>` : '';
+    const st = statusMap && w.sheet ? statusMap.get(w.sheet + '|' + w.kind) : null;
+    const statusHtml = st ? (st.status === 'progress'
+      ? `<span class="loadStatusBadge progress">🔧 In Progress — was ${fmt(st.was, 0)}, now ${fmt(st.now, 0)}</span>`
+      : `<span class="loadStatusBadge notResolved">✕ Not Resolved since last check</span>`) : '';
+    return `<div class="loadWarnItem${clickable ? ' clickable' : ''}"${openAttr}><span class="loadWarnBullet">•</span><span class="loadWarnText">${w.text}${statusHtml}${clickable ? ' <span class="loadWarnHint">— click to see rows ›</span>' : ''}${impactHtml}</span><div class="loadIssueDetail" id="loadIssueDetail${i}"></div></div>`;
   }).join('');
   return `<div class="loadWarnBox"><strong>Please review:</strong><div class="loadWarnList">${items}</div></div>`;
 }
@@ -1536,14 +1600,16 @@ function toggleLoadIssueDetail(el, sheet, kind, count){
 function showLoadSuccess(sourceText, sheetStats, warnings, dataIssues){
   if (!document.getElementById('loadModal')) return;
   LAST_LOAD_ISSUES = dataIssues || [];
+  const { resolved, statusMap } = compareAndUpdateIssueBaseline(warnings);
   const hasWarnings = warnings && warnings.length > 0;
+  const hasResolved = resolved.length > 0;
   setLoadModalIcon(hasWarnings ? 'warning' : 'success');
-  document.getElementById('loadModalTitle').textContent = hasWarnings ? 'Data loaded — with warnings' : 'Data loaded successfully';
+  document.getElementById('loadModalTitle').textContent = hasWarnings ? 'Data loaded — with warnings' : (hasResolved ? 'Data loaded — issues resolved!' : 'Data loaded successfully');
   document.getElementById('loadModalSubtitle').textContent = sourceText || '';
-  document.getElementById('loadModalBody').innerHTML = loadSummaryTableHtml(sheetStats) + loadWarningsHtml(warnings) + `<div class="loadFooterBtn"><button type="button" class="btn primary" onclick="closeLoadModal()">Got it</button></div>`;
+  document.getElementById('loadModalBody').innerHTML = loadSummaryTableHtml(sheetStats) + loadResolvedHtml(resolved) + loadWarningsHtml(warnings, statusMap) + `<div class="loadFooterBtn"><button type="button" class="btn primary" onclick="closeLoadModal()">Got it</button></div>`;
   const closeBtn = document.getElementById('loadModalClose'); if (closeBtn) closeBtn.style.display = '';
   openLoadModal();
-  if (!hasWarnings) {
+  if (!hasWarnings && !hasResolved) {
     setTimeout(() => { const m = document.getElementById('loadModal'); if (m && m.classList.contains('open')) closeLoadModal(); }, 4500);
   }
 }
