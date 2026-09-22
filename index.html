@@ -195,6 +195,22 @@ body[data-theme="dark"] .scenario{background:#131315;border-color:#2a2a2d}body[d
 .loadExcludePill{display:inline-block;padding:1px 8px;border-radius:999px;background:rgba(199,67,92,.14);color:var(--bad);font-weight:900;font-size:10px}
 .loadCleanPill{color:var(--muted)}
 .loadWarnBox{margin-top:16px;padding:12px 14px;border-radius:12px;background:rgba(184,120,22,.10);border-left:3px solid var(--warn);font-size:11px;line-height:1.65;color:var(--text)}
+.loadWarnList{display:flex;flex-direction:column;gap:2px;margin-top:8px}
+.loadWarnItem{display:flex;flex-wrap:wrap;align-items:flex-start;gap:7px;padding:5px 6px;border-radius:8px;transition:background .15s ease}
+.loadWarnItem.clickable{cursor:pointer}
+.loadWarnItem.clickable:hover{background:rgba(184,120,22,.14)}
+.loadWarnItem.open{background:rgba(184,120,22,.14)}
+.loadWarnBullet{flex:0 0 auto;color:var(--warn)}
+.loadWarnText{flex:1;min-width:0}
+.loadWarnHint{color:var(--accent);font-weight:800;font-size:10px}
+.loadIssueDetail{width:100%;margin-top:8px}
+.loadIssueEmpty{font-size:10.5px;color:var(--muted);font-style:italic;padding:4px 2px}
+.loadIssuesWrap{max-height:190px;overflow:auto;border:1px solid var(--line);border-radius:10px}
+.loadIssuesTable{width:100%;border-collapse:collapse;font-size:10.5px}
+.loadIssuesTable th{position:sticky;top:0;background:var(--panel);text-align:left;color:var(--muted);font-size:9px;text-transform:uppercase;letter-spacing:.2px;padding:6px 8px;border-bottom:1px solid var(--line)}
+.loadIssuesTable td{padding:6px 8px;border-bottom:1px solid var(--line);color:var(--text)}
+.loadIssuesTable td.num{text-align:right;font-variant-numeric:tabular-nums}
+.loadIssuesMore{margin-top:7px;font-size:10px;color:var(--muted);text-align:center}
 .loadErrorBox{padding:14px 16px;border-radius:12px;background:rgba(199,67,92,.10);border:1px solid rgba(199,67,92,.25);color:var(--bad);font-size:12px;line-height:1.65;font-weight:600}
 .loadFooterBtn{margin-top:18px;display:flex;justify-content:flex-end;gap:8px}
 body[data-theme="dark"] .loadPanel{background:#131315}
@@ -387,7 +403,19 @@ function normalizeVehicle(v){const key=String(v||'').toLowerCase().trim();return
 const MONTH_ORDER={Jan:0,Feb:1,Mar:2,Apr:3,May:4,Jun:5,Jul:6,Aug:7,Sep:8,Oct:9,Nov:10,Dec:11};
 function monthSortKey(m){const parts=String(m||'').split('-');const mon=parts[0],yy=+parts[1];return (2000+(isNaN(yy)?0:yy))*12+(MONTH_ORDER[mon]??0);}
 function sheetObjects(sheets,name){const rows=sheets[name];if(!rows||!rows.length)return [];const headers=rows[0].map(h=>String(h||'').trim());const out=[];for(let i=1;i<rows.length;i++){const r=rows[i],o={};headers.forEach((h,idx)=>{o[h]=r[idx];});out.push(o);}return out;}
+const DATA_ISSUE_BUCKET_CAP=50;
+function makeIssueTracker(){
+  const dataIssues=[];let dataIssuesTotal=0;const bucketCounts=new Map();
+  function pushIssue(sheet,row,column,issue,kind){
+    dataIssuesTotal++;
+    const bucketKey=sheet+'|'+kind;
+    const n=(bucketCounts.get(bucketKey)||0)+1;bucketCounts.set(bucketKey,n);
+    if(n<=DATA_ISSUE_BUCKET_CAP)dataIssues.push({sheet,row,column,issue,kind});
+  }
+  return {pushIssue,get dataIssues(){return dataIssues;},get dataIssuesTotal(){return dataIssuesTotal;}};
+}
 function buildRealData(sheets){
+  const issueTracker=makeIssueTracker(),pushIssue=issueTracker.pushIssue;
   const caseRows=sheetObjects(sheets,'Case Data'),salaryRows=sheetObjects(sheets,'Salary Data'),fuelRows=sheetObjects(sheets,'Fuel Data'),incentiveRows=sheetObjects(sheets,'Incentive Data'),kekaRows=sheetObjects(sheets,'Keka Reimbursements');
   const shNameCount=new Map();
   function noteSh(code,name){code=String(code||'').trim();if(!code)return;if(!shNameCount.has(code))shNameCount.set(code,new Map());const m=shNameCount.get(code);const label=String(name||'').trim()||code;m.set(label,(m.get(label)||0)+1);}
@@ -404,14 +432,19 @@ function buildRealData(sheets){
   const genuineShCodes=new Set(caseRows.map(r=>String(r['SH']||'').trim()).filter(Boolean));
   const caseGroups=new Map(),shMonthCases=new Map();
   let caseIncluded=0,caseBadNumeric=0;
-  caseRows.forEach(r=>{
+  caseRows.forEach((r,idx)=>{
+    const sheetRow=idx+2;
     const month=normalizeMonthLabel(r['Month']),shCode=String(r['SH']||'').trim();
-    if(!month||!shCode)return;
+    if(!month||!shCode){
+      const missing=[];if(!month)missing.push('Month');if(!shCode)missing.push('SH');
+      pushIssue('Case Data',sheetRow,missing.join(', '),'Missing or blank value','missing');
+      return;
+    }
     caseIncluded++;
     const vehicle=normalizeVehicle(r['Vehicle Type']),lender=String(r['Lender']||'').trim()||'Unknown';
     const geoState=String(r['State Name']||'').trim()||'Unknown';
     const key=month+'|'+shCode+'|'+vehicle+'|'+lender+'|'+geoState;
-    ['Loan Amount','Inflow Amount','Outflow Amount'].forEach(f=>{const raw=r[f];if(raw!==''&&raw!==null&&raw!==undefined&&isNaN(Number(raw)))caseBadNumeric++;});
+    ['Loan Amount','Inflow Amount','Outflow Amount'].forEach(f=>{const raw=r[f];if(raw!==''&&raw!==null&&raw!==undefined&&isNaN(Number(raw))){caseBadNumeric++;pushIssue('Case Data',sheetRow,f,`Not a number ("${raw}") — treated as 0`,'numeric');}});
     const loan=(+r['Loan Amount']||0)/1e5,inflow=(+r['Inflow Amount']||0)/1e5,outflow=(+r['Outflow Amount']||0)/1e5;
     if(!caseGroups.has(key))caseGroups.set(key,{month,shCode,vehicle,lender,geoState,loan:0,cases:0,inflow:0,outflow:0});
     const g=caseGroups.get(key);g.loan+=loan;g.cases+=1;g.inflow+=inflow;g.outflow+=outflow;
@@ -419,10 +452,20 @@ function buildRealData(sheets){
   });
   const cost=new Map();
   function ensureCost(month,shCode){const k=month+'|'+shCode;if(!cost.has(k))cost.set(k,{month,shCode,foSalary:0,chSalary:0,shSalary:0,foTravel:0,chTravel:0,shTravel:0,foIncentive:0,chIncentive:0,shIncentive:0,foSet:new Set()});return cost.get(k);}
-  let salaryIncluded=0;salaryRows.forEach(r=>{const month=normalizeMonthLabel(r['Month']),shCode=String(r['Tagged SH Employee Code']||'').trim();if(!month||!shCode)return;salaryIncluded++;const type=String(r['Employee Type']||'').trim().toUpperCase();const amt=(+r['Final Salary']||0)/1e5;const c=ensureCost(month,shCode);if(type==='FO'){c.foSalary+=amt;c.foSet.add(String(r['Employee Id']||''));}else if(type==='CH')c.chSalary+=amt;else if(type==='SH')c.shSalary+=amt;});
-  let fuelIncluded=0;fuelRows.forEach(r=>{const month=normalizeMonthLabel(r['Month']),shCode=String(r['Tagged SH Employee Code']||'').trim();if(!month||!shCode)return;fuelIncluded++;const type=String(r['Employee Type']||'').trim().toUpperCase();const amt=(+r['Amount']||0)/1e5;const c=ensureCost(month,shCode);if(type==='FO')c.foTravel+=amt;else if(type==='CH')c.chTravel+=amt;});
-  let kekaIncluded=0;kekaRows.forEach(r=>{const month=normalizeMonthLabel(r['Expenses Submitted month']),shCode=String(r['Tagged SH Employee Code']||'').trim();if(!month||!shCode)return;kekaIncluded++;const type=String(r['Emp Categiry']||'').trim().toUpperCase();const amt=(+r['Amount Value']||0)/1e5;const c=ensureCost(month,shCode);if(type==='FO')c.foTravel+=amt;else if(type==='CH')c.chTravel+=amt;else if(type==='SH')c.shTravel+=amt;});
-  let incentiveIncluded=0;incentiveRows.forEach(r=>{const month=normalizeMonthLabel(r['Month']),shCode=String(r['Tagged Sh Employee Code']||'').trim();if(!month||!shCode)return;incentiveIncluded++;const type=String(r['Employee Type']||'').trim().toUpperCase();const amt=(+r['Amount']||0)/1e5;const c=ensureCost(month,shCode);if(type==='FO')c.foIncentive+=amt;else if(type==='CH')c.chIncentive+=amt;else if(type==='SH')c.shIncentive+=amt;});
+  function requireMonthAndCode(r,idx,sheetName,monthField,codeField){
+    const sheetRow=idx+2;
+    const month=normalizeMonthLabel(r[monthField]),shCode=String(r[codeField]||'').trim();
+    if(!month||!shCode){
+      const missing=[];if(!month)missing.push(monthField);if(!shCode)missing.push(codeField);
+      pushIssue(sheetName,sheetRow,missing.join(', '),'Missing or blank value','missing');
+      return null;
+    }
+    return {month,shCode};
+  }
+  let salaryIncluded=0;salaryRows.forEach((r,idx)=>{const mc=requireMonthAndCode(r,idx,'Salary Data','Month','Tagged SH Employee Code');if(!mc)return;salaryIncluded++;const{month,shCode}=mc;const type=String(r['Employee Type']||'').trim().toUpperCase();const amt=(+r['Final Salary']||0)/1e5;const c=ensureCost(month,shCode);if(type==='FO'){c.foSalary+=amt;c.foSet.add(String(r['Employee Id']||''));}else if(type==='CH')c.chSalary+=amt;else if(type==='SH')c.shSalary+=amt;});
+  let fuelIncluded=0;fuelRows.forEach((r,idx)=>{const mc=requireMonthAndCode(r,idx,'Fuel Data','Month','Tagged SH Employee Code');if(!mc)return;fuelIncluded++;const{month,shCode}=mc;const type=String(r['Employee Type']||'').trim().toUpperCase();const amt=(+r['Amount']||0)/1e5;const c=ensureCost(month,shCode);if(type==='FO')c.foTravel+=amt;else if(type==='CH')c.chTravel+=amt;});
+  let kekaIncluded=0;kekaRows.forEach((r,idx)=>{const mc=requireMonthAndCode(r,idx,'Keka Reimbursements','Expenses Submitted month','Tagged SH Employee Code');if(!mc)return;kekaIncluded++;const{month,shCode}=mc;const type=String(r['Emp Categiry']||'').trim().toUpperCase();const amt=(+r['Amount Value']||0)/1e5;const c=ensureCost(month,shCode);if(type==='FO')c.foTravel+=amt;else if(type==='CH')c.chTravel+=amt;else if(type==='SH')c.shTravel+=amt;});
+  let incentiveIncluded=0;incentiveRows.forEach((r,idx)=>{const mc=requireMonthAndCode(r,idx,'Incentive Data','Month','Tagged Sh Employee Code');if(!mc)return;incentiveIncluded++;const{month,shCode}=mc;const type=String(r['Employee Type']||'').trim().toUpperCase();const amt=(+r['Amount']||0)/1e5;const c=ensureCost(month,shCode);if(type==='FO')c.foIncentive+=amt;else if(type==='CH')c.chIncentive+=amt;else if(type==='SH')c.shIncentive+=amt;});
   cost.forEach((c,smKey)=>{if(!shMonthCases.has(smKey)&&genuineShCodes.has(c.shCode)){const key=c.month+'|'+c.shCode+'|Other|Unknown|Unknown';if(!caseGroups.has(key))caseGroups.set(key,{month:c.month,shCode:c.shCode,vehicle:'Other',lender:'Unknown',geoState:'Unknown',loan:0,cases:0,inflow:0,outflow:0});}});
   const result=[];
   caseGroups.forEach(g=>{
@@ -445,9 +488,12 @@ function buildRealData(sheets){
     {name:'Keka Reimbursements',total:kekaRows.length,included:kekaIncluded,excluded:kekaRows.length-kekaIncluded}
   ];
   const warnings=[];
-  if(caseBadNumeric>0)warnings.push(`Case Data: ${caseBadNumeric} value(s) in Loan/Inflow/Outflow Amount could not be read as a number and were treated as 0.`);
-  sheetStats.forEach(s=>{if(s.total===0)warnings.push(`${s.name}: tab is present but has no data rows.`);else if(s.excluded>0)warnings.push(`${s.name}: ${s.excluded} of ${s.total} row(s) skipped — missing Month or SH/employee code.`);});
-  return {rows:result,months:monthsOut,shs:shsOut,lenders:lendersOut,vehicles:vehiclesOut,geoStates:geoStatesOut,sheetStats,warnings};
+  if(caseBadNumeric>0)warnings.push({sheet:'Case Data',kind:'numeric',count:caseBadNumeric,text:`Case Data: ${caseBadNumeric} value(s) in Loan/Inflow/Outflow Amount could not be read as a number and were treated as 0.`});
+  sheetStats.forEach(s=>{
+    if(s.total===0)warnings.push({sheet:s.name,kind:'empty',count:0,text:`${s.name}: tab is present but has no data rows.`});
+    else if(s.excluded>0)warnings.push({sheet:s.name,kind:'missing',count:s.excluded,text:`${s.name}: ${s.excluded} of ${s.total} row(s) skipped — missing Month or SH/employee code.`});
+  });
+  return {rows:result,months:monthsOut,shs:shsOut,lenders:lendersOut,vehicles:vehiclesOut,geoStates:geoStatesOut,sheetStats,warnings,dataIssues:issueTracker.dataIssues,dataIssuesTotal:issueTracker.dataIssuesTotal};
 }
 
 /* Hiring & attrition ETL: one row per employee, with joining/exit dates stored as Excel date
@@ -501,18 +547,23 @@ function mergeShNames(base,extra){
   return result.sort();
 }
 function buildHiringData(sheets){
+  const issueTracker=makeIssueTracker(),pushIssue=issueTracker.pushIssue;
   const foRows=sheetObjects(sheets,'FO Hiring & Attrition'),chRows=sheetObjects(sheets,'CH Hiring & Attrition');
-  const fo=foRows.map(r=>({
+  const foMapped=foRows.map(r=>({
     id:String(r['FO ID']||'').trim(),name:String(r['FO - Name']||'').trim(),
     chName:String(r['CH - Name']||'').trim(),sh:String(r['SH - Name']||'').trim(),
     state:String(r['State']||'').trim(),doj:excelSerialToMonthStr(r['DOJ']),doe:excelSerialToMonthStr(r['DOE']),
     team:String(r['Team Type']||'').trim(),level:String(r['FO level']||'').trim()
-  })).filter(x=>x.id&&x.doj);
-  const ch=chRows.map(r=>({
+  }));
+  foMapped.forEach((x,idx)=>{if(!(x.id&&x.doj)){const missing=[];if(!x.id)missing.push('FO ID');if(!x.doj)missing.push('DOJ');pushIssue('FO Hiring & Attrition',idx+2,missing.join(', '),'Missing or unreadable value','missing');}});
+  const fo=foMapped.filter(x=>x.id&&x.doj);
+  const chMapped=chRows.map(r=>({
     id:String(r['Employee ID']||'').trim(),name:String(r['Name']||'').trim(),
     sh:String(r['SH - Name']||'').trim(),doj:excelSerialToMonthStr(r['DOJ']),doe:excelSerialToMonthStr(r['DOE']),
     team:String(r['TEAM']||'').trim(),level:String(r['CH_Level']||'').trim()
-  })).filter(x=>x.id&&x.doj);
+  }));
+  chMapped.forEach((x,idx)=>{if(!(x.id&&x.doj)){const missing=[];if(!x.id)missing.push('Employee ID');if(!x.doj)missing.push('DOJ');pushIssue('CH Hiring & Attrition',idx+2,missing.join(', '),'Missing or unreadable value','missing');}});
+  const ch=chMapped.filter(x=>x.id&&x.doj);
   const teams=uniq([...fo.map(x=>x.team),...ch.map(x=>x.team)]).filter(Boolean).sort();
   const foLevels=uniq(fo.map(x=>x.level)).filter(Boolean).sort();
   const chLevels=uniq(ch.map(x=>x.level)).filter(Boolean).sort();
@@ -528,9 +579,12 @@ function buildHiringData(sheets){
     {name:'CH Hiring & Attrition',total:chRows.length,included:ch.length,excluded:chRows.length-ch.length}
   ];
   const warnings=[];
-  sheetStats.forEach(s=>{if(s.total===0)warnings.push(`${s.name}: tab is present but has no data rows.`);else if(s.excluded>0)warnings.push(`${s.name}: ${s.excluded} of ${s.total} row(s) skipped — missing employee ID or joining date.`);});
-  if(!canonicalShNames.length)warnings.push('SH Name List tab not found — State Head names on the Hiring & Attrition filter could not be validated against the master list.');
-  return {fo,ch,teams,foLevels,chLevels,shs,sheetStats,warnings};
+  sheetStats.forEach(s=>{
+    if(s.total===0)warnings.push({sheet:s.name,kind:'empty',count:0,text:`${s.name}: tab is present but has no data rows.`});
+    else if(s.excluded>0)warnings.push({sheet:s.name,kind:'missing',count:s.excluded,text:`${s.name}: ${s.excluded} of ${s.total} row(s) skipped — missing employee ID or joining date.`});
+  });
+  if(!canonicalShNames.length)warnings.push({sheet:null,kind:'other',count:0,text:'SH Name List tab not found — State Head names on the Hiring & Attrition filter could not be validated against the master list.'});
+  return {fo,ch,teams,foLevels,chLevels,shs,sheetStats,warnings,dataIssues:issueTracker.dataIssues,dataIssuesTotal:issueTracker.dataIssuesTotal};
 }
 
 function fill(id,arr,val){const e=document.getElementById(id);e.innerHTML=arr.map(x=>`<option>${x}</option>`).join('');if(val!==undefined)e.value=val}
@@ -1453,14 +1507,40 @@ function loadSummaryTableHtml(sheetStats){
     return `<tr><td><span class="loadTabIcon">${LOAD_ICONS.tab}</span>${s.name}</td><td><div class="loadBar"><div class="loadBarFill" style="width:${donePct}%"></div></div></td><td class="num">${fmt(s.total, 0)}</td><td class="num">${fmt(s.included, 0)}</td><td class="num">${excludedCell}</td></tr>`;
   }).join('')}</tbody></table>`;
 }
-function showLoadSuccess(sourceText, sheetStats, warnings){
+let LAST_LOAD_ISSUES = [];
+function jsStringArg(s){ return String(s == null ? '' : s).replace(/\\/g, '\\\\').replace(/'/g, "\\'"); }
+function loadWarningsHtml(warnings){
+  if (!warnings || !warnings.length) return '';
+  const items = warnings.map((w, i) => {
+    const clickable = !!(w.sheet && (w.kind === 'missing' || w.kind === 'numeric'));
+    const openAttr = clickable ? ` onclick="toggleLoadIssueDetail(this,'${jsStringArg(w.sheet)}','${jsStringArg(w.kind)}',${Number(w.count) || 0})"` : '';
+    return `<div class="loadWarnItem${clickable ? ' clickable' : ''}"${openAttr}><span class="loadWarnBullet">•</span><span class="loadWarnText">${w.text}${clickable ? ' <span class="loadWarnHint">— click to see rows ›</span>' : ''}</span><div class="loadIssueDetail" id="loadIssueDetail${i}"></div></div>`;
+  }).join('');
+  return `<div class="loadWarnBox"><strong>Please review:</strong><div class="loadWarnList">${items}</div></div>`;
+}
+function toggleLoadIssueDetail(el, sheet, kind, count){
+  const detail = el.querySelector('.loadIssueDetail');
+  if (!detail) return;
+  const isOpen = el.classList.contains('open');
+  if (isOpen) { el.classList.remove('open'); detail.style.display = 'none'; detail.innerHTML = ''; return; }
+  el.classList.add('open');
+  const matches = LAST_LOAD_ISSUES.filter(iss => iss.sheet === sheet && iss.kind === kind);
+  if (!matches.length) {
+    detail.innerHTML = '<div class="loadIssueEmpty">No row-level detail was captured for this.</div>';
+  } else {
+    const shownNote = count > matches.length ? `<div class="loadIssuesMore">+ ${fmt(count - matches.length, 0)} more row(s) not shown</div>` : '';
+    detail.innerHTML = `<div class="loadIssuesWrap"><table class="loadIssuesTable"><thead><tr><th>Row</th><th>Column</th><th>Issue</th></tr></thead><tbody>${matches.map(iss => `<tr><td class="num">${iss.row}</td><td>${iss.column}</td><td>${iss.issue}</td></tr>`).join('')}</tbody></table></div>${shownNote}`;
+  }
+  detail.style.display = 'block';
+}
+function showLoadSuccess(sourceText, sheetStats, warnings, dataIssues){
   if (!document.getElementById('loadModal')) return;
+  LAST_LOAD_ISSUES = dataIssues || [];
   const hasWarnings = warnings && warnings.length > 0;
   setLoadModalIcon(hasWarnings ? 'warning' : 'success');
   document.getElementById('loadModalTitle').textContent = hasWarnings ? 'Data loaded — with warnings' : 'Data loaded successfully';
   document.getElementById('loadModalSubtitle').textContent = sourceText || '';
-  const warnHtml = hasWarnings ? `<div class="loadWarnBox"><strong>Please review:</strong><br>${warnings.map(w => `• ${w}`).join('<br>')}</div>` : '';
-  document.getElementById('loadModalBody').innerHTML = loadSummaryTableHtml(sheetStats) + warnHtml + `<div class="loadFooterBtn"><button type="button" class="btn primary" onclick="closeLoadModal()">Got it</button></div>`;
+  document.getElementById('loadModalBody').innerHTML = loadSummaryTableHtml(sheetStats) + loadWarningsHtml(warnings) + `<div class="loadFooterBtn"><button type="button" class="btn primary" onclick="closeLoadModal()">Got it</button></div>`;
   const closeBtn = document.getElementById('loadModalClose'); if (closeBtn) closeBtn.style.display = '';
   openLoadModal();
   if (!hasWarnings) {
@@ -1482,7 +1562,17 @@ async function loadGoogleSheet(silent){
   if (!silent) { updateSourceLabel('Syncing Google Sheet…'); showLoadProgress('fetch', 'Connecting to your Google Sheet…'); }
   try {
     if (window.location.protocol === 'file:') throw new Error('This dashboard is open directly from disk (file://), so the browser blocks live fetches to Google Sheets. Host this HTML file on a web server (intranet, SharePoint, GitHub Pages, or any local server) to enable live sync — until then, use "Load Excel" with the same workbook.');
-    const response = await fetch(GOOGLE_SHEET_URL, { mode: 'cors', cache: 'no-store' });
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 20000);
+    let response;
+    try {
+      response = await fetch(GOOGLE_SHEET_URL, { mode: 'cors', cache: 'no-store', signal: controller.signal });
+    } catch (fetchErr) {
+      if (fetchErr.name === 'AbortError') throw new Error('The Google Sheet took too long to respond (timed out after 20s). Check your internet connection and try again, or use "Load Excel" instead.');
+      throw new Error('Could not reach Google Sheets. Check your internet connection and try again.');
+    } finally {
+      clearTimeout(timeoutId);
+    }
     if (!response.ok) throw new Error('Unable to access the Google Sheet. Confirm it is shared as "Anyone with the link — Viewer".');
     const buf = await response.arrayBuffer();
     if (!silent) showLoadProgress('parse', 'Parsing workbook tabs…');
@@ -1511,7 +1601,7 @@ async function loadGoogleSheet(silent){
     initFilters(); initPage4Filters(); initPage5Filters(); initPage6Filters(); initPage7Filters(); initPage8Filters(); renderAll();
     if (!silent) {
       addChatMessage('Google Sheet connected successfully. I can answer questions from the live sheet data now.', 'bot');
-      showLoadSuccess(`Google Sheet — synced ${syncedAt}`, [...(built.sheetStats || []), ...(hiring.sheetStats || [])], [...(built.warnings || []), ...(hiring.warnings || [])]);
+      showLoadSuccess(`Google Sheet — synced ${syncedAt}`, [...(built.sheetStats || []), ...(hiring.sheetStats || [])], [...(built.warnings || []), ...(hiring.warnings || [])], [...(built.dataIssues || []), ...(hiring.dataIssues || [])]);
     }
     if (!googleAutoRefreshTimer) googleAutoRefreshTimer = setInterval(() => loadGoogleSheet(true), 5 * 60 * 1000);
   } catch (error) {
@@ -1757,7 +1847,7 @@ function toggleSidebar(){
 /* Override navigation so page filters initialize correctly */
 document.querySelectorAll('.pageTab').forEach(tab=>tab.addEventListener('click',e=>{e.preventDefault();document.querySelectorAll('.pageTab').forEach(t=>t.classList.remove('active'));tab.classList.add('active');document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(tab.dataset.page).classList.add('active');if(tab.dataset.page==='pnlPage')renderPnlPage();if(tab.dataset.page==='vehiclePnlPage')renderVehiclePnl();if(tab.dataset.page==='shPnlPage'){initPage4Filters();renderShPnl()}if(tab.dataset.page==='cm2VehiclePage'){initPage5Filters();renderCm2Vehicle()}if(tab.dataset.page==='lenderPortfolioPage'){initPage6Filters();renderLenderPortfolio()}if(tab.dataset.page==='lenderGmPage'){initPage7Filters();renderLenderGm()}if(tab.dataset.page==='hiringPage'){initPage8Filters();renderHiring()}if(tab.dataset.page==='analysisPage'){initPage9Filters();renderAnalysis()}window.scrollTo({top:0,behavior:'smooth'})}));
 initFilters();initPage4Filters();initPage5Filters();initPage6Filters();initPage7Filters();initPage8Filters();initPage9Filters();initDashboardTheme();renderPnlPage();renderVehiclePnl();renderAll();renderShPnl();renderCm2Vehicle();
-loadGoogleSheet(true);
+loadGoogleSheet(false);
 
 /* V18 Excel import / preview feature. Does not alter existing dashboard page markup or calculations. */
 function handleExcelImport(event){
@@ -1783,7 +1873,7 @@ function handleExcelImport(event){
       buildImportedDataPage(file.name);
       showLoadProgress('render','Rendering dashboard…');
       initFilters();initPage4Filters();initPage5Filters();initPage6Filters();initPage7Filters();initPage8Filters();renderAll();
-      showLoadSuccess(file.name,[...(built.sheetStats||[]),...(hiring.sheetStats||[])],[...(built.warnings||[]),...(hiring.warnings||[])]);
+      showLoadSuccess(file.name,[...(built.sheetStats||[]),...(hiring.sheetStats||[])],[...(built.warnings||[]),...(hiring.warnings||[])],[...(built.dataIssues||[]),...(hiring.dataIssues||[])]);
     }catch(err){
       showLoadError('Unable to read this Excel file',(err.message||'Please use a valid .xlsx, .xls or .csv file exported from the same template.'));
     }
